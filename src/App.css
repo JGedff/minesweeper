@@ -170,3 +170,7 @@
   font-family: 'Noto Emoji';
   font-size: 48px;
 }
+
+.click-pointer {
+  cursor: pointer;
+}
