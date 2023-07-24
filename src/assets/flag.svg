@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(0.83157,0,0,0.83157,150,150)">
+        <g id="Mesa-de-trabajo1" serif:id="Mesa de trabajo1">
+            <g id="flag.svg" transform="matrix(1,0,0,1,-150,-150)">
+                <g transform="matrix(1,0,0,1,-10.0238,0)">
+                    <g id="Mesa-de-trabajo11" serif:id="Mesa de trabajo1">
+                        <g>
+                            <g transform="matrix(2.57143,0,0,1.13612,-229.07,-3.93552)">
+                                <rect x="115.275" y="22.648" width="5.734" height="225.69" style="fill:white;"/>
+                            </g>
+                            <g transform="matrix(6.12323e-17,1,-1,6.12323e-17,283.945,-86.9262)">
+                                <path d="M187.262,31.25L265.803,188.331L108.721,188.331L187.262,31.25Z" style="fill:rgb(255,112,112);"/>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <g id="flag.svg1" serif:id="flag.svg">
+            </g>
+        </g>
+    </g>
+</svg>

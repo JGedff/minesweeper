@@ -17,7 +17,7 @@ function App() {
   // 0 = No winner
   //1 = Winner
   //2 = Loosed
-    let winner = 0
+    const [winner, setWinner] = useState(0)
     const [flags, setFlags] = useState(10)
     const [dimensions, setDimensions] = useState(8)
 
@@ -38,6 +38,7 @@ function App() {
 
     const resetBoard = () => {
         setBoard(generateBoard())
+        setWinner(0)
     }
 
     const [board, setBoard] = useState(() => {
@@ -138,6 +139,14 @@ function App() {
         return newBoard
     }
 
+    const looseGame = () => {
+        setWinner(2)
+    }
+
+    const winGame = () => {
+        setWinner(1)
+    }
+
     useEffect(() => {
         resetBoard()
     }, [dimensions])
@@ -146,7 +155,7 @@ function App() {
         <>
             <InfoModule flags={flags} faceSource={winner} restartGame={resetBoard}></InfoModule>
 
-            <BoardModule dimensions={dimensions} board={board} ></BoardModule>
+            <BoardModule dimensions={dimensions} oldBoard={board} winGame={winGame} looseGame={looseGame}></BoardModule>
 
             <DifficultyModule easyFunction={chooseDificultyEasy} normalFunction={chooseDificultyNormal} hardFunction={chooseDificultyHard}></DifficultyModule>
         </>

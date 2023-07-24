@@ -1,7 +1,3 @@
-//import propTypes from "prop-types";
-
-import { useState } from "react"
-
 export const InfoModule = ({ flags, faceSource, restartGame }) => {
     let seconds = 2
     let sadFace = '☹️'
@@ -32,9 +28,3 @@ export const InfoModule = ({ flags, faceSource, restartGame }) => {
         </>
     )
 }
-
-/*InfoModule.propTypes = {
-
-    flags: propTypes.number.isRequired,
-    faceSource: propTypes.number.isRequired,
-}*/

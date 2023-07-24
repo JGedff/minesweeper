@@ -1,13 +1,30 @@
 import { useEffect, useState } from "react"
+import mineExploded from "./../assets/mine-exploded.svg";
+import flag from "./../assets/flag.svg";
+import flag_unknown from "./../assets/flag-unknown.svg";
+import flag_failed from "./../assets/flag-failed.svg";
 
-export const CellModule = ({ children, row, column, restartGame }) => {
+export const FLAG_STATUS = {
+    NO_FLAG: '',
+    FLAG: flag,
+    MAYBE_FLAG: flag_unknown,
+    FAILED_FLAG: flag_failed
+}
+
+export const CellModule = ({ children, row, column, restartGame, looseGame, checkOtherCells }) => {
 
     const [enable, setEnabled] = useState(false)
     const [visible, setVisible] = useState(false)
+    const [flag, setFlag] = useState(FLAG_STATUS.NO_FLAG)
 
     const handleClick = () => {
         setEnabled(!enable)
         setVisible(!visible)
+        if (children === '💣') {
+            looseGame()
+        } else {
+            checkOtherCells(row, column)
+        }
     }
 
     const numberToText = (number) => {
@@ -28,20 +45,37 @@ export const CellModule = ({ children, row, column, restartGame }) => {
 
     const handleRightClick = (event) => {
         event.preventDefault();
+
+        if (flag === FLAG_STATUS.NO_FLAG) {
+            setFlag(FLAG_STATUS.FLAG)
+        } else if (flag === FLAG_STATUS.FLAG) {
+            setFlag(FLAG_STATUS.MAYBE_FLAG)
+        } else {
+            setFlag(FLAG_STATUS.NO_FLAG)
+        }
     }
 
     useEffect(() => {
         setEnabled(false) 
-        setVisible(false) 
+        setVisible(false)
+        setFlag(FLAG_STATUS.NO_FLAG)
     }, [restartGame])
     
-    const uncoveredContent = () => {
-        return visible && children !== 0
+    const cellContent = () => {
+        if (visible) {
+            if (children === '💣') {
+                return (<img className="svg" src={mineExploded} alt="" />)
+            } else if (children !== 0) {
+                return children
+            }
+        } else {
+            return (<img className="svg" src={flag} alt="" />)
+        }
     }
 
     return (
         <button className={"cell" + numberToText(children)} onClick={handleClick} onContextMenu={handleRightClick} disabled={enable} >
-            {uncoveredContent() && children}
+            {cellContent()}
         </button>
     )
 }
