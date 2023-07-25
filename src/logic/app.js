@@ -1,19 +1,27 @@
 import confetti from "canvas-confetti";
 import { cloneBoard, generateEmptyBoardWith2Dimensions } from "./board"
 
-export const generateBoardWithMines = (flags, heigh, width) => {
+export const getFlagsByDimensions = (dimensions) => {
+    switch (dimensions) {
+        case 8: return 10
+        case 16: return 50
+        default: return 100
+    }
+}
+
+export const generateBoardWithMines = (height, width) => {
     let row = 0
     let col = 0
-    let mines = flags
-    let newBoard = generateEmptyBoardWith2Dimensions(heigh, width)
+    let mines = getFlagsByDimensions(height)
+    let newBoard = generateEmptyBoardWith2Dimensions(height, width)
 
     while (mines > 0) {
         
-        row = Math.trunc(Math.random() * heigh)
+        row = Math.trunc(Math.random() * height)
         col = Math.trunc(Math.random() * width)
         
         if (newBoard[row][col] == 0 || newBoard[row][col] == undefined) {
-            newBoard[row][col] = '💣'
+            newBoard[row][col] = '@'
 
             mines--
         }
@@ -21,7 +29,7 @@ export const generateBoardWithMines = (flags, heigh, width) => {
 
     for (let x = 0; x < newBoard.length; x++) {
         for (let y = 0; y < newBoard[x].length; y++) {
-            if (newBoard[x][y] != '💣') {
+            if (newBoard[x][y] != '@') {
                 newBoard[x][y] = 0
             }
         }
@@ -30,14 +38,14 @@ export const generateBoardWithMines = (flags, heigh, width) => {
     return newBoard
 }
 
-export const numberAdjacentMines = (mineField, x, y, heigh, width) => {
+export const numberAdjacentMines = (mineField, x, y, height, width) => {
     let adjacentMines = 0
 
     for(let row = (x - 1); row < (x + 2); row++) {
-        if (row >= 0 && row < heigh) {
+        if (row >= 0 && row < height) {
             for(let col = (y - 1); col < (y + 2); col++) {
                 if (col >= 0 && col < width) {
-                    if (mineField[row][col] == '💣') {
+                    if (mineField[row][col] == '@') {
                         adjacentMines++
                     }
                 }
@@ -48,13 +56,13 @@ export const numberAdjacentMines = (mineField, x, y, heigh, width) => {
     return adjacentMines
 }
 
-export const setupDangerCells = (oldBoard, heigh, width) => {
+export const setupDangerCells = (oldBoard, height, width) => {
     let newBoard = cloneBoard(oldBoard)
 
     for (let x = 0; x < oldBoard.length; x++) {
         for (let y = 0; y < oldBoard[x].length; y++) {
-            if (oldBoard[x][y] != '💣') {
-                let adjacentMines = numberAdjacentMines(oldBoard, x, y, heigh, width)
+            if (oldBoard[x][y] != '@') {
+                let adjacentMines = numberAdjacentMines(oldBoard, x, y, height, width)
 
                 newBoard[x][y] = adjacentMines
             }
@@ -63,10 +71,10 @@ export const setupDangerCells = (oldBoard, heigh, width) => {
     return newBoard
 }
 
-export const generateBoard = (flags, heigh, width) => {
-    let newBoard = generateBoardWithMines(flags, heigh, width)
+export const generateBoard = (height, width) => {
+    let newBoard = generateBoardWithMines(height, width)
 
-    newBoard = setupDangerCells(newBoard, heigh, width)
+    newBoard = setupDangerCells(newBoard, height, width)
 
     return newBoard
 }
@@ -79,7 +87,7 @@ export const checkOtherCellsToWin = (visibleBoard, board, row, col, winGame) => 
 
     for (let x = 0; x < board.length; x++) {
         for (let y = 0; y < board[x].length; y++) {
-            if (newBoard[x][y] != true && board[x][y] != '💣') {
+            if (newBoard[x][y] != true && board[x][y] != '@') {
                 winner = false
             }
         }
@@ -89,6 +97,46 @@ export const checkOtherCellsToWin = (visibleBoard, board, row, col, winGame) => 
         winGame()
         confetti()
     }
+    return newBoard
+}
 
+export const validPosition = (width, height, number1, number2) => {
+    return (0 <= number1) && (number1 < width) && (0 <= number2) && (number2 < height)
+}
+
+export const showAllMines = (visibleBoard, board) => {
+    let newBoard = cloneBoard(visibleBoard)
+
+    for (let x = 0; x < board.length; x++) {
+        for (let y = 0; y < board[x].length; y++) {
+            if (board[x][y] == '@') {
+                newBoard[x][y] = true
+            }
+        }
+    }
+
+    return newBoard
+}
+
+export const disableAllCells = (board) => {
+    let newBoard = cloneBoard(board)
+
+    for (let x = 0; x < newBoard.length; x++) {
+        for (let y = 0; y < newBoard[x].length; y++) {
+            newBoard[x][y] = "undefined"
+        }
+    }
+
+    return newBoard
+}
+
+export const generateMatrix = (dimensions, content) => {
+    let newBoard = new Array(dimensions)
+    for (let indexRow = 0; indexRow < dimensions; indexRow++) {
+        newBoard[indexRow] = new Array(dimensions)
+        for (let indexColumn = 0; indexColumn < dimensions; indexColumn++) {
+            newBoard[indexRow][indexColumn] = content
+        }
+    }
     return newBoard
 }

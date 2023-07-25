@@ -15,7 +15,7 @@ export const numberToText = (number) => {
 }
 
 export const getDisable = (uncover) => {
-    if (uncover == '💣' || !uncover) {
+    if (uncover != true) {
         return false
     } else {
         return true

@@ -1,7 +1,7 @@
-export const generateEmptyBoardWith2Dimensions = (heigh, width) => {
-    let newBoard = new Array(heigh)
+export const generateEmptyBoardWith2Dimensions = (height, width) => {
+    let newBoard = new Array(height)
 
-    for (let x = 0; x < heigh; x++) {
+    for (let x = 0; x < height; x++) {
         newBoard[x] = new Array(width)
     }
 

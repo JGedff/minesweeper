@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 
 import mineExploded from "./../assets/mine-exploded.svg";
+import mineSave from "./../assets/mine-safe.svg";
 import flag from "./../assets/flag.svg";
 import flag_unknown from "./../assets/flag-unknown.svg";
 import flag_failed from "./../assets/flag-failed.svg";
@@ -16,21 +17,56 @@ export const FLAG_STATUS = {
 
 export const CellModule = ({
     children, row, column, restartGame, looseGame, uncoverNumber, cascade, initialVisible,
-    addAFlag, substractAFlag, flagsRemaining
+    addAFlag, substractAFlag, flagsRemaining, disable, finishedGame, DEBUGshowGuide, startGame
     }) => {
 
-    const [uncover, setUncover] = useState(initialVisible)
+    const [clicked, setClicked] = useState(false)
     const [flag, setFlag] = useState(FLAG_STATUS.NO_FLAG)
+    const [uncover, setUncover] = useState(initialVisible)
+    const [disableStatus, setDisableStatus] = useState(disable)
+
+    useEffect(() => {
+        setUncover(initialVisible)
+        setFlag(FLAG_STATUS.NO_FLAG)
+        setClicked(false)
+        setDisableStatus(disable)
+    }, [restartGame])
+
+    useEffect(() => {
+        setUncover(initialVisible)
+    }, [initialVisible])
+
+    useEffect(() => {
+        if (disable == "undefined") {
+            setDisableStatus(true)
+        } else {
+            setDisableStatus(disable)
+        }
+    }, [disable])
+
+    const setClickedAndUncoverTrue = () => {
+        setClicked(true)
+        setUncover(true)
+    }
 
     const handleClick = () => {
-        let newUncover = !uncover
-        setUncover(newUncover)
-        if (children === '💣') {
-            looseGame()
-        } else if (children === 0) {
-            cascade(row, column)
-        } else {
-            uncoverNumber(row, column)
+        startGame()
+
+        if (!finishedGame) {
+            setClickedAndUncoverTrue()
+
+            if (children === '@') {
+                looseGame()
+            } else if (children === 0) {
+                cascade(row, column)
+            } else {
+                uncoverNumber(row, column)
+            }
+
+            if (flag === FLAG_STATUS.FLAG) {
+                setFlag(FLAG_STATUS.NO_FLAG)
+                addAFlag(row, column)
+            }
         }
     }
 
@@ -39,39 +75,37 @@ export const CellModule = ({
 
         if (flag === FLAG_STATUS.NO_FLAG && flagsRemaining > 0) {
             setFlag(FLAG_STATUS.FLAG)
-            substractAFlag()
+            substractAFlag(row, column)
         } else if (flag === FLAG_STATUS.FLAG) {
             setFlag(FLAG_STATUS.MAYBE_FLAG)
-            addAFlag()
+            addAFlag(row, column)
         } else {
             setFlag(FLAG_STATUS.NO_FLAG)
         }
     }
 
-    useEffect(() => {
-        setUncover(initialVisible)
-        setFlag(FLAG_STATUS.NO_FLAG)
-    }, [restartGame])
-
-    useEffect(() => {
-        setUncover(initialVisible)
-    }, [initialVisible])
-
-    const cellContent = () => {
+    const cellContent = (uncover, children, mineExploded, flag, DEBUGshowGuide) => {
+        if (DEBUGshowGuide) return children
         if (uncover) {
-            if (children === '💣') {
+            if (children === '@' && clicked) {
                 return (<img className="svg" src={mineExploded} alt="" />)
+            } else if (children === '@') {
+                return (<img className="svg" src={mineSave} />)
             } else if (children !== 0) {
                 return children
             }
         } else {
-            return (<img className="svg" src={flag} alt="" />)
+            if (flag === FLAG_STATUS.FLAG && finishedGame) {
+                return (<img className="svg" src={FLAG_STATUS.FAILED_FLAG} alt="" />)
+            } else {
+                return (<img className="svg" src={flag} alt="" />)
+            }
         }
     }
 
     return (
-        <button className={"cell" + numberToText(children)} onClick={handleClick} onContextMenu={handleRightClick} disabled={getDisable(uncover)} >
-            {cellContent(uncover, children, mineExploded, flag)}
+        <button className={"cell" + numberToText(children)} onClick={handleClick} onContextMenu={handleRightClick} disabled={disableStatus} >
+            {cellContent(uncover, children, mineExploded, flag, DEBUGshowGuide)}
         </button>
     )
 }

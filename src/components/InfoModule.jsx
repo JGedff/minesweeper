@@ -1,11 +1,16 @@
+import { useEffect } from "react"
 import { getFaceSource } from "../logic/info"
 
-export const InfoModule = ({ flags, faceSource, restartGame }) => {
-    let seconds = 2
+export const InfoModule = ({ flags, faceSource, restartGame, seconds, counter, gameInProgress }) => {
 
-    const handleClick = () => {
-        restartGame()
-    }
+    useEffect(() => {
+        if (gameInProgress) {
+            let intervalID = setInterval(() => {
+                counter()
+            }, 1000);
+            return () => { clearInterval(intervalID) }
+        }
+    }, [gameInProgress, seconds]);
 
     return (
         <>
@@ -14,7 +19,7 @@ export const InfoModule = ({ flags, faceSource, restartGame }) => {
                     <span className="w-100 counterNumber"> { flags } </span>
                     <span className="counterDescription"> flags remaining </span>
                 </div>
-                <div className="emojiFace d-flex justify-content-center align-items-center click-pointer" onClick={handleClick}>
+                <div className="emojiFace d-flex justify-content-center align-items-center click-pointer" onClick={restartGame}>
                     {getFaceSource(faceSource)}
                 </div>
                 <div className="counter d-wrap justify-content-center align-items-center">
