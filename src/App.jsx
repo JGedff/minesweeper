@@ -4,19 +4,13 @@ import { useState, useEffect } from 'react'
 import { BoardModule } from './components/BoardModule'
 import { InfoModule } from "./components/InfoModule"
 import { DifficultyModule } from './components/DifficultyModule'
-
-/*
-Cosas por hacer:
-
-  Crar script alterno para poner funciones
-
-*/
+import { checkOtherCellsToWin, generateBoard } from './logic/app'
 
 function App() {
 
-  // 0 = No winner
-  //1 = Winner
-  //2 = Loosed
+  //  0 = No winner
+  //  1 = Winner
+  //  2 = Loosed
     const [winner, setWinner] = useState(0)
     const [flags, setFlags] = useState(10)
     const [dimensions, setDimensions] = useState(8)
@@ -24,120 +18,38 @@ function App() {
     const chooseDificultyEasy = () => {
         setFlags(10)
         setDimensions(8)
+        resetBoard()
     }
 
     const chooseDificultyNormal = () => {
         setFlags(50)
         setDimensions(16)
+        resetBoard()
     }
 
     const chooseDificultyHard = () => {
         setFlags(100)
         setDimensions(22)
+        resetBoard()
     }
 
     const resetBoard = () => {
-        setBoard(generateBoard())
+        setBoard(generateBoard(flags, dimensions, dimensions))
         setWinner(0)
+        setVisibleBoard(generateMatrix(dimensions, false))
+    }
+
+    const addAFlag = () => {
+        setFlags(flags + 1)
+    }
+
+    const substractAFlag = () => {
+        setFlags(flags - 1)
     }
 
     const [board, setBoard] = useState(() => {
-        let newBoard = new Array(length)
-
-        for (let x = 0; x < dimensions; x++) {
-            newBoard[x] = new Array(length)
-        }
-
-        return newBoard
+        return generateBoard(flags, dimensions, dimensions)
     })
-
-    const generateEmptyBoardWith2Dimensions = (heigh, length) => {
-        let newBoard = new Array(heigh)
-
-        for (let x = 0; x < heigh; x++) {
-            newBoard[x] = new Array(length)
-        }
-
-        return newBoard
-    }
-
-    const generateMines = () => {
-        let row = 0
-        let col = 0
-        let mines = flags
-        let newBoard = generateEmptyBoardWith2Dimensions(dimensions, dimensions)
-
-        while (mines > 0) {
-            
-            row = Math.trunc(Math.random() * dimensions)
-            col = Math.trunc(Math.random() * dimensions)
-            
-            if (newBoard[row][col] == 0 || newBoard[row][col] == undefined) {
-                newBoard[row][col] = '💣'
-
-                mines--
-            }
-        }
-
-        for (let x = 0; x < newBoard.length; x++) {
-            for (let y = 0; y < newBoard[x].length; y++) {
-                if (newBoard[x][y] != '💣') {
-                    newBoard[x][y] = 0
-                }
-            }
-        }
-
-        return newBoard
-    }
-
-    const numberAdjacentMines = (mineField, x, y, dim) => {
-        let adjacentMines = 0
-
-        for(let row = (x - 1); row < (x + 2); row++) {
-            if (row >= 0 && row < dim) {
-                for(let col = (y - 1); col < (y + 2); col++) {
-                    if (col >= 0 && col < dim) {
-                        if (mineField[row][col] == '💣') {
-                            adjacentMines++
-                        }
-                    }
-                }
-            }
-        }
-
-        return adjacentMines
-    }
-
-    const setupDangerCells = (oldBoard) => {
-        let newBoard = generateEmptyBoardWith2Dimensions(dimensions, dimensions)
-
-        for (let x = 0; x < newBoard.length; x++) {
-            for (let y = 0; y < newBoard[x].length; y++) {
-                newBoard[x][y] = oldBoard[x][y]
-            }
-        }
-
-        for (let x = 0; x < oldBoard.length; x++) {
-            for (let y = 0; y < oldBoard[x].length; y++) {
-                if (oldBoard[x][y] != '💣') {
-                    let adjacentMines = numberAdjacentMines(oldBoard, x, y, dimensions)
-
-                    newBoard[x][y] = adjacentMines
-                }
-            }
-        }
-
-        return newBoard
-    }
-
-    const generateBoard = () => {
-        let newBoard = generateEmptyBoardWith2Dimensions(dimensions, dimensions)
-
-        newBoard = generateMines()
-        newBoard = setupDangerCells(newBoard)
-
-        return newBoard
-    }
 
     const looseGame = () => {
         setWinner(2)
@@ -151,14 +63,66 @@ function App() {
         resetBoard()
     }, [dimensions])
 
+    const generateMatrix = (dimensions, content) => {
+        let newBoard = new Array(dimensions)
+        for (let indexRow = 0; indexRow < dimensions; indexRow++) {
+            newBoard[indexRow] = new Array(dimensions)
+            for (let indexColumn = 0; indexColumn < dimensions; indexColumn++) {
+                newBoard[indexRow][indexColumn] = content
+            }
+        }
+        return newBoard
+    }
+
+    const [visibleBoard, setVisibleBoard] = useState(() => {
+        const startingBoard = generateMatrix(dimensions, false)
+        return startingBoard
+    })
+
+    const validPosition = (number1, number2) => {
+        return (0 <= number1) && (number1 < dimensions) && (0 <= number2) && (number2 < dimensions)
+    }
+
+    const cascade = (row, col) => {
+        let newVisibleBoard = [...visibleBoard]
+        cascadeCheck(newVisibleBoard, row, col)
+        setVisibleBoard(newVisibleBoard)
+        checkOtherCellsToWin(newVisibleBoard, board, row, col, winGame)
+    }
+
+    const cascadeCheck = (checkedMatrix, row, col) => {
+        if (validPosition(row, col) && board[row][col] === 0 && checkedMatrix[row][col] !== true) {
+            checkedMatrix[row][col] = true
+            cascadeCheck(checkedMatrix, row + 1, col)
+            cascadeCheck(checkedMatrix, row + 1, col + 1)
+            cascadeCheck(checkedMatrix, row - 1, col)
+            cascadeCheck(checkedMatrix, row - 1, col - 1)
+            cascadeCheck(checkedMatrix, row, col + 1)
+            cascadeCheck(checkedMatrix, row - 1, col + 1)
+            cascadeCheck(checkedMatrix, row, col - 1)
+            cascadeCheck(checkedMatrix, row + 1, col - 1)
+        } else if (validPosition(row, col) && checkedMatrix[row][col] !== true) {
+            checkedMatrix[row][col] = true
+        }
+    }
+
+    const updateVisibleBoard = (row, col) => {
+        let newVisibleBoard = [...visibleBoard]
+        newVisibleBoard[row][col] = true
+        setVisibleBoard(newVisibleBoard)
+        checkOtherCellsToWin(newVisibleBoard, board, row, col, winGame)
+    }
+
     return (
-        <>
+        <div>
             <InfoModule flags={flags} faceSource={winner} restartGame={resetBoard}></InfoModule>
 
-            <BoardModule dimensions={dimensions} oldBoard={board} winGame={winGame} looseGame={looseGame}></BoardModule>
+            <BoardModule dimensions={dimensions} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascade} winGame={winGame} looseGame={looseGame}
+                addAFlag={addAFlag} substractAFlag={substractAFlag} flagsRemaining={flags}
+            ></BoardModule>
 
             <DifficultyModule easyFunction={chooseDificultyEasy} normalFunction={chooseDificultyNormal} hardFunction={chooseDificultyHard}></DifficultyModule>
-        </>
+        </div>
     )
 }
 

@@ -178,3 +178,21 @@
 .svg {
   padding: 3px;
 }
+
+.p-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.b-black {
+  background-color: #1f1f1fa8;
+}
+
+.h-50 {
+  height: 50%;
+}
+
+.w-50 {
+  width: 50%;
+}

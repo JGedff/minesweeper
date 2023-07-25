@@ -1,8 +1,7 @@
+import { getFaceSource } from "../logic/info"
+
 export const InfoModule = ({ flags, faceSource, restartGame }) => {
     let seconds = 2
-    let sadFace = '☹️'
-    let seriousFace = '😐'
-    let happyFace = '😊'
 
     const handleClick = () => {
         restartGame()
@@ -16,9 +15,7 @@ export const InfoModule = ({ flags, faceSource, restartGame }) => {
                     <span className="counterDescription"> flags remaining </span>
                 </div>
                 <div className="emojiFace d-flex justify-content-center align-items-center click-pointer" onClick={handleClick}>
-                    { faceSource === 2 && <div>{sadFace}</div>}
-                    { faceSource === 0 && <div>{seriousFace}</div>}
-                    { faceSource === 1 && <div>{happyFace}</div>}
+                    {getFaceSource(faceSource)}
                 </div>
                 <div className="counter d-wrap justify-content-center align-items-center">
                     <span className="w-100 counterNumber"> { seconds } </span>

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react"
+
 import mineExploded from "./../assets/mine-exploded.svg";
 import flag from "./../assets/flag.svg";
 import flag_unknown from "./../assets/flag-unknown.svg";
 import flag_failed from "./../assets/flag-failed.svg";
+
+import { getDisable, numberToText } from "../logic/cell";
 
 export const FLAG_STATUS = {
     NO_FLAG: '',
@@ -11,58 +14,51 @@ export const FLAG_STATUS = {
     FAILED_FLAG: flag_failed
 }
 
-export const CellModule = ({ children, row, column, restartGame, looseGame, checkOtherCells }) => {
+export const CellModule = ({
+    children, row, column, restartGame, looseGame, uncoverNumber, cascade, initialVisible,
+    addAFlag, substractAFlag, flagsRemaining
+    }) => {
 
-    const [enable, setEnabled] = useState(false)
-    const [visible, setVisible] = useState(false)
+    const [uncover, setUncover] = useState(initialVisible)
     const [flag, setFlag] = useState(FLAG_STATUS.NO_FLAG)
 
     const handleClick = () => {
-        setEnabled(!enable)
-        setVisible(!visible)
+        let newUncover = !uncover
+        setUncover(newUncover)
         if (children === '💣') {
             looseGame()
+        } else if (children === 0) {
+            cascade(row, column)
         } else {
-            checkOtherCells(row, column)
+            uncoverNumber(row, column)
         }
-    }
-
-    const numberToText = (number) => {
-        let numberTexted;
-        switch (number) {
-            case 1: numberTexted = ' one'; break;
-            case 2: numberTexted = ' two'; break;
-            case 3: numberTexted = ' three'; break;
-            case 4: numberTexted = ' four'; break;
-            case 5: numberTexted = ' five'; break;
-            case 6: numberTexted = ' six'; break;
-            case 7: numberTexted = ' seven'; break;
-            case 8: numberTexted = ' eight'; break;
-            default: numberTexted = ''; break;
-        }
-        return numberTexted
     }
 
     const handleRightClick = (event) => {
         event.preventDefault();
 
-        if (flag === FLAG_STATUS.NO_FLAG) {
+        if (flag === FLAG_STATUS.NO_FLAG && flagsRemaining > 0) {
             setFlag(FLAG_STATUS.FLAG)
+            substractAFlag()
         } else if (flag === FLAG_STATUS.FLAG) {
             setFlag(FLAG_STATUS.MAYBE_FLAG)
+            addAFlag()
         } else {
             setFlag(FLAG_STATUS.NO_FLAG)
         }
     }
 
     useEffect(() => {
-        setEnabled(false) 
-        setVisible(false)
+        setUncover(initialVisible)
         setFlag(FLAG_STATUS.NO_FLAG)
     }, [restartGame])
-    
+
+    useEffect(() => {
+        setUncover(initialVisible)
+    }, [initialVisible])
+
     const cellContent = () => {
-        if (visible) {
+        if (uncover) {
             if (children === '💣') {
                 return (<img className="svg" src={mineExploded} alt="" />)
             } else if (children !== 0) {
@@ -74,8 +70,8 @@ export const CellModule = ({ children, row, column, restartGame, looseGame, chec
     }
 
     return (
-        <button className={"cell" + numberToText(children)} onClick={handleClick} onContextMenu={handleRightClick} disabled={enable} >
-            {cellContent()}
+        <button className={"cell" + numberToText(children)} onClick={handleClick} onContextMenu={handleRightClick} disabled={getDisable(uncover)} >
+            {cellContent(uncover, children, mineExploded, flag)}
         </button>
     )
 }
