@@ -118,19 +118,7 @@ export const showAllMines = (visibleBoard, board) => {
     return newBoard
 }
 
-export const disableAllCells = (board) => {
-    let newBoard = cloneBoard(board)
-
-    for (let x = 0; x < newBoard.length; x++) {
-        for (let y = 0; y < newBoard[x].length; y++) {
-            newBoard[x][y] = "undefined"
-        }
-    }
-
-    return newBoard
-}
-
-export const generateMatrix = (dimensions, content) => {
+export const generateMatrixWithContent = (dimensions, content) => {
     let newBoard = new Array(dimensions)
     for (let indexRow = 0; indexRow < dimensions; indexRow++) {
         newBoard[indexRow] = new Array(dimensions)
@@ -139,4 +127,41 @@ export const generateMatrix = (dimensions, content) => {
         }
     }
     return newBoard
+}
+
+export const cascadeCheck = (checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row, col, pendingUnflag = false) => {
+    if (validPosition(heightBoard, widthBoard, row, col) && (flagsBoard[row][col] != '!' || pendingUnflag)) {
+        if (pendingUnflag) {
+            pendingUnflag = false
+        }
+
+        if (board[row][col] === 0 && checkedMatrix[row][col] !== true) {
+            checkedMatrix[row][col] = true
+            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row + 1, col)
+            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row + 1, col + 1)
+            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row - 1, col)
+            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row - 1, col - 1)
+            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row, col + 1)
+            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row - 1, col + 1)
+            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row, col - 1)
+            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row + 1, col - 1)
+        } else if (checkedMatrix[row][col] !== true) {
+            checkedMatrix[row][col] = true
+        }
+    }
+}
+
+export const stopContextMenu = (event) => {
+    event.preventDefault()
+}
+
+export const winnerToClassHelper = (winner) => {
+    // 0 = No winner
+    // 1 = Winner
+    // 2 = Loosed
+    switch (winner) {
+        case 1: return ' win';
+        case 2: return ' lost';
+        default: return '';
+    }
 }

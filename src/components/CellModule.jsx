@@ -1,19 +1,8 @@
 import { useEffect, useState } from "react"
 
-import mineExploded from "./../assets/mine-exploded.svg";
-import mineSave from "./../assets/mine-safe.svg";
-import flag from "./../assets/flag.svg";
-import flag_unknown from "./../assets/flag-unknown.svg";
-import flag_failed from "./../assets/flag-failed.svg";
-
-import { getDisable, numberToText } from "../logic/cell";
-
-export const FLAG_STATUS = {
-    NO_FLAG: '',
-    FLAG: flag,
-    MAYBE_FLAG: flag_unknown,
-    FAILED_FLAG: flag_failed
-}
+import { stopContextMenu } from "../logic/app";
+import { cellContent } from "../logic/cellContent";
+import { FLAG_STATUS, numberToText } from "../logic/cell";
 
 export const CellModule = ({
     children, row, column, restartGame, looseGame, uncoverNumber, cascade, initialVisible,
@@ -44,16 +33,11 @@ export const CellModule = ({
         }
     }, [disable])
 
-    const setClickedAndUncoverTrue = () => {
-        setClicked(true)
-        setUncover(true)
-    }
-
     const handleClick = () => {
-        startGame()
-
         if (!finishedGame) {
-            setClickedAndUncoverTrue()
+            startGame()
+            setClicked(true)
+            setUncover(true)
 
             if (children === '@') {
                 looseGame()
@@ -71,41 +55,24 @@ export const CellModule = ({
     }
 
     const handleRightClick = (event) => {
-        event.preventDefault();
+        stopContextMenu(event)
 
-        if (flag === FLAG_STATUS.NO_FLAG && flagsRemaining > 0) {
-            setFlag(FLAG_STATUS.FLAG)
-            substractAFlag(row, column)
-        } else if (flag === FLAG_STATUS.FLAG) {
-            setFlag(FLAG_STATUS.MAYBE_FLAG)
-            addAFlag(row, column)
-        } else {
-            setFlag(FLAG_STATUS.NO_FLAG)
-        }
-    }
-
-    const cellContent = (uncover, children, mineExploded, flag, DEBUGshowGuide) => {
-        if (DEBUGshowGuide) return children
-        if (uncover) {
-            if (children === '@' && clicked) {
-                return (<img className="svg" src={mineExploded} alt="" />)
-            } else if (children === '@') {
-                return (<img className="svg" src={mineSave} />)
-            } else if (children !== 0) {
-                return children
-            }
-        } else {
-            if (flag === FLAG_STATUS.FLAG && finishedGame) {
-                return (<img className="svg" src={FLAG_STATUS.FAILED_FLAG} alt="" />)
+        if (!finishedGame) {
+            if (flag === FLAG_STATUS.NO_FLAG && flagsRemaining > 0) {
+                setFlag(FLAG_STATUS.FLAG)
+                substractAFlag(row, column)
+            } else if (flag === FLAG_STATUS.FLAG) {
+                setFlag(FLAG_STATUS.MAYBE_FLAG)
+                addAFlag(row, column)
             } else {
-                return (<img className="svg" src={flag} alt="" />)
+                setFlag(FLAG_STATUS.NO_FLAG)
             }
         }
     }
 
     return (
         <button className={"cell" + numberToText(children)} onClick={handleClick} onContextMenu={handleRightClick} disabled={disableStatus} >
-            {cellContent(uncover, children, mineExploded, flag, DEBUGshowGuide)}
+            {cellContent(uncover, children, flag, DEBUGshowGuide, clicked, finishedGame)}
         </button>
     )
 }

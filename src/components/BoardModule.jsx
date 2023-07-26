@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 
 import { CellModule } from "./CellModule";
 
-export const BoardModule = ({ dimensions, oldBoard, visibleBoard, updateVisibleBoard, cascade, looseGame, substractAFlag, addAFlag, flagsRemaining,
-    disableStatus, finishedGame, DEBUGshowGuide, startGame
+export const BoardModule = ({
+    dimensions, oldBoard, visibleBoard, updateVisibleBoard, cascade, looseGame, substractAFlag,
+    addAFlag, flagsRemaining, disableStatus, finishedGame, DEBUGshowGuide, startGame
     }) => {
 
     const [restartGame, setRestartGame] = useState(false)

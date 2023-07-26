@@ -4,23 +4,20 @@ import { useState, useEffect } from 'react'
 import { BoardModule } from './components/BoardModule'
 import { InfoModule } from "./components/InfoModule"
 import { DifficultyModule } from './components/DifficultyModule'
-import { checkOtherCellsToWin, generateBoard, generateMatrix, showAllMines, validPosition } from './logic/app'
+import { cascadeCheck, checkOtherCellsToWin, generateBoard, generateMatrixWithContent, showAllMines, stopContextMenu, validPosition, winnerToClassHelper } from './logic/app'
 import { DebugModule } from './components/DebugModule'
 import { cloneBoard } from './logic/board'
 
 function App() {
 
-    // 0 = No winner
-    // 1 = Winner
-    // 2 = Loosed
     const [winner, setWinner] = useState(0)
     const [flags, setFlags] = useState(10)
     const [dimensions, setDimensions] = useState(8)
     const [finishedGame, setFinishedGame] = useState(false)
     const [board, setBoard] = useState(generateBoard(dimensions, dimensions))
-    const [flagsBoard, setFlagsBoard] = useState(generateMatrix(dimensions, '.'))
-    const [visibleBoard, setVisibleBoard] = useState(generateMatrix(dimensions, false))
-    const [disableBoard, setDisableBoard] = useState(generateMatrix(dimensions, false))
+    const [flagsBoard, setFlagsBoard] = useState(generateMatrixWithContent(dimensions, '.'))
+    const [visibleBoard, setVisibleBoard] = useState(generateMatrixWithContent(dimensions, false))
+    const [disableBoard, setDisableBoard] = useState(generateMatrixWithContent(dimensions, false))
     const [seconds, setSeconds] = useState(0);
     const [gameInProgress, setGameInProgress] = useState(false);
     const [DEBUGshowGuide, setDEBUGshowGuide] = useState(false)
@@ -59,10 +56,10 @@ function App() {
         setGameInProgress(false)
         setBoard(generateBoard(dimensions, dimensions))
 
-        let resetedBoard = generateMatrix(dimensions, false)
+        let resetedBoard = generateMatrixWithContent(dimensions, false)
         setVisibleBoard(resetedBoard)
         setDisableBoard(resetedBoard)
-        setFlagsBoard(generateMatrix(dimensions, '.'))
+        setFlagsBoard(generateMatrixWithContent(dimensions, '.'))
     }
 
     const resetBoardAndFlags = () => {
@@ -121,32 +118,10 @@ function App() {
         setGameInProgress(true)
     }
 
-    const cascadeCheck = (checkedMatrix, row, col, pendingUnflag = false) => {
-        if (validPosition(dimensions, dimensions, row, col) && (flagsBoard[row][col] != '!' || pendingUnflag)) {
-            if (pendingUnflag) {
-                pendingUnflag = false
-            }
-
-            if (board[row][col] === 0 && checkedMatrix[row][col] !== true) {
-                checkedMatrix[row][col] = true
-                cascadeCheck(checkedMatrix, row + 1, col)
-                cascadeCheck(checkedMatrix, row + 1, col + 1)
-                cascadeCheck(checkedMatrix, row - 1, col)
-                cascadeCheck(checkedMatrix, row - 1, col - 1)
-                cascadeCheck(checkedMatrix, row, col + 1)
-                cascadeCheck(checkedMatrix, row - 1, col + 1)
-                cascadeCheck(checkedMatrix, row, col - 1)
-                cascadeCheck(checkedMatrix, row + 1, col - 1)
-            } else if (checkedMatrix[row][col] !== true) {
-                checkedMatrix[row][col] = true
-            }
-        }
-    }
-
     const cascade = (row, col) => {
         let newVisibleBoard = cloneBoard(visibleBoard)
         let isClickedFlagged = (flagsBoard[row][col] === '!')
-        cascadeCheck(newVisibleBoard, row, col, isClickedFlagged)
+        cascadeCheck(newVisibleBoard, board, flagsBoard, dimensions, dimensions, row, col, isClickedFlagged)
         setVisibleBoard(newVisibleBoard)
         setDisableBoard(newVisibleBoard)
         checkOtherCellsToWin(newVisibleBoard, board, row, col, winGame)
@@ -168,12 +143,8 @@ function App() {
         }
     }
 
-    const stopEventDefault = (event) => {
-        event.preventDefault()
-    }
-
     return (
-        <div className='button' onContextMenu={stopEventDefault}>
+        <div className={'container' + winnerToClassHelper(winner)} onContextMenu={stopContextMenu}>
             
             <DebugModule debugFunction={debugMode}></DebugModule>
 

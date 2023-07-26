@@ -7,6 +7,21 @@
   text-align: center;
 }
 
+.container {
+  background-color: #111111;
+  padding: 20px 30px;
+  border-radius: 20px;
+  transition: background-color ease-in-out 0.5s;
+}
+
+.container.lost {
+  background-color: #380303;
+}
+
+.container.win {
+  background-color: #033807;
+}
+
 .cell{
   width: 40px;
   height: 40px;

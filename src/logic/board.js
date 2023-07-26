@@ -19,15 +19,3 @@ export const cloneBoard = (oldBoard) => {
 
     return newBoard
 }
-
-export const setupBoardToFalse = (height, width) => {
-    let minefield = generateEmptyBoardWith2Dimensions(height, width)
-
-    for (let x = 0; x < minefield.length; x++) {
-        for (let y = 0; y < minefield[x].length; y++) {
-            minefield[x][y] = false
-        }
-    }
-
-    return minefield
-}
