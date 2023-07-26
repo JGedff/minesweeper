@@ -2,11 +2,12 @@ import { useEffect, useState } from "react"
 
 import { stopContextMenu } from "../logic/app";
 import { cellContent } from "../logic/cellContent";
-import { FLAG_STATUS, numberToText } from "../logic/cell";
+import { numberToText } from "../logic/cell";
+import { FLAG_STATUS } from "../logic/constants";
 
 export const CellModule = ({
     children, row, column, restartGame, looseGame, uncoverNumber, cascade, initialVisible,
-    addAFlag, substractAFlag, flagsRemaining, disable, finishedGame, DEBUGshowGuide, startGame
+    removeFlagFromBoard, placeFlagOnBoard, flagsRemaining, disable, finishedGame, DEBUGshowGuide, startGame
     }) => {
 
     const [clicked, setClicked] = useState(false)
@@ -15,11 +16,15 @@ export const CellModule = ({
     const [disableStatus, setDisableStatus] = useState(disable)
 
     useEffect(() => {
+        restartCellStatus()
+    }, [restartGame])
+
+    const restartCellStatus = () => {
         setUncover(initialVisible)
         setFlag(FLAG_STATUS.NO_FLAG)
         setClicked(false)
         setDisableStatus(disable)
-    }, [restartGame])
+    }
 
     useEffect(() => {
         setUncover(initialVisible)
@@ -38,7 +43,6 @@ export const CellModule = ({
             startGame()
             setClicked(true)
             setUncover(true)
-
             if (children === '@') {
                 looseGame()
             } else if (children === 0) {
@@ -46,24 +50,22 @@ export const CellModule = ({
             } else {
                 uncoverNumber(row, column)
             }
-
             if (flag === FLAG_STATUS.FLAG) {
                 setFlag(FLAG_STATUS.NO_FLAG)
-                addAFlag(row, column)
+                removeFlagFromBoard(row, column)
             }
         }
     }
 
     const handleRightClick = (event) => {
         stopContextMenu(event)
-
         if (!finishedGame) {
             if (flag === FLAG_STATUS.NO_FLAG && flagsRemaining > 0) {
                 setFlag(FLAG_STATUS.FLAG)
-                substractAFlag(row, column)
+                placeFlagOnBoard(row, column)
             } else if (flag === FLAG_STATUS.FLAG) {
                 setFlag(FLAG_STATUS.MAYBE_FLAG)
-                addAFlag(row, column)
+                removeFlagFromBoard(row, column)
             } else {
                 setFlag(FLAG_STATUS.NO_FLAG)
             }

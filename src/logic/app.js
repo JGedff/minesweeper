@@ -129,7 +129,7 @@ export const generateMatrixWithContent = (dimensions, content) => {
     return newBoard
 }
 
-export const cascadeCheck = (checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row, col, pendingUnflag = false) => {
+export const recursiveCascadeCheck = (checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row, col, pendingUnflag = false) => {
     if (validPosition(heightBoard, widthBoard, row, col) && (flagsBoard[row][col] != '!' || pendingUnflag)) {
         if (pendingUnflag) {
             pendingUnflag = false
@@ -137,14 +137,14 @@ export const cascadeCheck = (checkedMatrix, board, flagsBoard, heightBoard, widt
 
         if (board[row][col] === 0 && checkedMatrix[row][col] !== true) {
             checkedMatrix[row][col] = true
-            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row + 1, col)
-            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row + 1, col + 1)
-            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row - 1, col)
-            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row - 1, col - 1)
-            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row, col + 1)
-            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row - 1, col + 1)
-            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row, col - 1)
-            cascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row + 1, col - 1)
+            recursiveCascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row + 1, col)
+            recursiveCascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row + 1, col + 1)
+            recursiveCascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row - 1, col)
+            recursiveCascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row - 1, col - 1)
+            recursiveCascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row, col + 1)
+            recursiveCascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row - 1, col + 1)
+            recursiveCascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row, col - 1)
+            recursiveCascadeCheck(checkedMatrix, board, flagsBoard, heightBoard, widthBoard, row + 1, col - 1)
         } else if (checkedMatrix[row][col] !== true) {
             checkedMatrix[row][col] = true
         }

@@ -4,15 +4,17 @@ import { useState, useEffect } from 'react'
 import { BoardModule } from './components/BoardModule'
 import { InfoModule } from "./components/InfoModule"
 import { DifficultyModule } from './components/DifficultyModule'
-import { cascadeCheck, checkOtherCellsToWin, generateBoard, generateMatrixWithContent, showAllMines, stopContextMenu, validPosition, winnerToClassHelper } from './logic/app'
-import { DebugModule } from './components/DebugModule'
+import { recursiveCascadeCheck, checkOtherCellsToWin, generateBoard, generateMatrixWithContent, showAllMines, stopContextMenu, winnerToClassHelper } from './logic/app'
 import { cloneBoard } from './logic/board'
+
+import { DebugModule } from './components/DebugModule'
+import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.js'
 
 function App() {
 
-    const [winner, setWinner] = useState(0)
-    const [flags, setFlags] = useState(10)
-    const [dimensions, setDimensions] = useState(8)
+    const [winner, setWinner] = useState(WINNER_STATUS.no_winner)
+    const [flags, setFlags] = useState(DIFFICULTY_FLAGS.easy)
+    const [dimensions, setDimensions] = useState(DIMENSIONS.easy)
     const [finishedGame, setFinishedGame] = useState(false)
     const [board, setBoard] = useState(generateBoard(dimensions, dimensions))
     const [flagsBoard, setFlagsBoard] = useState(generateMatrixWithContent(dimensions, '.'))
@@ -22,35 +24,25 @@ function App() {
     const [gameInProgress, setGameInProgress] = useState(false);
     const [DEBUGshowGuide, setDEBUGshowGuide] = useState(false)
 
-    useEffect(() => {
-        resetBoardAndFlags()
-    }, [dimensions])
-
-    const counter = () => {
+    const secondsCounter = () => {
         let currentSec = seconds + 1
         setSeconds(currentSec);
     }
 
-    const chooseDificultyEasy = () => {
-        setFlags(10)
-        setDimensions(8)
-        resetBoard()
+    const changeDifficultyToEasy = () => {
+        setDimensions(DIMENSIONS.easy)
     }
 
-    const chooseDificultyNormal = () => {
-        setFlags(50)
-        setDimensions(16)
-        resetBoard()
+    const changeDifficultyToNormal = () => {
+        setDimensions(DIMENSIONS.normal)
     }
 
-    const chooseDificultyHard = () => {
-        setFlags(100)
-        setDimensions(22)
-        resetBoard()
+    const changeDifficultyToHard = () => {
+        setDimensions(DIMENSIONS.hard)
     }
 
     const resetBoard = () => {
-        setWinner(0)
+        setWinner(WINNER_STATUS.no_winner)
         setSeconds(0)
         setFinishedGame(false)
         setGameInProgress(false)
@@ -62,76 +54,83 @@ function App() {
         setFlagsBoard(generateMatrixWithContent(dimensions, '.'))
     }
 
+    useEffect(() => {
+        //Executes everytime the dimensions (difficulty) changes
+        resetBoardAndFlags()
+    }, [dimensions])
+    
     const resetBoardAndFlags = () => {
         switch (dimensions) {
-            case 8:
-                setFlags(10)
+            case DIMENSIONS.easy:
+                setFlags(DIFFICULTY_FLAGS.easy)
                 break;
-            case 16:
-                setFlags(50)
+            case DIMENSIONS.normal:
+                setFlags(DIFFICULTY_FLAGS.normal)
+                break;
+            case DIMENSIONS.hard:
+                setFlags(DIFFICULTY_FLAGS.hard)
                 break;
             default:
-                setFlags(100)
+                alert("DIFFICULTY ERROR");
                 break;
         }
-        
         resetBoard()
     }
 
-    const addAFlag = (row, column) => {
+    const removeFlagFromBoard = (row, column) => {
         setFlags(flags + 1)
-
-        let newBoard = cloneBoard(flagsBoard)
-        
-        newBoard[row][column] = '.'
-            
-        setFlagsBoard(newBoard)
+        updateFlagsBoardPositionWithValue(row, column, '.')
     }
 
-    const substractAFlag = (row, column) => {
+    const placeFlagOnBoard = (row, column) => {
         setFlags(flags - 1)
+        updateFlagsBoardPositionWithValue(row, column, '!')
+    }
 
+    const updateFlagsBoardPositionWithValue = (row, column, value) => {
         let newBoard = cloneBoard(flagsBoard)
-
-        newBoard[row][column] = '!'
-            
+        newBoard[row][column] = value
         setFlagsBoard(newBoard)
-    }
-
-    const looseGame = () => {
-        setWinner(2)
-        setFinishedGame(true)
-
-        let losedBoard = showAllMines(visibleBoard, board)
-        setVisibleBoard(losedBoard)
-        setDisableBoard(losedBoard)
-        setGameInProgress(false)
-    }
-
-    const winGame = () => {
-        setWinner(1)
-        setFinishedGame(true)
-        setGameInProgress(false)
     }
 
     const startGame = () => {
         setGameInProgress(true)
     }
 
-    const cascade = (row, col) => {
+    const winGame = () => {
+        setWinner(WINNER_STATUS.win)
+        setFinishedGame(true)
+        setGameInProgress(false)
+    }
+
+    const lostGame = () => {
+        setWinner(WINNER_STATUS.lose)
+        setFinishedGame(true)
+        setGameInProgress(false)
+
+        let losedBoard = showAllMines(visibleBoard, board)
+        setVisibleAndDisableBoardTo(losedBoard)
+    }
+
+    const setVisibleAndDisableBoardTo = (boardToCopy) => {
+        setVisibleBoard(boardToCopy)
+        setDisableBoard(boardToCopy)
+    }
+
+    const cascadeStart = (row, col) => {
         let newVisibleBoard = cloneBoard(visibleBoard)
         let isClickedFlagged = (flagsBoard[row][col] === '!')
-        cascadeCheck(newVisibleBoard, board, flagsBoard, dimensions, dimensions, row, col, isClickedFlagged)
-        setVisibleBoard(newVisibleBoard)
-        setDisableBoard(newVisibleBoard)
+
+        recursiveCascadeCheck(newVisibleBoard, board, flagsBoard, dimensions, dimensions, row, col, isClickedFlagged)
+        setVisibleAndDisableBoardTo(newVisibleBoard)
         checkOtherCellsToWin(newVisibleBoard, board, row, col, winGame)
     }
 
     const updateVisibleBoard = (row, col) => {
         let newVisibleBoard = cloneBoard(visibleBoard)
+
         newVisibleBoard[row][col] = true
-        setVisibleBoard(newVisibleBoard)
-        setDisableBoard(newVisibleBoard)
+        setVisibleAndDisableBoardTo(newVisibleBoard)
         checkOtherCellsToWin(newVisibleBoard, board, row, col, winGame)
     }
 
@@ -145,17 +144,18 @@ function App() {
 
     return (
         <div className={'container' + winnerToClassHelper(winner)} onContextMenu={stopContextMenu}>
-            
+
             <DebugModule debugFunction={debugMode}></DebugModule>
 
-            <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={counter}
+            <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
                 gameInProgress={gameInProgress} ></InfoModule>
 
-            <BoardModule dimensions={dimensions} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascade}
-                looseGame={looseGame} addAFlag={addAFlag} substractAFlag={substractAFlag} flagsRemaining={flags} disableStatus={disableBoard}
+            <BoardModule dimensions={dimensions} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
+                looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
                 finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} ></BoardModule>
 
-            <DifficultyModule easyFunction={chooseDificultyEasy} normalFunction={chooseDificultyNormal} hardFunction={chooseDificultyHard}></DifficultyModule>
+            <DifficultyModule easyFunction={changeDifficultyToEasy} normalFunction={changeDifficultyToNormal} hardFunction={changeDifficultyToHard}></DifficultyModule>
+
         </div>
     )
 }

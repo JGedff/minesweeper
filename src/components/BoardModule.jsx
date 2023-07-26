@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { CellModule } from "./CellModule";
 
 export const BoardModule = ({
-    dimensions, oldBoard, visibleBoard, updateVisibleBoard, cascade, looseGame, substractAFlag,
-    addAFlag, flagsRemaining, disableStatus, finishedGame, DEBUGshowGuide, startGame
+    dimensions, oldBoard, visibleBoard, updateVisibleBoard, cascade, looseGame, placeFlagOnBoard,
+    removeFlagFromBoard, flagsRemaining, disableStatus, finishedGame, DEBUGshowGuide, startGame
     }) => {
 
     const [restartGame, setRestartGame] = useState(false)
@@ -33,8 +33,8 @@ export const BoardModule = ({
                                 uncoverNumber={updateVisibleBoard}
                                 cascade={cascade}
                                 initialVisible={visibleBoard[indexRow][indexColumn]}
-                                addAFlag={addAFlag}
-                                substractAFlag={substractAFlag}
+                                removeFlagFromBoard={removeFlagFromBoard}
+                                placeFlagOnBoard={placeFlagOnBoard}
                                 flagsRemaining={flagsRemaining}
                                 disable={disableStatus[indexRow][indexColumn]}
                                 finishedGame={finishedGame}

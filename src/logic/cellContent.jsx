@@ -1,6 +1,6 @@
 import mineExploded from "./../assets/mine-exploded.svg";
 import mineSave from "./../assets/mine-safe.svg";
-import { FLAG_STATUS } from "./cell";
+import { FLAG_STATUS } from "./../logic/constants";
 
 export const cellContent = (uncover, children, flag, DEBUGshowGuide, clicked, finishedGame) => {
     if (DEBUGshowGuide) return children

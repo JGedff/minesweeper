@@ -1,14 +1,3 @@
-import flag from "./../assets/flag.svg";
-import flag_unknown from "./../assets/flag-unknown.svg";
-import flag_failed from "./../assets/flag-failed.svg";  
-
-export const FLAG_STATUS = {
-    NO_FLAG: '',
-    FLAG: flag,
-    MAYBE_FLAG: flag_unknown,
-    FAILED_FLAG: flag_failed
-}
-
 export const numberToText = (number) => {
     let numberTexted;
     switch (number) {
@@ -23,12 +12,4 @@ export const numberToText = (number) => {
         default: numberTexted = ''; break;
     }
     return numberTexted
-}
-
-export const getDisable = (uncover) => {
-    if (uncover != true) {
-        return false
-    } else {
-        return true
-    }
 }
