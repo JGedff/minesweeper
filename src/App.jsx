@@ -6,8 +6,8 @@ import { useState, useEffect } from 'react'
 import { BoardModule } from './components/BoardModule'
 import { InfoModule } from './components/InfoModule'
 import { DifficultyModule } from './components/DifficultyModule'
-import { recursiveCascadeCheck, checkOtherCellsToWin, generateBoard, generateMatrixWithContent, showAllMines, stopContextMenu, winnerToClassHelper } from './logic/app'
-import { cloneBoard } from './logic/board'
+import { recursiveCascadeCheck, checkOtherCellsToWin, generateBoard, generateMatrixWithContent, showAllMines, stopContextMenu, winnerToClassHelper, setupDangerCells } from './logic/app'
+import { cloneBoard, generateEmptyBoardWith2Dimensions } from './logic/board'
 
 import { DebugModule } from './components/DebugModule'
 import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.js'
@@ -139,8 +139,40 @@ function App () {
     if (e.code === 'KeyS') {
       setDEBUGshowGuide(!DEBUGshowGuide)
     } else if (e.code === 'KeyM' && e.ctrlKey === true) {
-      alert('Aún no esta implementado el Mock Load. ¡Pero lo estará!\nToma un gato de mientras:\n                🐈')
+      // alert('Aún no esta implementado el Mock Load. ¡Pero lo estará!\nToma un gato de mientras:\n                🐈')
+      const mockData = prompt('Welcome to the Mock Data Debug prompt!\nInput your line mock data here:')
+      if (mockData !== null) {
+        DEBUGloadMockData(mockData)
+      }
     }
+  }
+
+  const DEBUGloadMockData = (mockdata = '') => {
+    const rows = mockdata.split('\n')
+    const width = rows[1].replace(' ', '').split('|').length - 2
+    const height = rows.length
+    // console.log(mockdata)
+    // console.log(height, width)
+
+    const mockBoard = generateEmptyBoardWith2Dimensions(height, width)
+    // console.log(mockBoard)
+
+    const mockDataSanitized = mockdata.replaceAll(' ', '').replaceAll('|', '').replaceAll('\r\n', '')
+    console.log(mockDataSanitized)
+    let mockdataCounter = 0
+    for (let row = 0; row < height; row++) {
+      for (let col = 0; col < width; col++) {
+        if (mockDataSanitized.charAt(mockdataCounter) === '*') {
+          mockBoard[row][col] = '@'
+        } else {
+          mockBoard[row][col] = '0'
+        }
+        mockdataCounter++
+      }
+    }
+    console.log(mockBoard)
+    const mockBoardDangerCells = setupDangerCells(mockBoard, height, width)
+    setBoard(mockBoardDangerCells)
   }
 
   return (
