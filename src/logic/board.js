@@ -1,21 +1,21 @@
 export const generateEmptyBoardWith2Dimensions = (height, width) => {
-    let newBoard = new Array(height)
+  const newBoard = new Array(height)
 
-    for (let x = 0; x < height; x++) {
-        newBoard[x] = new Array(width)
-    }
+  for (let x = 0; x < height; x++) {
+    newBoard[x] = new Array(width)
+  }
 
-    return newBoard
+  return newBoard
 }
 
 export const cloneBoard = (oldBoard) => {
-    let newBoard = generateEmptyBoardWith2Dimensions(oldBoard.length, oldBoard[0].length)
+  const newBoard = generateEmptyBoardWith2Dimensions(oldBoard.length, oldBoard[0].length)
 
-    for (let x = 0; x < newBoard.length; x++) {
-        for (let y = 0; y < newBoard[x].length; y++) {
-            newBoard[x][y] = oldBoard[x][y]
-        }
+  for (let x = 0; x < newBoard.length; x++) {
+    for (let y = 0; y < newBoard[x].length; y++) {
+      newBoard[x][y] = oldBoard[x][y]
     }
+  }
 
-    return newBoard
+  return newBoard
 }

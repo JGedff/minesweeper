@@ -1,28 +1,28 @@
-import flag from "./../assets/flag.svg";
-import flag_unknown from './../assets/flag-unknown.svg';
-import flag_failed from "./../assets/flag-failed.svg"; 
+import flag from './../assets/flag.svg'
+import flagUnknown from './../assets/flag-unknown.svg'
+import flagFailed from './../assets/flag-failed.svg'
 
 export const DIMENSIONS = {
-    easy: 8,
-    normal: 16,
-    hard: 22
+  easy: 8,
+  normal: 16,
+  hard: 22
 }
 
 export const DIFFICULTY_FLAGS = {
-    easy: 10,
-    normal: 50,
-    hard: 100
+  easy: 10,
+  normal: 50,
+  hard: 100
 }
 
 export const WINNER_STATUS = {
-    no_winner: 0,
-    win: 1,
-    lose: 2
+  no_winner: 0,
+  win: 1,
+  lose: 2
 }
 
 export const FLAG_STATUS = {
-    NO_FLAG: '',
-    FLAG: flag,
-    MAYBE_FLAG: flag_unknown,
-    FAILED_FLAG: flag_failed
+  NO_FLAG: '',
+  FLAG: flag,
+  MAYBE_FLAG: flagUnknown,
+  FAILED_FLAG: flagFailed
 }

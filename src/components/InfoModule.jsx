@@ -1,18 +1,18 @@
-import { useEffect } from "react"
-import { getFaceSource } from "../logic/info"
+/* eslint-disable react/react-in-jsx-scope */
+import { useEffect } from 'react'
+import { getFaceSource } from '../logic/info'
 
 export const InfoModule = ({ flags, faceSource, restartGame, seconds, counter, gameInProgress }) => {
+  useEffect(() => {
+    if (gameInProgress) {
+      const intervalID = setInterval(() => {
+        counter()
+      }, 1000)
+      return () => { clearInterval(intervalID) }
+    }
+  }, [gameInProgress, seconds])
 
-    useEffect(() => {
-        if (gameInProgress) {
-            let intervalID = setInterval(() => {
-                counter()
-            }, 1000);
-            return () => { clearInterval(intervalID) }
-        }
-    }, [gameInProgress, seconds]);
-
-    return (
+  return (
         <>
             <div className="d-flex justify-content-between align-items-center">
                 <div className="flagsRemaining d-wrap justify-content-center text-align-center align-items-center">
@@ -28,5 +28,5 @@ export const InfoModule = ({ flags, faceSource, restartGame, seconds, counter, g
                 </div>
             </div>
         </>
-    )
+  )
 }

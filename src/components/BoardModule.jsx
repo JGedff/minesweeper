@@ -1,31 +1,32 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/react-in-jsx-scope */
 
-import { CellModule } from "./CellModule";
+import { useEffect, useState } from 'react'
+
+import { CellModule } from './CellModule'
 
 export const BoardModule = ({
-    dimensions, oldBoard, visibleBoard, updateVisibleBoard, cascade, looseGame, placeFlagOnBoard,
-    removeFlagFromBoard, flagsRemaining, disableStatus, finishedGame, DEBUGshowGuide, startGame
-    }) => {
+  dimensions, oldBoard, visibleBoard, updateVisibleBoard, cascade, looseGame, placeFlagOnBoard,
+  removeFlagFromBoard, flagsRemaining, disableStatus, finishedGame, DEBUGshowGuide, startGame
+}) => {
+  const [restartGame, setRestartGame] = useState(false)
 
-    const [restartGame, setRestartGame] = useState(false)
+  useEffect(() => {
+    setRestartGame(!restartGame)
+  }, [oldBoard])
 
-    useEffect(() => {
-        setRestartGame(!restartGame)
-    }, [oldBoard])
-
-    return (
+  return (
         <main className="board">
 
             <section className="game" style={{
-                gridTemplateColumns: `repeat(${dimensions}, 1fr)`
+              gridTemplateColumns: `repeat(${dimensions}, 1fr)`
             }}>
                 {
                 oldBoard.map((row, indexRow) => {
-                    return (
-                        row.map((cell, indexColumn) => {
-                            return (
-                                <CellModule 
-                                key={indexColumn} 
+                  return (
+                    row.map((cell, indexColumn) => {
+                      return (
+                                <CellModule
+                                key={indexColumn}
                                 row={indexRow}
                                 column={indexColumn}
                                 restartGame={restartGame}
@@ -42,12 +43,12 @@ export const BoardModule = ({
                                 startGame={startGame} >
                                     {cell}
                                 </CellModule>
-                            )
-                        })
-                    )
+                      )
+                    })
+                  )
                 })}
             </section>
 
         </main>
-    )
+  )
 }

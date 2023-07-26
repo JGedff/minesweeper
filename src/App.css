@@ -22,7 +22,7 @@
   background-color: #033807;
 }
 
-.cell{
+.cell {
   width: 40px;
   height: 40px;
   animation: cellBackgroundAnimation 6s ease-in-out 0s infinite normal forwards;
@@ -34,33 +34,40 @@
   font-weight: 700;
 }
 
-.cell:disabled{
+.cell:disabled {
   background-color: #1f1f1f;
   border: 2px solid #99999950;
 }
 
-.cell.one{
+.cell.one {
   color: #6767ff;
 }
-.cell.two{
+
+.cell.two {
   color: #448b44;
 }
-.cell.three{
+
+.cell.three {
   color: #ff7070;
 }
-.cell.four{
+
+.cell.four {
   color: #63367e;
 }
-.cell.five{
+
+.cell.five {
   color: #966937;
 }
-.cell.six{
+
+.cell.six {
   color: #3b8788;
 }
-.cell.seven{
+
+.cell.seven {
   color: #514faa;
 }
-.cell.eight{
+
+.cell.eight {
   color: #979797;
 }
 
@@ -97,13 +104,13 @@
   font-family: 'Raleway';
 }
 
-.chooseDificulty{
+.chooseDificulty {
   display: flex;
   padding: 10px;
   justify-content: space-around;
 }
 
-.chooseDificulty > button{
+.chooseDificulty>button {
   border: 2px solid #fff;
   font-family: 'Raleway';
   font-weight: 700;
