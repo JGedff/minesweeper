@@ -150,6 +150,7 @@ div .button {
 .board .game {
   display: grid;
   gap: 5px;
+  place-items: center;
 }
 
 .align-items-center {

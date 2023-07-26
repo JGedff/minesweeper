@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { CellModule } from './CellModule'
 
 export const BoardModule = ({
-  dimensions, oldBoard, visibleBoard, updateVisibleBoard, cascade, looseGame, placeFlagOnBoard,
+  dimensions, rectangleWidth, oldBoard, visibleBoard, updateVisibleBoard, cascade, looseGame, placeFlagOnBoard,
   removeFlagFromBoard, flagsRemaining, disableStatus, finishedGame, DEBUGshowGuide, startGame
 }) => {
   const [restartGame, setRestartGame] = useState(false)
@@ -14,11 +14,19 @@ export const BoardModule = ({
     setRestartGame(!restartGame)
   }, [oldBoard])
 
+  const handleDimensions = () => {
+    console.log(rectangleWidth, dimensions)
+    if (rectangleWidth !== undefined) {
+      return rectangleWidth
+    } else {
+      return dimensions
+    }
+  }
   return (
         <main className="board">
 
             <section className="game" style={{
-              gridTemplateColumns: `repeat(${dimensions}, 1fr)`
+              gridTemplateColumns: `repeat(${handleDimensions()}, 1fr)`
             }}>
                 {
                 oldBoard.map((row, indexRow) => {

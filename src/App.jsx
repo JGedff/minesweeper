@@ -24,6 +24,7 @@ function App () {
   const [seconds, setSeconds] = useState(0)
   const [gameInProgress, setGameInProgress] = useState(false)
   const [DEBUGshowGuide, setDEBUGshowGuide] = useState(false)
+  const [rectangleWidth, setRectangleWidth] = useState(undefined)
 
   const secondsCounter = () => {
     const currentSec = seconds + 1
@@ -32,14 +33,17 @@ function App () {
 
   const changeDifficultyToEasy = () => {
     setDimensions(DIMENSIONS.easy)
+    setRectangleWidth(undefined)
   }
 
   const changeDifficultyToNormal = () => {
     setDimensions(DIMENSIONS.normal)
+    setRectangleWidth(undefined)
   }
 
   const changeDifficultyToHard = () => {
     setDimensions(DIMENSIONS.hard)
+    setRectangleWidth(undefined)
   }
 
   const resetBoard = () => {
@@ -172,6 +176,7 @@ function App () {
     }
     console.log(mockBoard)
     const mockBoardDangerCells = setupDangerCells(mockBoard, height, width)
+    setRectangleWidth(width)
     setBoard(mockBoardDangerCells)
   }
 
@@ -183,7 +188,7 @@ function App () {
             <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
                 gameInProgress={gameInProgress} ></InfoModule>
 
-            <BoardModule dimensions={dimensions} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
+            <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
                 looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
                 finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} ></BoardModule>
 
