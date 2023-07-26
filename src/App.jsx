@@ -148,8 +148,8 @@ function App () {
   }
 
   const DEBUGloadMockData = (mockdata = '') => {
-    const rows = mockdata.split('\n')
-    const width = rows[1].replace(' ', '').split('|').length - 2
+    const rows = mockdata.split('\r\n')
+    const width = rows[1].replaceAll(' ', '').split('|').length - 2
     const height = rows.length
     // console.log(mockdata)
     // console.log(height, width)
