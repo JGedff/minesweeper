@@ -13,18 +13,18 @@ import { DebugModule } from './components/DebugModule'
 import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.js'
 
 function App () {
-  const [winner, setWinner] = useState(WINNER_STATUS.no_winner)
-  const [flags, setFlags] = useState(DIFFICULTY_FLAGS.easy)
-  const [dimensions, setDimensions] = useState(DIMENSIONS.easy)
+  const [seconds, setSeconds] = useState(0)
   const [finishedGame, setFinishedGame] = useState(false)
+  const [flags, setFlags] = useState(DIFFICULTY_FLAGS.easy)
+  const [gameInProgress, setGameInProgress] = useState(false)
+  const [DEBUGshowGuide, setDEBUGshowGuide] = useState(false)
+  const [winner, setWinner] = useState(WINNER_STATUS.no_winner)
+  const [dimensions, setDimensions] = useState(DIMENSIONS.easy)
+  const [rectangleWidth, setRectangleWidth] = useState(undefined)
   const [board, setBoard] = useState(generateBoard(dimensions, dimensions))
   const [flagsBoard, setFlagsBoard] = useState(generateMatrixWithContent(dimensions, '.'))
   const [visibleBoard, setVisibleBoard] = useState(generateMatrixWithContent(dimensions, false))
   const [disableBoard, setDisableBoard] = useState(generateMatrixWithContent(dimensions, false))
-  const [seconds, setSeconds] = useState(0)
-  const [gameInProgress, setGameInProgress] = useState(false)
-  const [DEBUGshowGuide, setDEBUGshowGuide] = useState(false)
-  const [rectangleWidth, setRectangleWidth] = useState(undefined)
 
   const secondsCounter = () => {
     const currentSec = seconds + 1
@@ -52,11 +52,12 @@ function App () {
     setFinishedGame(false)
     setGameInProgress(false)
     setBoard(generateBoard(dimensions, dimensions))
+    setFlagsBoard(generateMatrixWithContent(dimensions, '.'))
+    setRectangleWidth(undefined)
 
     const resetedBoard = generateMatrixWithContent(dimensions, false)
     setVisibleBoard(resetedBoard)
     setDisableBoard(resetedBoard)
-    setFlagsBoard(generateMatrixWithContent(dimensions, '.'))
   }
 
   useEffect(() => {

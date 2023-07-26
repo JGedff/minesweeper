@@ -16,7 +16,7 @@ export const cellContent = (uncover, children, flag, DEBUGshowGuide, clicked, fi
       return children
     }
   } else {
-    if (flag === FLAG_STATUS.FLAG && finishedGame) {
+    if (flag === FLAG_STATUS.FLAG && finishedGame && children !== '@') {
       return (<img className="svg" src={FLAG_STATUS.FAILED_FLAG} alt="" />)
     } else if (children === '@' && finishedGame) {
       return (<img className="svg" src={FLAG_STATUS.FLAG} alt="" />)

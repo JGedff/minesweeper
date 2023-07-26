@@ -10,10 +10,11 @@ export const getFlagsByDimensions = (dimensions) => {
 }
 
 export const generateBoardWithMines = (height, width) => {
+  const newBoard = generateEmptyBoardWith2Dimensions(height, width)
+
   let row = 0
   let col = 0
   let mines = getFlagsByDimensions(height)
-  const newBoard = generateEmptyBoardWith2Dimensions(height, width)
 
   while (mines > 0) {
     row = Math.trunc(Math.random() * height)

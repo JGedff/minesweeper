@@ -22,6 +22,7 @@ export const BoardModule = ({
       return dimensions
     }
   }
+
   return (
         <main className="board">
 
