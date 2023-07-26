@@ -32,11 +32,7 @@ export const CellModule = ({
   }, [initialVisible])
 
   useEffect(() => {
-    if (disable === undefined) {
-      setDisableStatus(true)
-    } else {
-      setDisableStatus(disable)
-    }
+    setDisableStatus(disable)
   }, [disable])
 
   const handleClick = () => {
