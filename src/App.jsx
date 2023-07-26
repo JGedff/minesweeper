@@ -153,6 +153,8 @@ function App () {
   }
 
   const DEBUGloadMockData = (mockdata = '') => {
+    resetBoard()
+
     const rows = mockdata.split('\r\n')
     const width = rows[1].replaceAll(' ', '').split('|').length - 2
     const height = rows.length
@@ -163,7 +165,7 @@ function App () {
     // console.log(mockBoard)
 
     const mockDataSanitized = mockdata.replaceAll(' ', '').replaceAll('|', '').replaceAll('\r\n', '')
-    console.log(mockDataSanitized)
+
     let mockdataCounter = 0
     for (let row = 0; row < height; row++) {
       for (let col = 0; col < width; col++) {
@@ -175,7 +177,7 @@ function App () {
         mockdataCounter++
       }
     }
-    console.log(mockBoard)
+
     const mockBoardDangerCells = setupDangerCells(mockBoard, height, width)
     setRectangleWidth(width)
     setBoard(mockBoardDangerCells)
