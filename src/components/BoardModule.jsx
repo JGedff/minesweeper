@@ -1,6 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
-
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { CellModule } from './CellModule'
 
@@ -15,7 +13,6 @@ export const BoardModule = ({
   }, [oldBoard])
 
   const handleDimensions = () => {
-    console.log(rectangleWidth, dimensions)
     if (rectangleWidth !== undefined) {
       return rectangleWidth
     } else {
@@ -26,7 +23,7 @@ export const BoardModule = ({
   return (
         <main className="board">
 
-            <section className="game" style={{
+            <section className="game" data-testid="gameBoard" style={{
               gridTemplateColumns: `repeat(${handleDimensions()}, 1fr)`
             }}>
                 {

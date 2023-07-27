@@ -1,7 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
-
 import './App.css'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { BoardModule } from './components/BoardModule'
 import { InfoModule } from './components/InfoModule'
@@ -144,7 +142,6 @@ function App () {
     if (e.code === 'KeyS') {
       setDEBUGshowGuide(!DEBUGshowGuide)
     } else if (e.code === 'KeyM' && e.ctrlKey === true) {
-      // alert('Aún no esta implementado el Mock Load. ¡Pero lo estará!\nToma un gato de mientras:\n                🐈')
       const mockData = prompt('Welcome to the Mock Data Debug prompt!\nInput your line mock data here:')
       if (mockData !== null) {
         DEBUGloadMockData(mockData)
@@ -156,13 +153,11 @@ function App () {
     resetBoard()
 
     const rows = mockdata.split('\r\n')
-    const width = rows[1].replaceAll(' ', '').split('|').length - 2
+    const width = rows[0].replaceAll(' ', '').split('|').length - 2
     const height = rows.length
-    // console.log(mockdata)
-    // console.log(height, width)
+    let numberOfMines = 0
 
     const mockBoard = generateEmptyBoardWith2Dimensions(height, width)
-    // console.log(mockBoard)
 
     const mockDataSanitized = mockdata.replaceAll(' ', '').replaceAll('|', '').replaceAll('\r\n', '')
 
@@ -171,6 +166,7 @@ function App () {
       for (let col = 0; col < width; col++) {
         if (mockDataSanitized.charAt(mockdataCounter) === '*') {
           mockBoard[row][col] = '@'
+          numberOfMines++
         } else {
           mockBoard[row][col] = '0'
         }
@@ -179,12 +175,13 @@ function App () {
     }
 
     const mockBoardDangerCells = setupDangerCells(mockBoard, height, width)
+    setFlags(numberOfMines)
     setRectangleWidth(width)
     setBoard(mockBoardDangerCells)
   }
 
   return (
-        <div className={'container' + winnerToClassHelper(winner)} onContextMenu={stopContextMenu}>
+        <div className={'container' + winnerToClassHelper(winner)} data-testid='container' onContextMenu={stopContextMenu}>
 
             <DebugModule debugFunction={debugMode}></DebugModule>
 

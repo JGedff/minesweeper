@@ -1,6 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
-
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { stopContextMenu } from '../logic/app'
 import { cellContent } from '../logic/cellContent'
@@ -70,7 +68,7 @@ export const CellModule = ({
   }
 
   return (
-        <button className={'cell' + numberToText(children)} onClick={handleClick} onContextMenu={handleRightClick} disabled={disableStatus} >
+        <button className={'cell' + numberToText(children, uncover)} data-testid={'r' + (row + 1) + 'c' + (column + 1)} onClick={handleClick} onContextMenu={handleRightClick} disabled={disableStatus} >
             {cellContent(uncover, children, flag, DEBUGshowGuide, clicked, finishedGame)}
         </button>
   )
