@@ -5,7 +5,7 @@ import { BoardModule } from './components/BoardModule'
 import { InfoModule } from './components/InfoModule'
 import { DifficultyModule } from './components/DifficultyModule'
 import { recursiveCascadeCheck, checkOtherCellsToWin, generateBoard, generateMatrixWithContent, showAllMines, stopContextMenu, winnerToClassHelper, setupDangerCells } from './logic/app'
-import { cloneBoard, generateEmptyBoardWith2Dimensions } from './logic/board'
+import { cloneBoard, generateEmptyBoardWith2Dimensions, generateMatrixWith2DDimensionsAndContent } from './logic/board'
 
 import { DebugModule } from './components/DebugModule'
 import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.js'
@@ -125,7 +125,10 @@ function App () {
     const newVisibleBoard = cloneBoard(visibleBoard)
     const isClickedFlagged = (flagsBoard[row][col] === '!')
 
-    recursiveCascadeCheck(newVisibleBoard, board, flagsBoard, dimensions, dimensions, row, col, isClickedFlagged)
+    const heightBoard = flagsBoard.length
+    const widthBoard = flagsBoard[0].length
+
+    recursiveCascadeCheck(newVisibleBoard, board, flagsBoard, heightBoard, widthBoard, row, col, isClickedFlagged)
     setVisibleAndDisableBoardTo(newVisibleBoard)
     checkOtherCellsToWin(newVisibleBoard, board, row, col, winGame)
   }
@@ -149,22 +152,24 @@ function App () {
     }
   }
 
-  const DEBUGloadMockData = (mockdata = '') => {
+  const DEBUGloadMockData = (mockdata) => {
     resetBoard()
 
-    const rows = mockdata.split('\r\n')
+    const mockDataSanitized = mockdata.replaceAll('"', '').replaceAll('\\n', '\n').trim()
+    const rows = mockDataSanitized.split('\n')
+    console.log(rows)
     const width = rows[0].replaceAll(' ', '').split('|').length - 2
     const height = rows.length
     let numberOfMines = 0
 
     const mockBoard = generateEmptyBoardWith2Dimensions(height, width)
 
-    const mockDataSanitized = mockdata.replaceAll(' ', '').replaceAll('|', '').replaceAll('\r\n', '')
+    const mockDataInline = mockDataSanitized.replaceAll(' ', '').replaceAll('|', '').replaceAll('\n', '')
 
     let mockdataCounter = 0
     for (let row = 0; row < height; row++) {
       for (let col = 0; col < width; col++) {
-        if (mockDataSanitized.charAt(mockdataCounter) === '*') {
+        if (mockDataInline.charAt(mockdataCounter) === '*') {
           mockBoard[row][col] = '@'
           numberOfMines++
         } else {
@@ -175,6 +180,7 @@ function App () {
     }
 
     const mockBoardDangerCells = setupDangerCells(mockBoard, height, width)
+    setFlagsBoard(generateMatrixWith2DDimensionsAndContent(height, width, '.'))
     setFlags(numberOfMines)
     setRectangleWidth(width)
     setBoard(mockBoardDangerCells)
@@ -183,7 +189,7 @@ function App () {
   return (
         <div className={'container' + winnerToClassHelper(winner)} data-testid='container' onContextMenu={stopContextMenu}>
 
-            <DebugModule debugFunction={debugMode}></DebugModule>
+            <DebugModule debugFunction={debugMode} getMockData={DEBUGloadMockData}> </DebugModule>
 
             <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
                 gameInProgress={gameInProgress} ></InfoModule>

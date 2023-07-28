@@ -5,35 +5,25 @@ import { expect, jest } from '@jest/globals'
 import userEvent from '@testing-library/user-event'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 
-export const loadMockData = (mockData) => {
-  userEvent.keyboard('{ctrl}m')
-  jest.spyOn(window, 'prompt').mockImplementation(() => mockData)
+jest.setTimeout(80000)
+
+export const loadMockData = async (mockData) => {
+  const text = screen.getByTestId('mockDataLoader-textarea')
+  const button = screen.getByTestId('mockDataLoader-loadButton')
+  userEvent.clear(text)
+  await userEvent.type(text, mockData)
+  await userEvent.click(button)
+  await new Promise(resolve => setTimeout(resolve, 500))
 }
 
-export const checkDisabledCell = async (row, column, status) => {
+export const checkDisabledCell = (row, column, status) => {
   const button = screen.getByTestId(`r${row}c${column}`)
-  await waitFor(() => {
-    expect(button.disabled).toBe(status)
-  })
+  return button.disabled
 }
 
-export const checkCoveredCell = async (row, column, status) => {
+export const checkCoveredCell = (row, column) => {
   const button = screen.getByTestId(`r${row}c${column}`)
-  await waitFor(() => {
-    expect(button.classList.contains('cover')).toBe(status)
-  })
-}
-
-export const checkCellShouldShow = async (row, column, value) => {
-  const button = screen.getByTestId(`r${row}c${column}`).innerHTML
-  await waitFor(() => {
-    expect(button).toBe(value)
-  })
-}
-
-export const addFlagToCell = (row, column) => {
-  const button = screen.getByTestId(`r${row}c${column}`)
-  fireEvent.contextMenu(button)
+  return button.classList.contains('cover')
 }
 
 export const addNonConclusiveToCell = (row, column) => {
@@ -42,7 +32,7 @@ export const addNonConclusiveToCell = (row, column) => {
   fireEvent.contextMenu(button)
 }
 
-export const checkStatusOfCell = async (row, column, value) => {
+export const checkStatusOfCell = (row, column, value) => {
   let flagValueToClass
   switch (value) {
     case '.':
@@ -58,59 +48,58 @@ export const checkStatusOfCell = async (row, column, value) => {
       flagValueToClass = 'flag_failed'
       break
   }
-  const flag = screen.getByTestId(`r${row}c${column}`).children.classList
-  await waitFor(() => {
-    expect(flag).toContain(flagValueToClass)
-  })
+
+  const flag = screen.getByTestId(`r${row}c${column}`)
+  const flag2 = flag.firstElementChild
+  const flag3 = flag2.getAttribute('data-testid')
+  const isInClassList = flag3 === flagValueToClass
+  return isInClassList
 }
 
-export const checkPlayerFlags = async (flags) => {
-  const flagsCounter = screen.getByTestId('remainingFlags').innerHTML
-  await waitFor(() => {
-    expect(flagsCounter).toBe(flags)
-  })
+export const checkPlayerFlags = (flags) => {
+  const flagsCounter = screen.getByTestId('remainingFlags').innerHTML.trim()
+  return flagsCounter
 }
 
 export const unmarkCellWithFlag = (row, column) => {
   const button = screen.getByTestId(`r${row}c${column}`)
   fireEvent.contextMenu(button)
   fireEvent.contextMenu(button)
+  fireEvent.contextMenu(button)
 }
 
-export const checkGameStatus = async (status) => {
+export const checkGameStatus = (status) => {
   const container = screen.getByTestId('container')
   const faceStatus = screen.getByTestId('faceStatus').innerHTML
 
   const isExpectedStatus = container.classList.contains(status)
   const isExpectedFace = (status === 'win' && faceStatus === '😊') || (status === 'lost' && faceStatus === '☹️')
 
-  await waitFor(() => {
-    expect(isExpectedStatus && isExpectedFace).toBe(true)
-  })
+  return isExpectedStatus && isExpectedFace
 }
 
-export const checkGameRestarted = async () => {
-  await waitFor(() => {
-    const flags = screen.getByTestId('remainingFlags').innerHTML
-    const faceStatus = screen.getByTestId('faceStatus').innerHTML
-    const seconds = screen.getByTestId('secondsPassed').innerHTML
+export const checkGameRestarted = () => {
+  const flags = screen.getByTestId('remainingFlags').innerHTML.trim()
+  const faceStatus = screen.getByTestId('faceStatus').innerHTML
+  const seconds = screen.getByTestId('secondsPassed').innerHTML.trim()
 
-    let gameRestarted = true
+  let gameRestarted = true
 
-    if (flags === 10) {
-      if (seconds === 0) {
-        if (faceStatus !== '😐') {
-          gameRestarted = false
-        }
+  if (flags === '10') {
+    if (seconds === '0') {
+      if (faceStatus === '😐') {
+        gameRestarted = true
       } else {
         gameRestarted = false
       }
     } else {
       gameRestarted = false
     }
+  } else {
+    gameRestarted = false
+  }
 
-    expect(gameRestarted).toBe(true)
-  })
+  return gameRestarted
 }
 
 export const helloWorldSteps = ({
@@ -123,35 +112,41 @@ export const helloWorldSteps = ({
     render(<App />)
   })
 
-  Given('the player loads the following mock data:', (mockData) => {
-    loadMockData(mockData)
+  Given('the player loads the following mock data:', async (mockData) => {
+    await loadMockData(mockData)
   })
 
-  When(/^the player uncovers the cell \((\d+),(\d+)\)$/, (row, col) => {
+  When(/^the player uncovers the cell \((\d+),(\d+)\)$/, async (row, col) => {
     const cell = screen.getByTestId(`r${row}c${col}`)
-    fireEvent.click(cell)
+    console.log(cell.getAttribute('data-testid'))
+    await userEvent.click(cell)
   })
 
   When(/^the player marks the cell \((\d+),(\d+)\) with a flag$/, (row, col) => {
-    addFlagToCell(row, col)
+    const cell = screen.getByTestId(`r${row}c${col}`)
+    fireEvent.contextMenu(cell)
   })
 
   When(/^the player marks the cell \((\d+),(\d+)\) as non-conclusive$/, (row, col) => {
-    addNonConclusiveToCell(row, col)
-  })
-
-  When(/^the player does a right click in the cell \((\d+),(\d+)\)$/, (row, col) => {
     const cell = screen.getByTestId(`r${row}c${col}`)
     fireEvent.contextMenu(cell)
+    fireEvent.contextMenu(cell)
+  })
+
+  When(/^the player does a right click in the cell \((\d+),(\d+)\)$/, async (row, col) => {
+    const cell = screen.getByTestId(`r${row}c${col}`)
+    console.log(cell)
+    fireEvent.contextMenu(cell)
+    await new Promise(resolve => setTimeout(resolve, 500))
   })
 
   When(/^the player unmarks the flagged cell \((\d+),(\d+)\)$/, (row, col) => {
     unmarkCellWithFlag(row, col)
   })
 
-  When(/^the player clicks the "(.*)" button$/, (idButton) => {
+  When(/^the player clicks the "(.*)" button$/, async (idButton) => {
     const button = screen.getByTestId(idButton)
-    fireEvent.click(button)
+    await userEvent.click(button)
   })
 
   Then('all the cells should be covered', () => {
@@ -168,39 +163,42 @@ export const helloWorldSteps = ({
   })
 
   Then(/^the cell \((\d+),(\d+)\) should be disabled$/, (row, col) => {
-    checkDisabledCell(row, col, true)
+    expect(checkDisabledCell(row, col)).toBe(true)
   })
 
   Then(/^the cell \((\d+),(\d+)\) should show: '(\d+)'$/, (row, col, value) => {
-    checkCellShouldShow(row, col, value)
+    const button = screen.getByTestId(`r${row}c${col}`).innerHTML
+    console.log(button)
+    expect(button).toBe(value)
   })
 
   Then(/^the cell \((\d+),(\d+)\) should be uncovered$/, (row, col) => {
-    checkCoveredCell(row, col, false)
+    expect(checkCoveredCell(row, col)).toBe(false)
   })
 
   Then(/^the cell \((\d+),(\d+)\) should be covered$/, (row, col) => {
-    checkCoveredCell(row, col, true)
+    expect(checkCoveredCell(row, col)).toBe(true)
   })
 
   Then(/^the cell \((\d+),(\d+)\) should show: "(.*)"$/, (row, col, value) => {
-    checkStatusOfCell(row, col, value)
+    const result = checkStatusOfCell(row, col, value)
+    expect(result).toBe(true)
   })
 
-  Then(/^the player should have (.*) flags$/, (flags) => {
-    checkPlayerFlags(flags)
+  Then(/^the player should have (\d+) flags$/, (flags) => {
+    expect(checkPlayerFlags(flags)).toBe(flags)
   })
 
   Then('the player should win the game', () => {
-    checkGameStatus('win')
+    expect(checkGameStatus('win')).toBe(true)
   })
 
   Then('the player should lose the game', () => {
-    checkGameStatus('lost')
+    expect(checkGameStatus('lost')).toBe(true)
   })
 
   Then('the game should restart', () => {
-    checkGameRestarted()
+    expect(checkGameRestarted()).toBe(true)
   })
 }
 
