@@ -264,7 +264,8 @@
 <a name='L199'></a><a href='#L199'>199</a>
 <a name='L200'></a><a href='#L200'>200</a>
 <a name='L201'></a><a href='#L201'>201</a>
-<a name='L202'></a><a href='#L202'>202</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -325,7 +326,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">167x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">36x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -464,6 +464,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">36x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import './App.css'
 import React, { useState, useEffect } from 'react'
@@ -471,8 +473,8 @@ import React, { useState, useEffect } from 'react'
 import { BoardModule } from './components/BoardModule'
 import { InfoModule } from './components/InfoModule'
 import { DifficultyModule } from './components/DifficultyModule'
-import { recursiveCascadeCheck, checkOtherCellsToWin, generateBoard, generateMatrixWithContent, showAllMines, stopContextMenu, winnerToClassHelper, setupDangerCells } from './logic/app'
-import { cloneBoard, generateEmptyBoardWith2Dimensions, generateMatrixWith2DDimensionsAndContent } from './logic/board'
+import { recursiveCascadeCheck, checkOtherCellsToWin, generateBoard, showAllMines, stopContextMenu, winnerToClassHelper, setupDangerCells } from './logic/app'
+import { cloneBoard, generateEmptyBoardWith2Dimensions, generate2DMatrixWithContent } from './logic/board'
 &nbsp;
 import { DebugModule } from './components/DebugModule'
 import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.js'
@@ -487,9 +489,9 @@ function App () {
   const [dimensions, setDimensions] = useState(DIMENSIONS.easy)
   const [rectangleWidth, setRectangleWidth] = useState(undefined)
   const [board, setBoard] = useState(generateBoard(dimensions, dimensions))
-  const [flagsBoard, setFlagsBoard] = useState(generateMatrixWithContent(dimensions, '.'))
-  const [visibleBoard, setVisibleBoard] = useState(generateMatrixWithContent(dimensions, false))
-  const [disableBoard, setDisableBoard] = useState(generateMatrixWithContent(dimensions, false))
+  const [flagsBoard, setFlagsBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, '.'))
+  const [visibleBoard, setVisibleBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
+  const [disableBoard, setDisableBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
 &nbsp;
   const secondsCounter = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
     const currentSec = <span class="cstat-no" title="statement not covered" >seconds + 1</span>
@@ -517,16 +519,15 @@ function App () {
     setFinishedGame(false)
     setGameInProgress(false)
     setBoard(generateBoard(dimensions, dimensions))
-    setFlagsBoard(generateMatrixWithContent(dimensions, '.'))
+    setFlagsBoard(generate2DMatrixWithContent(dimensions, dimensions, '.'))
     setRectangleWidth(undefined)
 &nbsp;
-    const resetedBoard = generateMatrixWithContent(dimensions, false)
+    const resetedBoard = generate2DMatrixWithContent(dimensions, dimensions, false)
     setVisibleBoard(resetedBoard)
     setDisableBoard(resetedBoard)
   }
 &nbsp;
   useEffect(() =&gt; {
-    // Executes everytime the dimensions (difficulty) changes
     resetBoardAndFlags()
   }, [dimensions])
 &nbsp;
@@ -641,27 +642,29 @@ function App () {
     }
 &nbsp;
     const mockBoardDangerCells = setupDangerCells(mockBoard, height, width)
-    setFlagsBoard(generateMatrixWith2DDimensionsAndContent(height, width, '.'))
+    setFlagsBoard(generate2DMatrixWithContent(height, width, '.'))
     setFlags(numberOfMines)
     setRectangleWidth(width)
     setBoard(mockBoardDangerCells)
   }
 &nbsp;
   return (
-        &lt;div className={'container' + winnerToClassHelper(winner)} data-testid='container' onContextMenu={stopContextMenu}&gt;
+        &lt;&gt;
+          &lt;DebugModule debugFunction={debugMode} getMockData={DEBUGloadMockData}&gt; &lt;/DebugModule&gt;
 &nbsp;
-            &lt;DebugModule debugFunction={debugMode} getMockData={DEBUGloadMockData}&gt; &lt;/DebugModule&gt;
+          &lt;div className={'container' + winnerToClassHelper(winner)} data-testid='container' onContextMenu={stopContextMenu}&gt;
 &nbsp;
-            &lt;InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
-                gameInProgress={gameInProgress} &gt;&lt;/InfoModule&gt;
+              &lt;InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
+                  gameInProgress={gameInProgress} &gt;&lt;/InfoModule&gt;
 &nbsp;
-            &lt;BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
-                looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
-                finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} &gt;&lt;/BoardModule&gt;
+              &lt;BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
+                  looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
+                  finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} &gt;&lt;/BoardModule&gt;
 &nbsp;
-            &lt;DifficultyModule easyFunction={changeDifficultyToEasy} normalFunction={changeDifficultyToNormal} hardFunction={changeDifficultyToHard}&gt;&lt;/DifficultyModule&gt;
+              &lt;DifficultyModule easyFunction={changeDifficultyToEasy} normalFunction={changeDifficultyToNormal} hardFunction={changeDifficultyToHard}&gt;&lt;/DifficultyModule&gt;
 &nbsp;
-        &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/&gt;
   )
 }
 &nbsp;
@@ -673,7 +676,7 @@ export default App
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-28T09:06:13.398Z
+                at 2023-07-28T10:00:28.436Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -1,5 +1,6 @@
 export const numberToText = (number, uncover) => {
   let numberTexted
+
   if (uncover) {
     switch (number) {
       case 1: numberTexted = ' one'; break

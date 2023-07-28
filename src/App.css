@@ -204,3 +204,17 @@ div .button {
   top: 0;
   left: 0;
 }
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.b-gray {
+  background-color: rgb(69, 69, 69);
+}
+
+.mockData-textarea {
+  margin-right: 15px;
+  border-radius: 5px;
+  padding: 5px;
+}

@@ -1,7 +1,3 @@
-import flag from './../assets/flag.svg'
-import flagUnknown from './../assets/flag-unknown.svg'
-import flagFailed from './../assets/flag-failed.svg'
-
 export const DIMENSIONS = {
   easy: 8,
   normal: 16,
@@ -20,9 +16,3 @@ export const WINNER_STATUS = {
   lose: 2
 }
 
-export const FLAG_STATUS = {
-  NO_FLAG: '',
-  FLAG: flag,
-  MAYBE_FLAG: flagUnknown,
-  FAILED_FLAG: flagFailed
-}

@@ -8,14 +8,15 @@ export const generateEmptyBoardWith2Dimensions = (height, width) => {
   return newBoard
 }
 
-export const generateMatrixWith2DDimensionsAndContent = (height, width, content) => {
-  const newBoard = new Array(height)
+export const generate2DMatrixWithContent = (height, width, content) => {
+  const newBoard = generateEmptyBoardWith2Dimensions(height, width)
+
   for (let indexRow = 0; indexRow < height; indexRow++) {
-    newBoard[indexRow] = new Array(width)
     for (let indexColumn = 0; indexColumn < width; indexColumn++) {
       newBoard[indexRow][indexColumn] = content
     }
   }
+
   return newBoard
 }
 export const cloneBoard = (oldBoard) => {

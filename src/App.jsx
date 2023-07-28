@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react'
 import { BoardModule } from './components/BoardModule'
 import { InfoModule } from './components/InfoModule'
 import { DifficultyModule } from './components/DifficultyModule'
-import { recursiveCascadeCheck, checkOtherCellsToWin, generateBoard, generateMatrixWithContent, showAllMines, stopContextMenu, winnerToClassHelper, setupDangerCells } from './logic/app'
-import { cloneBoard, generateEmptyBoardWith2Dimensions, generateMatrixWith2DDimensionsAndContent } from './logic/board'
+import { recursiveCascadeCheck, checkOtherCellsToWin, generateBoard, showAllMines, stopContextMenu, winnerToClassHelper, setupDangerCells } from './logic/app'
+import { cloneBoard, generateEmptyBoardWith2Dimensions, generate2DMatrixWithContent } from './logic/board'
 
 import { DebugModule } from './components/DebugModule'
 import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.js'
@@ -20,9 +20,9 @@ function App () {
   const [dimensions, setDimensions] = useState(DIMENSIONS.easy)
   const [rectangleWidth, setRectangleWidth] = useState(undefined)
   const [board, setBoard] = useState(generateBoard(dimensions, dimensions))
-  const [flagsBoard, setFlagsBoard] = useState(generateMatrixWithContent(dimensions, '.'))
-  const [visibleBoard, setVisibleBoard] = useState(generateMatrixWithContent(dimensions, false))
-  const [disableBoard, setDisableBoard] = useState(generateMatrixWithContent(dimensions, false))
+  const [flagsBoard, setFlagsBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, '.'))
+  const [visibleBoard, setVisibleBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
+  const [disableBoard, setDisableBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
 
   const secondsCounter = () => {
     const currentSec = seconds + 1
@@ -50,16 +50,15 @@ function App () {
     setFinishedGame(false)
     setGameInProgress(false)
     setBoard(generateBoard(dimensions, dimensions))
-    setFlagsBoard(generateMatrixWithContent(dimensions, '.'))
+    setFlagsBoard(generate2DMatrixWithContent(dimensions, dimensions, '.'))
     setRectangleWidth(undefined)
 
-    const resetedBoard = generateMatrixWithContent(dimensions, false)
+    const resetedBoard = generate2DMatrixWithContent(dimensions, dimensions, false)
     setVisibleBoard(resetedBoard)
     setDisableBoard(resetedBoard)
   }
 
   useEffect(() => {
-    // Executes everytime the dimensions (difficulty) changes
     resetBoardAndFlags()
   }, [dimensions])
 
@@ -174,27 +173,29 @@ function App () {
     }
 
     const mockBoardDangerCells = setupDangerCells(mockBoard, height, width)
-    setFlagsBoard(generateMatrixWith2DDimensionsAndContent(height, width, '.'))
+    setFlagsBoard(generate2DMatrixWithContent(height, width, '.'))
     setFlags(numberOfMines)
     setRectangleWidth(width)
     setBoard(mockBoardDangerCells)
   }
 
   return (
-        <div className={'container' + winnerToClassHelper(winner)} data-testid='container' onContextMenu={stopContextMenu}>
+        <>
+          <DebugModule debugFunction={debugMode} getMockData={DEBUGloadMockData}> </DebugModule>
 
-            <DebugModule debugFunction={debugMode} getMockData={DEBUGloadMockData}> </DebugModule>
+          <div className={'container' + winnerToClassHelper(winner)} data-testid='container' onContextMenu={stopContextMenu}>
 
-            <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
-                gameInProgress={gameInProgress} ></InfoModule>
+              <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
+                  gameInProgress={gameInProgress} ></InfoModule>
 
-            <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
-                looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
-                finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} ></BoardModule>
+              <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
+                  looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
+                  finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} ></BoardModule>
 
-            <DifficultyModule easyFunction={changeDifficultyToEasy} normalFunction={changeDifficultyToNormal} hardFunction={changeDifficultyToHard}></DifficultyModule>
+              <DifficultyModule easyFunction={changeDifficultyToEasy} normalFunction={changeDifficultyToNormal} hardFunction={changeDifficultyToHard}></DifficultyModule>
 
-        </div>
+          </div>
+        </>
   )
 }
 

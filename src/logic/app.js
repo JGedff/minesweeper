@@ -67,6 +67,7 @@ export const setupDangerCells = (oldBoard, height, width) => {
       }
     }
   }
+
   return newBoard
 }
 
@@ -95,6 +96,7 @@ export const checkOtherCellsToWin = (visibleBoard, board, row, col, winGame) => 
   if (winner) {
     winGame()
   }
+
   return newBoard
 }
 
@@ -113,17 +115,6 @@ export const showAllMines = (visibleBoard, board) => {
     }
   }
 
-  return newBoard
-}
-
-export const generateMatrixWithContent = (dimensions, content) => {
-  const newBoard = new Array(dimensions)
-  for (let indexRow = 0; indexRow < dimensions; indexRow++) {
-    newBoard[indexRow] = new Array(dimensions)
-    for (let indexColumn = 0; indexColumn < dimensions; indexColumn++) {
-      newBoard[indexRow][indexColumn] = content
-    }
-  }
   return newBoard
 }
 
@@ -154,9 +145,6 @@ export const stopContextMenu = (event) => {
 }
 
 export const winnerToClassHelper = (winner) => {
-  // 0 = No winner
-  // 1 = Winner
-  // 2 = Loosed
   switch (winner) {
     case 1: return ' win'
     case 2: return ' lost'
