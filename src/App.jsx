@@ -144,11 +144,6 @@ function App () {
   const debugMode = e => {
     if (e.code === 'KeyS') {
       setDEBUGshowGuide(!DEBUGshowGuide)
-    } else if (e.code === 'KeyM' && e.ctrlKey === true) {
-      const mockData = prompt('Welcome to the Mock Data Debug prompt!\nInput your line mock data here:')
-      if (mockData !== null) {
-        DEBUGloadMockData(mockData)
-      }
     }
   }
 
@@ -157,7 +152,6 @@ function App () {
 
     const mockDataSanitized = mockdata.replaceAll('"', '').replaceAll('\\n', '\n').trim()
     const rows = mockDataSanitized.split('\n')
-    console.log(rows)
     const width = rows[0].replaceAll(' ', '').split('|').length - 2
     const height = rows.length
     let numberOfMines = 0

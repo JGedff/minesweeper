@@ -3,7 +3,7 @@ import App from './../../App.jsx'
 import '@testing-library/jest-dom/extend-expect'
 import { expect, jest } from '@jest/globals'
 import userEvent from '@testing-library/user-event'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 
 jest.setTimeout(80000)
 
@@ -16,7 +16,7 @@ export const loadMockData = async (mockData) => {
   await new Promise(resolve => setTimeout(resolve, 500))
 }
 
-export const checkDisabledCell = (row, column, status) => {
+export const checkDisabledCell = (row, column) => {
   const button = screen.getByTestId(`r${row}c${column}`)
   return button.disabled
 }
@@ -34,6 +34,7 @@ export const addNonConclusiveToCell = (row, column) => {
 
 export const checkStatusOfCell = (row, column, value) => {
   let flagValueToClass
+
   switch (value) {
     case '.':
       flagValueToClass = 'no_flag'
@@ -45,7 +46,7 @@ export const checkStatusOfCell = (row, column, value) => {
       flagValueToClass = 'maybe_flag'
       break
     case 'x':
-      flagValueToClass = 'flag_failed'
+      flagValueToClass = 'failed_flag'
       break
     case '@':
       flagValueToClass = 'mineExploded'
@@ -117,7 +118,6 @@ export const helloWorldSteps = ({
 
   When(/^the player uncovers the cell \((\d+),(\d+)\)$/, async (row, col) => {
     const cell = screen.getByTestId(`r${row}c${col}`)
-    console.log(cell.getAttribute('data-testid'))
     await userEvent.click(cell)
   })
 
@@ -136,7 +136,6 @@ export const helloWorldSteps = ({
     const cell = screen.getByTestId(`r${row}c${col}`)
     fireEvent.contextMenu(cell)
     await new Promise(resolve => setTimeout(resolve, 500))
-    console.log('RIGHT CLICKED')
   })
 
   When(/^the player clicks the "(.*)" button$/, async (idButton) => {
@@ -158,12 +157,12 @@ export const helloWorldSteps = ({
   })
 
   Then(/^the cell \((\d+),(\d+)\) should be disabled$/, (row, col) => {
-    expect(checkDisabledCell(row, col)).toBe(true)
+    const button = screen.getByTestId(`r${row}c${col}`)
+    expect(button.disabled).toBe(true)
   })
 
   Then(/^the cell \((\d+),(\d+)\) should show: '(\d+)'$/, (row, col, value) => {
     const button = screen.getByTestId(`r${row}c${col}`).innerHTML
-    console.log(button)
     expect(button).toBe(value)
   })
 

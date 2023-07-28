@@ -389,7 +389,18 @@ Feature: Minesweeper
     When the player uncovers the cell (1,2)
     Then the cell (1,1) should show: "!"
 
-  Scenario: Win the game - Disable all cells
+  Scenario: Win the game - Unable to unmark the cells
+    Given the player loads the following mock data:
+      """
+
+      | * | o |
+
+      """
+    When the player uncovers the cell (1,2)
+    And the player does a right click in the cell (1,1)
+    Then the cell (1,1) should show: "!"
+  
+  Scenario: Win the game - Unable to uncover the cell
     Given the player loads the following mock data:
       """
 
@@ -410,7 +421,7 @@ Feature: Minesweeper
     When the player uncovers the cell (1,1)
     Then the player should lose the game
 
-  Scenario: Loose the game - Unable to click or uncover any cell
+  Scenario: Loose the game - Unable to put a flagg
     Given the player loads the following mock data:
       """
 
@@ -419,7 +430,30 @@ Feature: Minesweeper
       """
     When the player uncovers the cell (1,1)
     And the player does a right click in the cell (1,2)
-    Then the cell (1,2) should be disabled
+    Then the cell (1,2) should show: "."
+
+  Scenario: Loose the game - Unable to unmark a cell
+    Given the player loads the following mock data:
+      """
+
+      | * | o |
+
+      """
+    When the player marks the cell (1,2) with a flag
+    And the player uncovers the cell (1,1)
+    And the player does a right click in the cell (1,2)
+    Then the cell (1,2) should show: "x"
+
+  Scenario: Loose the game - Unable to uncover the cell
+    Given the player loads the following mock data:
+      """
+
+      | * | o |
+
+      """
+    When the player uncovers the cell (1,1)
+    And the player uncovers the cell (1,2)
+    Then the cell (1,2) should show: "."
 
   Scenario: Lose the game - Display exploded mine
     Given the player loads the following mock data:

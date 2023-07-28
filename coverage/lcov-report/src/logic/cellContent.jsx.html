@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76% </span>
+                <span class="strong">92% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/25</span>
+                <span class='fraction'>23/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.96% </span>
+                <span class="strong">92.59% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>17/27</span>
+                <span class='fraction'>25/27</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.26% </span>
+                <span class="strong">95.65% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/23</span>
+                <span class='fraction'>22/23</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -116,43 +116,43 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">202x</span>
+<span class="cline-any cline-yes">8137x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">202x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">8137x</span>
+<span class="cline-any cline-yes">35x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">200x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">202x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">199x</span>
-<span class="cline-any cline-yes">199x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">8102x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">202x</span>
+<span class="cline-any cline-yes">8137x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">202x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">8063x</span>
+<span class="cline-any cline-yes">8063x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">60x</span>
+<span class="cline-any cline-yes">60x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">200x</span>
+<span class="cline-any cline-yes">8137x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">200x</span>
+<span class="cline-any cline-yes">8137x</span>
+<span class="cline-any cline-yes">121x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">105x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8016x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8014x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,10 +181,10 @@ export const cellContent = (uncover, children, initialFlag, DEBUGshowGuide, clic
     case 'flag':
       src = './src/assets/flag.svg'
       break
-<span class="branch-2 cbranch-no" title="branch not covered" >    case 'maybe_flag':</span>
-<span class="cstat-no" title="statement not covered" >      src = './src/assets/flag-unknown.svg'</span>
-<span class="cstat-no" title="statement not covered" >      break</span>
-    default: break
+    case 'maybe_flag':
+      src = './src/assets/flag-unknown.svg'
+      break
+<span class="branch-3 cbranch-no" title="branch not covered" >    default: <span class="cstat-no" title="statement not covered" >break</span></span>
   }
 &nbsp;
   <span class="missing-if-branch" title="if path not taken" >I</span>if (DEBUGshowGuide) <span class="cstat-no" title="statement not covered" >return children</span>
@@ -192,15 +192,15 @@ export const cellContent = (uncover, children, initialFlag, DEBUGshowGuide, clic
   if (uncover) {
     if (children === '@' &amp;&amp; clicked) {
       return (&lt;img className="svg" data-testid='mineExploded' src={mineExploded} alt="" /&gt;)
-    } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>if (children === '@') {</span>
+    } else if (children === '@') {
       return (&lt;img className="svg" data-testid='mineSaved' src={mineSave} /&gt;)
-    } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if (children !== 0) {</span>
-<span class="cstat-no" title="statement not covered" >      return children</span>
+    } else if (children !== 0) {
+      return children
     }
   } else {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (flag === 'flag' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >finishedGame &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >c</span>hildren !== '@') {</span>
+    if (flag === 'flag' &amp;&amp; finishedGame &amp;&amp; children !== '@') {
       return (&lt;img className="svg" data-testid={'failed_flag'} src={'./src/assets/flag-failed.svg'} alt="" /&gt;)
-    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (children === '@' &amp;&amp; finishedGame) {
+    } else if (children === '@' &amp;&amp; finishedGame) {
       return (&lt;img className="svg" data-testid={flag} src={src} alt="" /&gt;)
     } else {
       return (&lt;img className="svg" data-testid={flag} src={src} alt="" /&gt;)
@@ -214,7 +214,7 @@ export const cellContent = (uncover, children, initialFlag, DEBUGshowGuide, clic
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-28T08:37:35.850Z
+                at 2023-07-28T09:06:13.398Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -11,11 +11,11 @@ export const DebugModule = ({ debugFunction, getMockData }) => {
 
   return (
     <>
-    <input className='debugInput' data-testid='debugInput' readOnly autoFocus onKeyDown={debugFunction}></input>
-            <div className='mockData-container'>
-            <textarea className='mockData-textarea' data-testid='mockDataLoader-textarea' autoFocus onChange={handleChange} value={inputText}/>
-            <button data-testid='mockDataLoader-loadButton' onClick={handleClick}>Crear</button>
-        </div>
+      <input className='debugInput' data-testid='debugInput' readOnly autoFocus onKeyDown={debugFunction}></input>
+        <div className='mockData-container'>
+        <textarea className='mockData-textarea' data-testid='mockDataLoader-textarea' autoFocus onChange={handleChange} value={inputText}/>
+        <button data-testid='mockDataLoader-loadButton' onClick={handleClick}>Crear</button>
+      </div>
     </>
 
   )

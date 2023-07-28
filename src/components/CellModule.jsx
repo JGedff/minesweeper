@@ -53,6 +53,7 @@ export const CellModule = ({
   const handleRightClick = (event) => {
     event.preventDefault()
     let newFlagStatus
+
     if (!finishedGame) {
       if (flag === 'no_flag' && flagsRemaining > 0) {
         newFlagStatus = 'flag'
@@ -63,7 +64,10 @@ export const CellModule = ({
       } else {
         newFlagStatus = 'no_flag'
       }
+    } else {
+      newFlagStatus = flag
     }
+
     setFlag(newFlagStatus)
   }
 
