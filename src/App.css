@@ -147,10 +147,16 @@ div .button {
   justify-content: space-between;
 }
 
+.board {
+  display: flex;
+  justify-content: center;
+}
+
 .board .game {
   display: grid;
   gap: 5px;
-  place-items: center;
+  width: fit-content;
+  height: fit-content;
 }
 
 .align-items-center {

@@ -7,7 +7,7 @@ export const cellContent = (uncover, children, initialFlag, DEBUGshowGuide, clic
   let src
   let flag
 
-  if (finishedGame && children === '@') {
+  if (finishedGame && children === '@' && !clicked) {
     flag = 'flag'
   } else {
     flag = initialFlag

@@ -1,4 +1,7 @@
 import { cloneBoard, generateEmptyBoardWith2Dimensions } from './board'
+// import confetti from 'canvas-confetti'
+
+// El confetti lo hemos quitado, ya que provocava que algun test fallara. Ahunasí, si quieres confeti, lo puedes poner
 
 export const getFlagsByDimensions = (dimensions) => {
   switch (dimensions) {
@@ -95,6 +98,7 @@ export const checkOtherCellsToWin = (visibleBoard, board, row, col, winGame) => 
 
   if (winner) {
     winGame()
+    // confetti()
   }
 
   return newBoard
