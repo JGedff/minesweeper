@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
-import { stopContextMenu } from '../logic/app'
 import { cellContent } from '../logic/cellContent'
 import { numberToText } from '../logic/cell'
-import { FLAG_STATUS } from '../logic/constants'
 
 export const CellModule = ({
   children, row, column, restartGame, looseGame, uncoverNumber, cascade, initialVisible,
   removeFlagFromBoard, placeFlagOnBoard, flagsRemaining, disable, finishedGame, DEBUGshowGuide, startGame
 }) => {
   const [clicked, setClicked] = useState(false)
-  const [flag, setFlag] = useState(FLAG_STATUS.NO_FLAG)
+  const [flag, setFlag] = useState('no_flag')
   const [uncover, setUncover] = useState(initialVisible)
   const [disableStatus, setDisableStatus] = useState(disable)
 
@@ -20,7 +18,7 @@ export const CellModule = ({
 
   const restartCellStatus = () => {
     setUncover(initialVisible)
-    setFlag(FLAG_STATUS.NO_FLAG)
+    setFlag('no_flag')
     setClicked(false)
     setDisableStatus(disable)
   }
@@ -45,26 +43,28 @@ export const CellModule = ({
       } else {
         uncoverNumber(row, column)
       }
-      if (flag === FLAG_STATUS.FLAG) {
-        setFlag(FLAG_STATUS.NO_FLAG)
+      if (flag === 'flag') {
+        setFlag('no_flag')
         removeFlagFromBoard(row, column)
       }
     }
   }
 
   const handleRightClick = (event) => {
-    stopContextMenu(event)
+    event.preventDefault()
+    let newFlagStatus
     if (!finishedGame) {
-      if (flag === FLAG_STATUS.NO_FLAG && flagsRemaining > 0) {
-        setFlag(FLAG_STATUS.FLAG)
+      if (flag === 'no_flag' && flagsRemaining > 0) {
+        newFlagStatus = 'flag'
         placeFlagOnBoard(row, column)
-      } else if (flag === FLAG_STATUS.FLAG) {
-        setFlag(FLAG_STATUS.MAYBE_FLAG)
+      } else if (flag === 'flag') {
+        newFlagStatus = 'maybe_flag'
         removeFlagFromBoard(row, column)
       } else {
-        setFlag(FLAG_STATUS.NO_FLAG)
+        newFlagStatus = 'no_flag'
       }
     }
+    setFlag(newFlagStatus)
   }
 
   return (

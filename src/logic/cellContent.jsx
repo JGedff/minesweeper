@@ -2,20 +2,26 @@ import React from 'react'
 
 import mineExploded from './../assets/mine-exploded.svg'
 import mineSave from './../assets/mine-safe.svg'
-import { FLAG_STATUS } from './../logic/constants'
 
-export const cellContent = (uncover, children, flag, DEBUGshowGuide, clicked, finishedGame) => {
-  let dataTestIdString
+export const cellContent = (uncover, children, initialFlag, DEBUGshowGuide, clicked, finishedGame) => {
+  let src
+  let flag
+
+  if (finishedGame && children === '@') {
+    flag = 'flag'
+  } else {
+    flag = initialFlag
+  }
 
   switch (flag) {
-    case FLAG_STATUS.NO_FLAG:
-      dataTestIdString = 'no_flag'
+    case 'no_flag':
+      src = ''
       break
-    case FLAG_STATUS.FLAG:
-      dataTestIdString = 'flag'
+    case 'flag':
+      src = './src/assets/flag.svg'
       break
-    case FLAG_STATUS.MAYBE_FLAG:
-      dataTestIdString = 'maybe_flag'
+    case 'maybe_flag':
+      src = './src/assets/flag-unknown.svg'
       break
     default: break
   }
@@ -31,12 +37,12 @@ export const cellContent = (uncover, children, flag, DEBUGshowGuide, clicked, fi
       return children
     }
   } else {
-    if (flag === FLAG_STATUS.FLAG && finishedGame && children !== '@') {
-      return (<img className="svg" data-testid={'failed_flag'} src={FLAG_STATUS.FAILED_FLAG} alt="" />)
+    if (flag === 'flag' && finishedGame && children !== '@') {
+      return (<img className="svg" data-testid={'failed_flag'} src={'./src/assets/flag-failed.svg'} alt="" />)
     } else if (children === '@' && finishedGame) {
-      return (<img className="svg" data-testid={dataTestIdString} src={FLAG_STATUS.FLAG} alt="" />)
+      return (<img className="svg" data-testid={flag} src={src} alt="" />)
     } else {
-      return (<img className="svg" data-testid={dataTestIdString} src={flag} alt="" />)
+      return (<img className="svg" data-testid={flag} src={src} alt="" />)
     }
   }
 }

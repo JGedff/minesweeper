@@ -1,6 +1,417 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1690452203108" clover="3.2.0">
-  <project timestamp="1690452203108" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1690533456142" clover="3.2.0">
+  <project timestamp="1690533456142" name="All files">
+    <metrics statements="366" coveredstatements="267" conditionals="107" coveredconditionals="45" methods="57" coveredmethods="41" elements="530" coveredelements="353" complexity="0" loc="366" ncloc="366" packages="3" files="12" classes="12"/>
+    <package name="src">
+      <metrics statements="126" coveredstatements="85" conditionals="12" coveredconditionals="3" methods="19" coveredmethods="8"/>
+      <file name="App.jsx" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\App.jsx">
+        <metrics statements="126" coveredstatements="85" conditionals="12" coveredconditionals="3" methods="19" coveredmethods="8"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="32" count="4" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="4" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="47" count="4" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
+        <line num="53" count="2" type="stmt"/>
+        <line num="54" count="2" type="stmt"/>
+        <line num="56" count="2" type="stmt"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
+        <line num="61" count="4" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="66" count="4" type="stmt"/>
+        <line num="67" count="1" type="cond" truecount="1" falsecount="3"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="84" count="4" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="89" count="4" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="94" count="4" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="100" count="4" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="104" count="4" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="110" count="4" type="stmt"/>
+        <line num="111" count="1" type="stmt"/>
+        <line num="112" count="1" type="stmt"/>
+        <line num="113" count="1" type="stmt"/>
+        <line num="115" count="1" type="stmt"/>
+        <line num="116" count="1" type="stmt"/>
+        <line num="119" count="4" type="stmt"/>
+        <line num="120" count="1" type="stmt"/>
+        <line num="121" count="1" type="stmt"/>
+        <line num="124" count="4" type="stmt"/>
+        <line num="125" count="0" type="stmt"/>
+        <line num="126" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="131" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="133" count="0" type="stmt"/>
+        <line num="136" count="4" type="stmt"/>
+        <line num="137" count="0" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="140" count="0" type="stmt"/>
+        <line num="141" count="0" type="stmt"/>
+        <line num="144" count="4" type="stmt"/>
+        <line num="145" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="146" count="0" type="stmt"/>
+        <line num="147" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="149" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="150" count="0" type="stmt"/>
+        <line num="155" count="4" type="stmt"/>
+        <line num="156" count="1" type="stmt"/>
+        <line num="158" count="1" type="stmt"/>
+        <line num="159" count="1" type="stmt"/>
+        <line num="160" count="1" type="stmt"/>
+        <line num="161" count="1" type="stmt"/>
+        <line num="162" count="1" type="stmt"/>
+        <line num="163" count="1" type="stmt"/>
+        <line num="165" count="1" type="stmt"/>
+        <line num="167" count="1" type="stmt"/>
+        <line num="169" count="1" type="stmt"/>
+        <line num="170" count="1" type="stmt"/>
+        <line num="171" count="1" type="stmt"/>
+        <line num="172" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="173" count="1" type="stmt"/>
+        <line num="174" count="1" type="stmt"/>
+        <line num="176" count="1" type="stmt"/>
+        <line num="178" count="2" type="stmt"/>
+        <line num="182" count="1" type="stmt"/>
+        <line num="183" count="1" type="stmt"/>
+        <line num="184" count="1" type="stmt"/>
+        <line num="185" count="1" type="stmt"/>
+        <line num="186" count="1" type="stmt"/>
+        <line num="207" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="77" coveredstatements="62" conditionals="16" coveredconditionals="4" methods="20" coveredmethods="18"/>
+      <file name="BoardModule.jsx" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\components\BoardModule.jsx">
+        <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="31" count="27" type="stmt"/>
+        <line num="33" count="198" type="stmt"/>
+      </file>
+      <file name="CellModule.jsx" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\components\CellModule.jsx">
+        <metrics statements="44" coveredstatements="32" conditionals="13" coveredconditionals="2" methods="7" coveredmethods="7"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="198" type="stmt"/>
+        <line num="10" count="202" type="stmt"/>
+        <line num="11" count="202" type="stmt"/>
+        <line num="12" count="202" type="stmt"/>
+        <line num="13" count="202" type="stmt"/>
+        <line num="15" count="202" type="stmt"/>
+        <line num="16" count="194" type="stmt"/>
+        <line num="19" count="202" type="stmt"/>
+        <line num="20" count="194" type="stmt"/>
+        <line num="21" count="194" type="stmt"/>
+        <line num="22" count="194" type="stmt"/>
+        <line num="23" count="194" type="stmt"/>
+        <line num="26" count="202" type="stmt"/>
+        <line num="27" count="65" type="stmt"/>
+        <line num="30" count="202" type="stmt"/>
+        <line num="31" count="65" type="stmt"/>
+        <line num="34" count="202" type="stmt"/>
+        <line num="35" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="46" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="53" count="202" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="56" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="57" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="70" count="202" type="stmt"/>
+      </file>
+      <file name="DebugModule.jsx" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\components\DebugModule.jsx">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
+        <line num="6" count="11" type="stmt"/>
+        <line num="8" count="15" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+      </file>
+      <file name="DifficultyModule.jsx" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\components\DifficultyModule.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+      </file>
+      <file name="InfoModule.jsx" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\components\InfoModule.jsx">
+        <metrics statements="9" coveredstatements="6" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.logic">
+      <metrics statements="163" coveredstatements="120" conditionals="79" coveredconditionals="38" methods="18" coveredmethods="15"/>
+      <file name="app.js" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\logic\app.js">
+        <metrics statements="93" coveredstatements="64" conditionals="38" coveredconditionals="16" methods="12" coveredmethods="9"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="6" type="cond" truecount="1" falsecount="2"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="19" count="66" type="stmt"/>
+        <line num="20" count="66" type="stmt"/>
+        <line num="22" count="66" type="cond" truecount="3" falsecount="0"/>
+        <line num="23" count="60" type="stmt"/>
+        <line num="25" count="60" type="stmt"/>
+        <line num="29" count="6" type="stmt"/>
+        <line num="30" count="48" type="stmt"/>
+        <line num="31" count="384" type="cond" truecount="1" falsecount="0"/>
+        <line num="32" count="324" type="stmt"/>
+        <line num="37" count="6" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="325" type="stmt"/>
+        <line num="43" count="325" type="stmt"/>
+        <line num="44" count="975" type="cond" truecount="3" falsecount="0"/>
+        <line num="45" count="886" type="stmt"/>
+        <line num="46" count="2658" type="cond" truecount="3" falsecount="0"/>
+        <line num="47" count="2442" type="cond" truecount="1" falsecount="0"/>
+        <line num="48" count="339" type="stmt"/>
+        <line num="55" count="325" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="7" type="stmt"/>
+        <line num="61" count="7" type="stmt"/>
+        <line num="62" count="49" type="stmt"/>
+        <line num="63" count="386" type="cond" truecount="1" falsecount="0"/>
+        <line num="64" count="325" type="stmt"/>
+        <line num="66" count="325" type="stmt"/>
+        <line num="70" count="7" type="stmt"/>
+        <line num="73" count="6" type="stmt"/>
+        <line num="74" count="6" type="stmt"/>
+        <line num="76" count="6" type="stmt"/>
+        <line num="78" count="6" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="89" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="95" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="102" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="105" count="1" type="stmt"/>
+        <line num="106" count="1" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
+        <line num="109" count="1" type="stmt"/>
+        <line num="110" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="111" count="1" type="stmt"/>
+        <line num="116" count="1" type="stmt"/>
+        <line num="119" count="16" type="stmt"/>
+        <line num="120" count="16" type="stmt"/>
+        <line num="121" count="16" type="stmt"/>
+        <line num="122" count="128" type="stmt"/>
+        <line num="123" count="128" type="stmt"/>
+        <line num="124" count="1024" type="stmt"/>
+        <line num="127" count="16" type="stmt"/>
+        <line num="130" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="131" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="132" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="133" count="0" type="stmt"/>
+        <line num="136" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="137" count="0" type="stmt"/>
+        <line num="138" count="0" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="140" count="0" type="stmt"/>
+        <line num="141" count="0" type="stmt"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="143" count="0" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
+        <line num="145" count="0" type="stmt"/>
+        <line num="146" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="147" count="0" type="stmt"/>
+        <line num="152" count="4" type="stmt"/>
+        <line num="153" count="1" type="stmt"/>
+        <line num="156" count="4" type="stmt"/>
+        <line num="160" count="4" type="cond" truecount="2" falsecount="1"/>
+        <line num="161" count="0" type="stmt"/>
+        <line num="162" count="1" type="stmt"/>
+        <line num="163" count="3" type="stmt"/>
+      </file>
+      <file name="board.js" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\logic\board.js">
+        <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="1" count="7" type="stmt"/>
+        <line num="2" count="15" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
+        <line num="5" count="106" type="stmt"/>
+        <line num="8" count="15" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="8" type="stmt"/>
+        <line num="22" count="8" type="stmt"/>
+        <line num="24" count="8" type="stmt"/>
+        <line num="25" count="57" type="stmt"/>
+        <line num="26" count="450" type="stmt"/>
+        <line num="30" count="8" type="stmt"/>
+      </file>
+      <file name="cell.js" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\logic\cell.js">
+        <metrics statements="14" coveredstatements="6" conditionals="11" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="1" count="202" type="stmt"/>
+        <line num="3" count="202" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="2" type="cond" truecount="1" falsecount="8"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="16" count="200" type="stmt"/>
+        <line num="19" count="202" type="stmt"/>
+      </file>
+      <file name="cellContent.jsx" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\logic\cellContent.jsx">
+        <metrics statements="23" coveredstatements="18" conditionals="27" coveredconditionals="17" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="202" type="stmt"/>
+        <line num="10" count="202" type="cond" truecount="4" falsecount="0"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="13" count="200" type="stmt"/>
+        <line num="16" count="202" type="cond" truecount="3" falsecount="1"/>
+        <line num="18" count="199" type="stmt"/>
+        <line num="19" count="199" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="29" count="202" type="cond" truecount="0" falsecount="1"/>
+        <line num="31" count="202" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="36" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="40" count="200" type="cond" truecount="2" falsecount="3"/>
+        <line num="42" count="200" type="cond" truecount="3" falsecount="1"/>
+      </file>
+      <file name="constants.js" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\logic\constants.js">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+      </file>
+      <file name="info.js" path="C:\Users\bakam\source\repos\travelport_learning\minesweeper-vite\minesweeper\src\logic\info.js">
+        <metrics statements="8" coveredstatements="7" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="4" type="cond" truecount="2" falsecount="1"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>

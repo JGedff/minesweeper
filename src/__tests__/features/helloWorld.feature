@@ -46,8 +46,8 @@ Feature: Minesweeper
   "6" Clean cell with 6 adjacent mines
   "7" Clean cell with 7 adjacent mines
   "8" Clean cell with 8 adjacent mines
-  "@" highlighted mine
-  "#" mine
+  "@" highlighted mine (exploded)
+  "#" mine (not exploded)
   Game example: http://birrell.org/andrew/minesweeper/
 
   Background:
@@ -301,8 +301,9 @@ Feature: Minesweeper
       | * | o |
 
       """
-    When the player marks the cell (1,2) as non-conclusive
     When the player does a right click in the cell (1,2)
+    And the player does a right click in the cell (1,2)
+    And the player does a right click in the cell (1,2)
     Then the cell (1,2) should show: "."
 
   Scenario: Uncover a cell with a flag
@@ -337,7 +338,7 @@ Feature: Minesweeper
     When the player does a right click in the cell (1,2)
     Then the player should have 0 flags
 
-  Scenario: Unmark a cell - Add a flag
+  Scenario: Unmark a cell - Recovering a flag
     Given the player loads the following mock data:
       """
 
@@ -346,19 +347,8 @@ Feature: Minesweeper
       """
     When the player marks the cell (1,2) with a flag
     And the player marks the cell (1,4) with a flag
-    And the player unmarks the flagged cell (1,2)
-    Then the player should have 2 flags
-
-  Scenario: Unmarking a flag cell - Recover a flag
-    Given the player loads the following mock data:
-      """
-
-      | * | o | o | * |
-
-      """
-    When the player marks the cell (1,2) with a flag
-    And the player marks the cell (1,3) with a flag
-    And the player unmarks the flagged cell (1,2)
+    And the player does a right click in the cell (1,2)
+    And the player does a right click in the cell (1,2)
     Then the player should have 1 flags
 
   Scenario: Marking a cell without flags remaining
@@ -428,18 +418,8 @@ Feature: Minesweeper
 
       """
     When the player uncovers the cell (1,1)
-    And the player marks the cell (1,2) with a flag
-    Then the cell (1,2) should show: "."
-
-  Scenario: Loose the game - Show all mines
-    Given the player loads the following mock data:
-      """
-
-      | * | o |
-
-      """
-    When the player uncovers the cell (1,1)
-    Then the cell (1,1) should show: "@"
+    And the player does a right click in the cell (1,2)
+    Then the cell (1,2) should be disabled
 
   Scenario: Lose the game - Display exploded mine
     Given the player loads the following mock data:
@@ -466,7 +446,7 @@ Feature: Minesweeper
     Given the player loads the following mock data:
       """
 
-      | * | o |
+      | * | o | o |
 
       """
     When the player marks the cell (1,2) as non-conclusive

@@ -47,6 +47,12 @@ export const checkStatusOfCell = (row, column, value) => {
     case 'x':
       flagValueToClass = 'flag_failed'
       break
+    case '@':
+      flagValueToClass = 'mineExploded'
+      break
+    case '#':
+      flagValueToClass = 'mineSaved'
+      break
   }
 
   const flag = screen.getByTestId(`r${row}c${column}`)
@@ -59,13 +65,6 @@ export const checkStatusOfCell = (row, column, value) => {
 export const checkPlayerFlags = (flags) => {
   const flagsCounter = screen.getByTestId('remainingFlags').innerHTML.trim()
   return flagsCounter
-}
-
-export const unmarkCellWithFlag = (row, column) => {
-  const button = screen.getByTestId(`r${row}c${column}`)
-  fireEvent.contextMenu(button)
-  fireEvent.contextMenu(button)
-  fireEvent.contextMenu(button)
 }
 
 export const checkGameStatus = (status) => {
@@ -135,13 +134,9 @@ export const helloWorldSteps = ({
 
   When(/^the player does a right click in the cell \((\d+),(\d+)\)$/, async (row, col) => {
     const cell = screen.getByTestId(`r${row}c${col}`)
-    console.log(cell)
     fireEvent.contextMenu(cell)
     await new Promise(resolve => setTimeout(resolve, 500))
-  })
-
-  When(/^the player unmarks the flagged cell \((\d+),(\d+)\)$/, (row, col) => {
-    unmarkCellWithFlag(row, col)
+    console.log('RIGHT CLICKED')
   })
 
   When(/^the player clicks the "(.*)" button$/, async (idButton) => {

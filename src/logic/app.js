@@ -1,4 +1,3 @@
-import confetti from 'canvas-confetti'
 import { cloneBoard, generateEmptyBoardWith2Dimensions } from './board'
 
 export const getFlagsByDimensions = (dimensions) => {
@@ -95,7 +94,6 @@ export const checkOtherCellsToWin = (visibleBoard, board, row, col, winGame) => 
 
   if (winner) {
     winGame()
-    confetti()
   }
   return newBoard
 }

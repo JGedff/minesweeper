@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.73% </span>
+                <span class="strong">73.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>33/46</span>
+                <span class='fraction'>33/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.15% </span>
+                <span class="strong">15.38% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/13</span>
+                <span class='fraction'>2/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.11% </span>
+                <span class="strong">72.72% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>32/45</span>
+                <span class='fraction'>32/44</span>
             </div>
         
             
@@ -142,10 +142,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">200x</span>
+<span class="cline-any cline-yes">198x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -166,26 +164,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">202x</span>
-<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-yes">65x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">202x</span>
-<span class="cline-any cline-yes">64x</span>
+<span class="cline-any cline-yes">65x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">202x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -193,18 +191,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">202x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">202x</span>
@@ -215,17 +215,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect, useState } from 'react'
 &nbsp;
-import { stopContextMenu } from '../logic/app'
 import { cellContent } from '../logic/cellContent'
 import { numberToText } from '../logic/cell'
-import { FLAG_STATUS } from '../logic/constants'
 &nbsp;
 export const CellModule = ({
   children, row, column, restartGame, looseGame, uncoverNumber, cascade, initialVisible,
   removeFlagFromBoard, placeFlagOnBoard, flagsRemaining, disable, finishedGame, DEBUGshowGuide, startGame
 }) =&gt; {
   const [clicked, setClicked] = useState(false)
-  const [flag, setFlag] = useState(FLAG_STATUS.NO_FLAG)
+  const [flag, setFlag] = useState('no_flag')
   const [uncover, setUncover] = useState(initialVisible)
   const [disableStatus, setDisableStatus] = useState(disable)
 &nbsp;
@@ -235,7 +233,7 @@ export const CellModule = ({
 &nbsp;
   const restartCellStatus = () =&gt; {
     setUncover(initialVisible)
-    setFlag(FLAG_STATUS.NO_FLAG)
+    setFlag('no_flag')
     setClicked(false)
     setDisableStatus(disable)
   }
@@ -248,38 +246,40 @@ export const CellModule = ({
     setDisableStatus(disable)
   }, [disable])
 &nbsp;
-  const handleClick = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!finishedGame) {</span>
-<span class="cstat-no" title="statement not covered" >      startGame()</span>
-<span class="cstat-no" title="statement not covered" >      setClicked(true)</span>
-<span class="cstat-no" title="statement not covered" >      setUncover(true)</span>
-<span class="cstat-no" title="statement not covered" >      if (children === '@') {</span>
-<span class="cstat-no" title="statement not covered" >        looseGame()</span>
-      } else <span class="cstat-no" title="statement not covered" >if (children === 0) {</span>
+  const handleClick = () =&gt; {
+    if (!finishedGame) {
+      startGame()
+      setClicked(true)
+      setUncover(true)
+      if (children === '@') {
+        looseGame()
+      } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>if (children === 0) {</span>
 <span class="cstat-no" title="statement not covered" >        cascade(row, column)</span>
       } else {
 <span class="cstat-no" title="statement not covered" >        uncoverNumber(row, column)</span>
       }
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (flag === FLAG_STATUS.FLAG) {</span>
-<span class="cstat-no" title="statement not covered" >        setFlag(FLAG_STATUS.NO_FLAG)</span>
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (flag === 'flag') {
+<span class="cstat-no" title="statement not covered" >        setFlag('no_flag')</span>
 <span class="cstat-no" title="statement not covered" >        removeFlagFromBoard(row, column)</span>
       }
     }
   }
 &nbsp;
   const handleRightClick = (event) =&gt; {
-    stopContextMenu(event)
-    if (!finishedGame) {
-      if (flag === FLAG_STATUS.NO_FLAG &amp;&amp; flagsRemaining &gt; 0) {
-        setFlag(FLAG_STATUS.FLAG)
-        placeFlagOnBoard(row, column)
-      } else if (flag === FLAG_STATUS.FLAG) {
-        setFlag(FLAG_STATUS.MAYBE_FLAG)
-        removeFlagFromBoard(row, column)
-      } else <span class="missing-if-branch" title="else path not taken" >E</span>{
-<span class="cstat-no" title="statement not covered" >        setFlag(FLAG_STATUS.NO_FLAG)</span>
+    event.preventDefault()
+    let newFlagStatus
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!finishedGame) {
+<span class="cstat-no" title="statement not covered" >      if (flag === 'no_flag' &amp;&amp; flagsRemaining &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >        newFlagStatus = 'flag'</span>
+<span class="cstat-no" title="statement not covered" >        placeFlagOnBoard(row, column)</span>
+      } else <span class="cstat-no" title="statement not covered" >if (flag === 'flag') {</span>
+<span class="cstat-no" title="statement not covered" >        newFlagStatus = 'maybe_flag'</span>
+<span class="cstat-no" title="statement not covered" >        removeFlagFromBoard(row, column)</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        newFlagStatus = 'no_flag'</span>
       }
     }
+    setFlag(newFlagStatus)
   }
 &nbsp;
   return (
@@ -295,7 +295,7 @@ export const CellModule = ({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-28T06:40:01.979Z
+                at 2023-07-28T08:37:35.850Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
