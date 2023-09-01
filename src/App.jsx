@@ -202,10 +202,10 @@ function App () {
   }
 
   return (
-        <div id='main' className={getMarginClass(dimensions) + ' h-full m-0 items-center text-center flex ' + getGamemodeClass(dimensions)} >
+        <div id='main' className={getMarginClass(dimensions) + ' h-full m-0 items-center text-center ' + getGamemodeClass(dimensions)} >
           <DebugModule debugFunction={debugMode} getMockData={DEBUGloadMockData}> </DebugModule>
 
-          <div className='container' data-testid='container' onContextMenu={stopContextMenu}>
+          <div data-testid='container' onContextMenu={stopContextMenu}>
 
               <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
                   gameInProgress={gameInProgress} ></InfoModule>
