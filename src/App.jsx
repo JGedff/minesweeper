@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { BoardModule } from './components/BoardModule'
 import { InfoModule } from './components/InfoModule'
 import { DifficultyModule } from './components/DifficultyModule'
-import { recursiveCascadeCheck, checkOtherCellsToWin, generateBoard, showAllMines, stopContextMenu, winnerToClassHelper, setupDangerCells } from './logic/app'
+import { recursiveCascadeCheck, checkOtherCellsToWin, generateBoard, showAllMines, stopContextMenu, setupDangerCells } from './logic/app'
 import { cloneBoard, generateEmptyBoardWith2Dimensions, generate2DMatrixWithContent } from './logic/board'
 
 import { DebugModule } from './components/DebugModule'
@@ -179,18 +179,29 @@ function App () {
     setBoard(mockBoardDangerCells)
   }
 
+  const getMarginClass = (dimensions) => {
+    switch (dimensions) {
+      case DIMENSIONS.normal:
+        return ' mt-32 mb-24'
+      case DIMENSIONS.hard:
+        return ' mt-32 mb-28'
+      default:
+        return ''
+    }
+  }
+
   return (
         <>
           <DebugModule debugFunction={debugMode} getMockData={DEBUGloadMockData}> </DebugModule>
 
-          <div className={'container' + winnerToClassHelper(winner)} data-testid='container' onContextMenu={stopContextMenu}>
+          <div className={'container ' + getMarginClass(dimensions)} data-testid='container' onContextMenu={stopContextMenu}>
 
               <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
                   gameInProgress={gameInProgress} ></InfoModule>
 
               <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
                   looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
-                  finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} ></BoardModule>
+                  finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} winnerStatus={winner} ></BoardModule>
 
               <DifficultyModule easyFunction={changeDifficultyToEasy} normalFunction={changeDifficultyToNormal} hardFunction={changeDifficultyToHard}></DifficultyModule>
 

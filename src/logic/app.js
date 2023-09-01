@@ -147,11 +147,3 @@ export const recursiveCascadeCheck = (checkedMatrix, board, flagsBoard, heightBo
 export const stopContextMenu = (event) => {
   event.preventDefault()
 }
-
-export const winnerToClassHelper = (winner) => {
-  switch (winner) {
-    case 1: return ' win'
-    case 2: return ' lost'
-    default: return ''
-  }
-}

@@ -13,17 +13,17 @@ export const InfoModule = ({ flags, faceSource, restartGame, seconds, counter, g
 
   return (
         <>
-            <div className="d-flex justify-content-between align-items-center">
-                <div className="flagsRemaining d-wrap justify-content-center text-align-center align-items-center">
-                    <span className="w-100 counterNumber" data-testid='remainingFlags'>{flags}</span>
-                    <span className="counterDescription"> flags remaining </span>
+            <div className="fixed top-0 left-0 z-50 flex justify-between w-full p-4 border-b align-middle bg-neutral-900">
+                <div className="flagsRemaining d-wrap justify-center text-center align-center">
+                    <span className="font-anton text-3xl pt-1 w-full" data-testid='remainingFlags'>{flags}</span>
+                    <span className="font-raleway text-xs"> flags remaining </span>
                 </div>
                 <div className="emojiFace d-flex justify-content-center align-items-center click-pointer" data-testid='faceStatus' onClick={restartGame}>
                     {getFaceSource(faceSource)}
                 </div>
                 <div className="counter d-wrap justify-content-center align-items-center">
-                    <span className="w-100 counterNumber" data-testid='secondsPassed'>{seconds}</span>
-                    <span className="counterDescription"> Seconds </span>
+                    <span className="font-anton text-3xl pt-1 w-full" data-testid='secondsPassed'>{seconds}</span>
+                    <span className="font-raleway text-xs"> Seconds </span>
                 </div>
             </div>
         </>

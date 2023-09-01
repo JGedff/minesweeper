@@ -30,3 +30,11 @@ export const cloneBoard = (oldBoard) => {
 
   return newBoard
 }
+
+export const winnerToClassHelper = (winner) => {
+  switch (winner) {
+    case 1: return ' win'
+    case 2: return ' lost'
+    default: return ''
+  }
+}

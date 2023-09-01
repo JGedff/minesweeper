@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
 import { CellModule } from './CellModule'
+import { winnerToClassHelper } from '../logic/board'
 
 export const BoardModule = ({
   dimensions, rectangleWidth, oldBoard, visibleBoard, updateVisibleBoard, cascade, looseGame, placeFlagOnBoard,
-  removeFlagFromBoard, flagsRemaining, disableStatus, finishedGame, DEBUGshowGuide, startGame
+  removeFlagFromBoard, flagsRemaining, disableStatus, finishedGame, DEBUGshowGuide, startGame, winnerStatus
 }) => {
   const [restartGame, setRestartGame] = useState(false)
 
@@ -21,7 +22,7 @@ export const BoardModule = ({
   }
 
   return (
-        <main className="board">
+        <main className={'board' + winnerToClassHelper(winnerStatus)} >
 
             <section className="game" data-testid="gameBoard" style={{
               gridTemplateColumns: `repeat(${handleDimensions()}, 1fr)`

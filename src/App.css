@@ -3,23 +3,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
-}
-
-.container {
-  background-color: #111111;
-  padding: 20px 30px;
-  border-radius: 20px;
-  transition: background-color ease-in-out 0.5s;
-}
-
-.container.lost {
-  background-color: #8a0000;
-}
-
-.container.win {
-  background-color: #033807;
 }
 
 .cell {
@@ -73,7 +57,6 @@
 
 
 .flagsRemaining {
-  height: 50px;
   border: 2px solid yellow;
   border-radius: 15px;
   background-color: black;
@@ -81,7 +64,6 @@
 }
 
 .counter {
-  height: 50px;
   border: 2px solid yellow;
   border-radius: 15px;
   background-color: black;
@@ -89,20 +71,13 @@
 }
 
 .counterNumber {
-  font-size: 26px;
   font-family: 'Anton';
-  line-height: 33px;
 }
 
 .counterDescription {
-  font-size: 12px;
   font-family: 'Raleway';
 }
 
-.counterDescription {
-  font-size: 12px;
-  font-family: 'Raleway';
-}
 
 .chooseDificulty {
   display: flex;
@@ -148,15 +123,26 @@ div .button {
 }
 
 .board {
-  display: flex;
   justify-content: center;
 }
 
 .board .game {
+  transition: background-color ease-in-out 0.5s;
+  background-color: #171717;
+  padding: 2rem;
+  border-radius: 1rem;
   display: grid;
   gap: 5px;
   width: fit-content;
   height: fit-content;
+}
+
+.board.lost .game {
+  background-color: #8a0000;
+}
+
+.board.win .game {
+  background-color: #033807;
 }
 
 .align-items-center {
