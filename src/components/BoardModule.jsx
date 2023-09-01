@@ -22,7 +22,7 @@ export const BoardModule = ({
   }
 
   return (
-        <main className={'board' + winnerToClassHelper(winnerStatus)} >
+        <main className={'justify-center' + winnerToClassHelper(winnerStatus)} >
 
             <section className="game" data-testid="gameBoard" style={{
               gridTemplateColumns: `repeat(${handleDimensions()}, 1fr)`

@@ -15,4 +15,3 @@ export const WINNER_STATUS = {
   win: 1,
   lose: 2
 }
-

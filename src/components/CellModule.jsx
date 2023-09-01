@@ -72,7 +72,7 @@ export const CellModule = ({
   }
 
   return (
-        <button className={'cell' + numberToText(children, uncover)} data-testid={'r' + (row + 1) + 'c' + (column + 1)} onClick={handleClick} onContextMenu={handleRightClick} disabled={disableStatus} >
+        <button className={'cell text-xl font-bold w-10 h-10 p-0 m-0' + numberToText(children, uncover)} data-testid={'r' + (row + 1) + 'c' + (column + 1)} onClick={handleClick} onContextMenu={handleRightClick} disabled={disableStatus} >
             {cellContent(uncover, children, flag, DEBUGshowGuide, clicked, finishedGame)}
         </button>
   )

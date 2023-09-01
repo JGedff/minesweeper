@@ -179,34 +179,47 @@ function App () {
     setBoard(mockBoardDangerCells)
   }
 
+  const getGamemodeClass = (dimensions) => {
+    switch (dimensions) {
+      case DIMENSIONS.easy:
+        return 'easyGamemode'
+      case DIMENSIONS.normal:
+        return 'normalGamemode'
+      case DIMENSIONS.hard:
+        return 'hardGamemode'
+    }
+  }
+
   const getMarginClass = (dimensions) => {
     switch (dimensions) {
+      case DIMENSIONS.easy:
+        return ''
       case DIMENSIONS.normal:
-        return ' mt-32 mb-24'
+        return ''
       case DIMENSIONS.hard:
-        return ' mt-32 mb-28'
-      default:
         return ''
     }
   }
 
   return (
-        <>
+        <div id='main' className={getMarginClass(dimensions) + ' h-full m-0 items-center text-center flex ' + getGamemodeClass(dimensions)} >
           <DebugModule debugFunction={debugMode} getMockData={DEBUGloadMockData}> </DebugModule>
 
-          <div className={'container ' + getMarginClass(dimensions)} data-testid='container' onContextMenu={stopContextMenu}>
+          <div className='container' data-testid='container' onContextMenu={stopContextMenu}>
 
               <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
                   gameInProgress={gameInProgress} ></InfoModule>
 
-              <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
-                  looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
-                  finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} winnerStatus={winner} ></BoardModule>
+              <div className='flex justify-center'>
+                <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
+                    looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
+                    finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} winnerStatus={winner} ></BoardModule>
+              </div>
 
               <DifficultyModule easyFunction={changeDifficultyToEasy} normalFunction={changeDifficultyToNormal} hardFunction={changeDifficultyToHard}></DifficultyModule>
 
           </div>
-        </>
+        </div>
   )
 }
 

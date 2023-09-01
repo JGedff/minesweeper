@@ -19,4 +19,3 @@ export const numberToText = (number, uncover) => {
 
   return numberTexted
 }
-
