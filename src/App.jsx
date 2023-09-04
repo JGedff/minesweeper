@@ -29,19 +29,23 @@ function App () {
     setSeconds(currentSec)
   }
 
+  /* Juntar funciones easey / normal / hard */
   const changeDifficultyToEasy = () => {
     setDimensions(DIMENSIONS.easy)
     setRectangleWidth(undefined)
+    resetBoardAndFlags()
   }
 
   const changeDifficultyToNormal = () => {
     setDimensions(DIMENSIONS.normal)
     setRectangleWidth(undefined)
+    resetBoardAndFlags()
   }
 
   const changeDifficultyToHard = () => {
     setDimensions(DIMENSIONS.hard)
     setRectangleWidth(undefined)
+    resetBoardAndFlags()
   }
 
   const resetBoard = () => {
