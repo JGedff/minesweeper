@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>7/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>6/8</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -85,19 +85,27 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">167x</span>
-<span class="cline-any cline-yes">1135x</span>
+<span class="cline-any cline-yes">73x</span>
+<span class="cline-any cline-yes">73x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1135x</span>
-<span class="cline-any cline-yes">968x</span>
+<span class="cline-any cline-yes">73x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1135x</span>
-<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-yes">73x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1135x</span>
+<span class="cline-any cline-yes">73x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -109,24 +117,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react'
 &nbsp;
-export const DebugModule = ({ debugFunction, getMockData }) =&gt; {
+export const DebugModule = ({ getMockData, showModule }) =&gt; {
   const [inputText, setInputText] = useState('')
 &nbsp;
-  const handleChange = (event) =&gt; {
-    setInputText(event.target.value)
+  const handleChange = <span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {
+<span class="cstat-no" title="statement not covered" >    setInputText(event.target.value)</span>
   }
-  const handleClick = () =&gt; {
-    getMockData(inputText)
+  const handleClick = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    getMockData(inputText)</span>
   }
 &nbsp;
   return (
-        &lt;div className='mb-15 container'&gt;
-          &lt;input className='debugInput' data-testid='debugInput' readOnly autoFocus onKeyDown={debugFunction}&gt;&lt;/input&gt;
-            &lt;div className='mockData-container d-flex justify-content-center align-items-center'&gt;
-            &lt;textarea className='mockData-textarea' data-testid='mockDataLoader-textarea' autoFocus onChange={handleChange} value={inputText}/&gt;
-            &lt;button data-testid='mockDataLoader-loadButton' className='b-gray' onClick={handleClick}&gt;Load board&lt;/button&gt;
+    &lt;&gt;
+      {showModule &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;div&gt;</span>
+          &lt;div className='mb-4 mt-8 flex'&gt;
+            &lt;div className='mockData-container flex w-full justify-center items-center'&gt;
+              &lt;textarea className='mockData-textarea p-1.5 mr-4' data-testid='mockDataLoader-textarea' autoFocus onChange={handleChange} value={inputText}/&gt;
+              &lt;button data-testid='mockDataLoader-loadButton' className='bg-neutral-700' onClick={handleClick}&gt;Load board&lt;/button&gt;
+            &lt;/div&gt;
           &lt;/div&gt;
         &lt;/div&gt;
+      }
+    &lt;/&gt;
   )
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -136,7 +148,7 @@ export const DebugModule = ({ debugFunction, getMockData }) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-28T10:27:55.029Z
+                at 2023-09-04T11:20:59.436Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

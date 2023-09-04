@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const DebugModule = ({ debugFunction, getMockData }) => {
+export const DebugModule = ({ getMockData, showModule }) => {
   const [inputText, setInputText] = useState('')
 
   const handleChange = (event) => {
@@ -11,9 +11,8 @@ export const DebugModule = ({ debugFunction, getMockData }) => {
   }
 
   return (
-        <div style={{ display: 'none' }}>
-          <input className='opacity-0 cursor-default static bg-orange-950 top-4 start-0 w-14 h-14 flex' data-testid='debugInput' readOnly autoFocus onKeyDown={debugFunction}></input>
-
+    <>
+      {showModule && <div>
           <div className='mb-4 mt-8 flex'>
             <div className='mockData-container flex w-full justify-center items-center'>
               <textarea className='mockData-textarea p-1.5 mr-4' data-testid='mockDataLoader-textarea' autoFocus onChange={handleChange} value={inputText}/>
@@ -21,5 +20,7 @@ export const DebugModule = ({ debugFunction, getMockData }) => {
             </div>
           </div>
         </div>
+      }
+    </>
   )
 }

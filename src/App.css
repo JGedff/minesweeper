@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@500&family=Anton&family=Raleway:wght@400;700&display=swap');
 
 #root{
-      height: calc(100% - 10rem);
+    height: calc(100% - 10rem);
     /* padding: 5rem; */
     width: 100%;
     overflow: auto;
@@ -23,11 +23,11 @@
 }
 
 .cell.two {
-  color: #448b44;
+  color: #4faa4f;
 }
 
 .cell.three {
-  color: #ff7070;
+  color: #ff7373;
 }
 
 .cell.four {
@@ -80,11 +80,11 @@
 }
 
 .lost .game {
-  background-color: #8a0000;
+  background-color: #a50000;
 }
 
 .win .game {
-  background-color: #033807;
+  background-color: #057c0f;
 }
 
 .emojiFace {
@@ -100,76 +100,19 @@
   height: 30px;
 }
 
+.mockData-container{
+  animation: mockUI 0.5s ease-in-out;
+}
+
+@keyframes mockUI {
+  from {transform: translate(0, -5rem);}
+  to {transform: translate(0, 0);}
+}
+
 .mockData-textarea {
   border-radius: 5px;
 }
 
-.easyGamemode, .normalGamemode, .hardGamemode {
-  justify-content: center;
-  width: 100%;
-}
-
 .pt-750 {
   padding-top: 750px;
-}
-
-@media only screen and (max-width: 1025px) {
-  .hardGamemode {
-    justify-content: right;
-    padding-left: 15%;
-  }
-}
-
-@media only screen and (max-width: 925px) {
-  .hardGamemode {
-    padding-left: 30%;
-  }
-}
-
-@media only screen and (max-width: 810px) {
-  .hardGamemode {
-    padding-left: 45%;
-  }
-}
-
-@media only screen and (max-width: 765px) {
-  .hardGamemode {
-    padding-left: 60%;
-  }
-}
-
-@media only screen and (max-width: 740px) {
-  .normalGamemode {
-    justify-content: right;
-    padding-left: 15%;
-  }
-}
-
-@media only screen and (max-width: 676px) {
-  .normalGamemode {
-    padding-left: 25%;
-  }
-}
-
-@media only screen and (max-width: 550px) {
-  .normalGamemode {
-    padding-left: 35%;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .normalGamemode {
-    padding-left: 45%;
-  }
-}
-
-@media only screen and (max-width: 420px) {
-  .easyGamemode {
-    justify-content: right;
-    padding-left: 35px;
-  }
-
-  .normalGamemode {
-    padding-left: 60%;
-  }
 }

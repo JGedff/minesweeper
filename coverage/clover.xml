@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1690540075114" clover="3.2.0">
-  <project timestamp="1690540075114" name="All files">
-    <metrics statements="350" coveredstatements="329" conditionals="104" coveredconditionals="95" methods="56" coveredmethods="50" elements="510" coveredelements="474" complexity="0" loc="350" ncloc="350" packages="3" files="12" classes="12"/>
+<coverage generated="1693826459535" clover="3.2.0">
+  <project timestamp="1693826459535" name="All files">
+    <metrics statements="355" coveredstatements="200" conditionals="108" coveredconditionals="29" methods="57" coveredmethods="31" elements="520" coveredelements="260" complexity="0" loc="355" ncloc="355" packages="3" files="12" classes="12"/>
     <package name="src">
-      <metrics statements="121" coveredstatements="105" conditionals="7" coveredconditionals="3" methods="19" coveredmethods="14"/>
+      <metrics statements="125" coveredstatements="58" conditionals="9" coveredconditionals="2" methods="20" coveredmethods="5"/>
       <file name="App.jsx" path="C:\Users\User\Documents\GitHub\minesweeper\src\App.jsx">
-        <metrics statements="121" coveredstatements="105" conditionals="7" coveredconditionals="3" methods="19" coveredmethods="14"/>
+        <metrics statements="125" coveredstatements="58" conditionals="9" coveredconditionals="2" methods="20" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -15,44 +15,44 @@
         <line num="8" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="14" count="167" type="stmt"/>
-        <line num="15" count="167" type="stmt"/>
-        <line num="16" count="167" type="stmt"/>
-        <line num="17" count="167" type="stmt"/>
-        <line num="18" count="167" type="stmt"/>
-        <line num="19" count="167" type="stmt"/>
-        <line num="20" count="167" type="stmt"/>
-        <line num="21" count="167" type="stmt"/>
-        <line num="22" count="167" type="stmt"/>
-        <line num="23" count="167" type="stmt"/>
-        <line num="24" count="167" type="stmt"/>
-        <line num="25" count="167" type="stmt"/>
-        <line num="27" count="167" type="stmt"/>
+        <line num="14" count="73" type="stmt"/>
+        <line num="15" count="73" type="stmt"/>
+        <line num="16" count="73" type="stmt"/>
+        <line num="17" count="73" type="stmt"/>
+        <line num="18" count="73" type="stmt"/>
+        <line num="19" count="73" type="stmt"/>
+        <line num="20" count="73" type="stmt"/>
+        <line num="21" count="73" type="stmt"/>
+        <line num="22" count="73" type="stmt"/>
+        <line num="23" count="73" type="stmt"/>
+        <line num="24" count="73" type="stmt"/>
+        <line num="25" count="73" type="stmt"/>
+        <line num="27" count="73" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
-        <line num="32" count="167" type="stmt"/>
+        <line num="32" count="73" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
-        <line num="37" count="167" type="stmt"/>
+        <line num="37" count="73" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="42" count="167" type="stmt"/>
+        <line num="42" count="73" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
-        <line num="47" count="167" type="stmt"/>
-        <line num="48" count="72" type="stmt"/>
-        <line num="49" count="72" type="stmt"/>
-        <line num="50" count="72" type="stmt"/>
-        <line num="51" count="72" type="stmt"/>
-        <line num="52" count="72" type="stmt"/>
-        <line num="53" count="72" type="stmt"/>
-        <line num="54" count="72" type="stmt"/>
-        <line num="56" count="72" type="stmt"/>
-        <line num="57" count="72" type="stmt"/>
-        <line num="58" count="72" type="stmt"/>
-        <line num="61" count="167" type="stmt"/>
+        <line num="47" count="73" type="stmt"/>
+        <line num="48" count="37" type="stmt"/>
+        <line num="49" count="37" type="stmt"/>
+        <line num="50" count="37" type="stmt"/>
+        <line num="51" count="37" type="stmt"/>
+        <line num="52" count="37" type="stmt"/>
+        <line num="53" count="37" type="stmt"/>
+        <line num="54" count="37" type="stmt"/>
+        <line num="56" count="37" type="stmt"/>
+        <line num="57" count="37" type="stmt"/>
+        <line num="58" count="37" type="stmt"/>
+        <line num="61" count="73" type="stmt"/>
         <line num="62" count="36" type="stmt"/>
-        <line num="65" count="167" type="stmt"/>
+        <line num="65" count="73" type="stmt"/>
         <line num="66" count="37" type="cond" truecount="1" falsecount="3"/>
         <line num="68" count="37" type="stmt"/>
         <line num="69" count="37" type="stmt"/>
@@ -63,338 +63,343 @@
         <line num="77" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
         <line num="80" count="37" type="stmt"/>
-        <line num="83" count="167" type="stmt"/>
-        <line num="84" count="10" type="stmt"/>
-        <line num="85" count="10" type="stmt"/>
-        <line num="88" count="167" type="stmt"/>
-        <line num="89" count="18" type="stmt"/>
-        <line num="90" count="18" type="stmt"/>
-        <line num="93" count="167" type="stmt"/>
-        <line num="94" count="28" type="stmt"/>
-        <line num="95" count="28" type="stmt"/>
-        <line num="96" count="28" type="stmt"/>
-        <line num="99" count="167" type="stmt"/>
-        <line num="100" count="33" type="stmt"/>
-        <line num="103" count="167" type="stmt"/>
-        <line num="104" count="8" type="stmt"/>
-        <line num="105" count="8" type="stmt"/>
-        <line num="106" count="8" type="stmt"/>
-        <line num="109" count="167" type="stmt"/>
-        <line num="110" count="8" type="stmt"/>
-        <line num="111" count="8" type="stmt"/>
-        <line num="112" count="8" type="stmt"/>
-        <line num="114" count="8" type="stmt"/>
-        <line num="115" count="8" type="stmt"/>
-        <line num="118" count="167" type="stmt"/>
-        <line num="119" count="33" type="stmt"/>
-        <line num="120" count="33" type="stmt"/>
-        <line num="123" count="167" type="stmt"/>
-        <line num="124" count="4" type="stmt"/>
-        <line num="125" count="4" type="stmt"/>
-        <line num="127" count="4" type="stmt"/>
-        <line num="128" count="4" type="stmt"/>
-        <line num="130" count="4" type="stmt"/>
-        <line num="131" count="4" type="stmt"/>
-        <line num="132" count="4" type="stmt"/>
-        <line num="135" count="167" type="stmt"/>
-        <line num="136" count="21" type="stmt"/>
-        <line num="138" count="21" type="stmt"/>
-        <line num="139" count="21" type="stmt"/>
-        <line num="140" count="21" type="stmt"/>
-        <line num="143" count="167" type="stmt"/>
-        <line num="144" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="145" count="0" type="stmt"/>
-        <line num="149" count="167" type="stmt"/>
-        <line num="150" count="35" type="stmt"/>
-        <line num="152" count="35" type="stmt"/>
-        <line num="153" count="35" type="stmt"/>
-        <line num="154" count="35" type="stmt"/>
-        <line num="155" count="35" type="stmt"/>
-        <line num="156" count="35" type="stmt"/>
-        <line num="158" count="35" type="stmt"/>
-        <line num="160" count="35" type="stmt"/>
-        <line num="162" count="35" type="stmt"/>
-        <line num="163" count="35" type="stmt"/>
-        <line num="164" count="63" type="stmt"/>
-        <line num="165" count="202" type="cond" truecount="2" falsecount="0"/>
-        <line num="166" count="79" type="stmt"/>
-        <line num="167" count="79" type="stmt"/>
-        <line num="169" count="123" type="stmt"/>
-        <line num="171" count="202" type="stmt"/>
-        <line num="175" count="35" type="stmt"/>
-        <line num="176" count="35" type="stmt"/>
-        <line num="177" count="35" type="stmt"/>
-        <line num="178" count="35" type="stmt"/>
-        <line num="179" count="35" type="stmt"/>
-        <line num="202" count="36" type="stmt"/>
+        <line num="83" count="73" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="88" count="73" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="93" count="73" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="99" count="73" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="103" count="73" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="109" count="73" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+        <line num="111" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="118" count="73" type="stmt"/>
+        <line num="119" count="0" type="stmt"/>
+        <line num="120" count="0" type="stmt"/>
+        <line num="123" count="73" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="125" count="0" type="stmt"/>
+        <line num="127" count="0" type="stmt"/>
+        <line num="128" count="0" type="stmt"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="131" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="135" count="73" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="138" count="0" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="140" count="0" type="stmt"/>
+        <line num="143" count="73" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
+        <line num="147" count="73" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="150" count="0" type="stmt"/>
+        <line num="151" count="0" type="stmt"/>
+        <line num="152" count="0" type="stmt"/>
+        <line num="153" count="0" type="stmt"/>
+        <line num="154" count="0" type="stmt"/>
+        <line num="156" count="0" type="stmt"/>
+        <line num="158" count="0" type="stmt"/>
+        <line num="160" count="0" type="stmt"/>
+        <line num="161" count="0" type="stmt"/>
+        <line num="162" count="0" type="stmt"/>
+        <line num="163" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="164" count="0" type="stmt"/>
+        <line num="165" count="0" type="stmt"/>
+        <line num="167" count="0" type="stmt"/>
+        <line num="169" count="0" type="stmt"/>
+        <line num="173" count="0" type="stmt"/>
+        <line num="174" count="0" type="stmt"/>
+        <line num="175" count="0" type="stmt"/>
+        <line num="176" count="0" type="stmt"/>
+        <line num="177" count="0" type="stmt"/>
+        <line num="180" count="73" type="stmt"/>
+        <line num="181" count="73" type="cond" truecount="1" falsecount="2"/>
+        <line num="183" count="73" type="stmt"/>
+        <line num="185" count="0" type="stmt"/>
+        <line num="187" count="0" type="stmt"/>
+        <line num="213" count="36" type="stmt"/>
       </file>
     </package>
     <package name="src.components">
-      <metrics statements="78" coveredstatements="77" conditionals="17" coveredconditionals="17" methods="20" coveredmethods="19"/>
+      <metrics statements="79" coveredstatements="50" conditionals="19" coveredconditionals="2" methods="20" coveredmethods="14"/>
       <file name="BoardModule.jsx" path="C:\Users\User\Documents\GitHub\minesweeper\src\components\BoardModule.jsx">
-        <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="167" type="stmt"/>
-        <line num="9" count="239" type="stmt"/>
-        <line num="11" count="239" type="stmt"/>
-        <line num="12" count="108" type="stmt"/>
-        <line num="15" count="239" type="stmt"/>
-        <line num="16" count="239" type="cond" truecount="2" falsecount="0"/>
-        <line num="17" count="129" type="stmt"/>
-        <line num="19" count="110" type="stmt"/>
-        <line num="23" count="239" type="stmt"/>
-        <line num="31" count="1111" type="stmt"/>
-        <line num="33" count="7796" type="stmt"/>
-      </file>
-      <file name="CellModule.jsx" path="C:\Users\User\Documents\GitHub\minesweeper\src\components\CellModule.jsx">
-        <metrics statements="45" coveredstatements="45" conditionals="14" coveredconditionals="14" methods="7" coveredmethods="7"/>
+        <metrics statements="14" coveredstatements="13" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="6" count="7796" type="stmt"/>
-        <line num="10" count="8137" type="stmt"/>
-        <line num="11" count="8137" type="stmt"/>
-        <line num="12" count="8137" type="stmt"/>
-        <line num="13" count="8137" type="stmt"/>
-        <line num="15" count="8137" type="stmt"/>
-        <line num="16" count="7178" type="stmt"/>
-        <line num="19" count="8137" type="stmt"/>
-        <line num="20" count="7178" type="stmt"/>
-        <line num="21" count="7178" type="stmt"/>
-        <line num="22" count="7178" type="stmt"/>
-        <line num="23" count="7178" type="stmt"/>
-        <line num="26" count="8137" type="stmt"/>
-        <line num="27" count="2377" type="stmt"/>
-        <line num="30" count="8137" type="stmt"/>
-        <line num="31" count="2377" type="stmt"/>
-        <line num="34" count="8137" type="stmt"/>
-        <line num="35" count="35" type="cond" truecount="1" falsecount="0"/>
-        <line num="36" count="33" type="stmt"/>
-        <line num="37" count="33" type="stmt"/>
-        <line num="38" count="33" type="stmt"/>
-        <line num="39" count="33" type="cond" truecount="2" falsecount="0"/>
-        <line num="40" count="8" type="stmt"/>
-        <line num="41" count="25" type="cond" truecount="2" falsecount="0"/>
-        <line num="42" count="4" type="stmt"/>
-        <line num="44" count="21" type="stmt"/>
-        <line num="46" count="33" type="cond" truecount="1" falsecount="0"/>
-        <line num="47" count="2" type="stmt"/>
-        <line num="48" count="2" type="stmt"/>
-        <line num="53" count="8137" type="stmt"/>
-        <line num="54" count="32" type="stmt"/>
-        <line num="57" count="32" type="cond" truecount="2" falsecount="0"/>
-        <line num="58" count="29" type="cond" truecount="4" falsecount="0"/>
-        <line num="59" count="18" type="stmt"/>
-        <line num="60" count="18" type="stmt"/>
-        <line num="61" count="11" type="cond" truecount="2" falsecount="0"/>
-        <line num="62" count="8" type="stmt"/>
-        <line num="63" count="8" type="stmt"/>
-        <line num="65" count="3" type="stmt"/>
-        <line num="68" count="3" type="stmt"/>
-        <line num="71" count="32" type="stmt"/>
-        <line num="74" count="8137" type="stmt"/>
+        <line num="6" count="73" type="stmt"/>
+        <line num="10" count="110" type="stmt"/>
+        <line num="12" count="110" type="stmt"/>
+        <line num="13" count="73" type="stmt"/>
+        <line num="16" count="110" type="stmt"/>
+        <line num="17" count="110" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="110" type="stmt"/>
+        <line num="24" count="110" type="stmt"/>
+        <line num="32" count="880" type="stmt"/>
+        <line num="34" count="7040" type="stmt"/>
+      </file>
+      <file name="CellModule.jsx" path="C:\Users\User\Documents\GitHub\minesweeper\src\components\CellModule.jsx">
+        <metrics statements="45" coveredstatements="22" conditionals="14" coveredconditionals="0" methods="7" coveredmethods="5"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="7040" type="stmt"/>
+        <line num="10" count="7104" type="stmt"/>
+        <line num="11" count="7104" type="stmt"/>
+        <line num="12" count="7104" type="stmt"/>
+        <line num="13" count="7104" type="stmt"/>
+        <line num="15" count="7104" type="stmt"/>
+        <line num="16" count="6976" type="stmt"/>
+        <line num="19" count="7104" type="stmt"/>
+        <line num="20" count="6976" type="stmt"/>
+        <line num="21" count="6976" type="stmt"/>
+        <line num="22" count="6976" type="stmt"/>
+        <line num="23" count="6976" type="stmt"/>
+        <line num="26" count="7104" type="stmt"/>
+        <line num="27" count="2304" type="stmt"/>
+        <line num="30" count="7104" type="stmt"/>
+        <line num="31" count="2304" type="stmt"/>
+        <line num="34" count="7104" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="46" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="53" count="7104" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="58" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="74" count="7104" type="stmt"/>
       </file>
       <file name="DebugModule.jsx" path="C:\Users\User\Documents\GitHub\minesweeper\src\components\DebugModule.jsx">
-        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <metrics statements="8" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="3" count="167" type="stmt"/>
-        <line num="4" count="1135" type="stmt"/>
-        <line num="6" count="1135" type="stmt"/>
-        <line num="7" count="968" type="stmt"/>
-        <line num="9" count="1135" type="stmt"/>
-        <line num="10" count="35" type="stmt"/>
-        <line num="13" count="1135" type="stmt"/>
-      </file>
-      <file name="DifficultyModule.jsx" path="C:\Users\User\Documents\GitHub\minesweeper\src\components\DifficultyModule.jsx">
-        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="167" type="stmt"/>
-        <line num="4" count="167" type="stmt"/>
+        <line num="3" count="73" type="stmt"/>
+        <line num="4" count="73" type="stmt"/>
+        <line num="6" count="73" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="73" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="73" type="stmt"/>
       </file>
       <file name="InfoModule.jsx" path="C:\Users\User\Documents\GitHub\minesweeper\src\components\InfoModule.jsx">
-        <metrics statements="9" coveredstatements="8" conditionals="1" coveredconditionals="1" methods="4" coveredmethods="3"/>
+        <metrics statements="9" coveredstatements="6" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="4" count="167" type="stmt"/>
-        <line num="5" count="167" type="stmt"/>
-        <line num="6" count="50" type="cond" truecount="1" falsecount="0"/>
-        <line num="7" count="13" type="stmt"/>
+        <line num="4" count="73" type="stmt"/>
+        <line num="5" count="73" type="stmt"/>
+        <line num="6" count="36" type="cond" truecount="0" falsecount="1"/>
+        <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
-        <line num="10" count="13" type="stmt"/>
-        <line num="14" count="167" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="14" count="73" type="stmt"/>
+      </file>
+      <file name="ModesModule.jsx" path="C:\Users\User\Documents\GitHub\minesweeper\src\components\ModesModule.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="73" type="stmt"/>
+        <line num="4" count="73" type="stmt"/>
       </file>
     </package>
     <package name="src.logic">
-      <metrics statements="151" coveredstatements="147" conditionals="80" coveredconditionals="75" methods="17" coveredmethods="17"/>
+      <metrics statements="151" coveredstatements="92" conditionals="80" coveredconditionals="25" methods="17" coveredmethods="12"/>
       <file name="app.js" path="C:\Users\User\Documents\GitHub\minesweeper\src\logic\app.js">
-        <metrics statements="86" coveredstatements="83" conditionals="38" coveredconditionals="35" methods="11" coveredmethods="11"/>
+        <metrics statements="81" coveredstatements="46" conditionals="35" coveredconditionals="13" methods="10" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="7" count="239" type="cond" truecount="1" falsecount="2"/>
-        <line num="8" count="239" type="stmt"/>
+        <line num="7" count="110" type="cond" truecount="1" falsecount="2"/>
+        <line num="8" count="110" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="15" count="239" type="stmt"/>
-        <line num="17" count="239" type="stmt"/>
-        <line num="18" count="239" type="stmt"/>
-        <line num="19" count="239" type="stmt"/>
-        <line num="21" count="239" type="stmt"/>
-        <line num="22" count="2553" type="stmt"/>
-        <line num="23" count="2553" type="stmt"/>
-        <line num="25" count="2553" type="cond" truecount="3" falsecount="0"/>
-        <line num="26" count="2390" type="stmt"/>
-        <line num="28" count="2390" type="stmt"/>
-        <line num="32" count="239" type="stmt"/>
-        <line num="33" count="1912" type="stmt"/>
-        <line num="34" count="15296" type="cond" truecount="1" falsecount="0"/>
-        <line num="35" count="12906" type="stmt"/>
-        <line num="40" count="239" type="stmt"/>
+        <line num="15" count="110" type="stmt"/>
+        <line num="17" count="110" type="stmt"/>
+        <line num="18" count="110" type="stmt"/>
+        <line num="19" count="110" type="stmt"/>
+        <line num="21" count="110" type="stmt"/>
+        <line num="22" count="1189" type="stmt"/>
+        <line num="23" count="1189" type="stmt"/>
+        <line num="25" count="1189" type="cond" truecount="3" falsecount="0"/>
+        <line num="26" count="1100" type="stmt"/>
+        <line num="28" count="1100" type="stmt"/>
+        <line num="32" count="110" type="stmt"/>
+        <line num="33" count="880" type="stmt"/>
+        <line num="34" count="7040" type="cond" truecount="1" falsecount="0"/>
+        <line num="35" count="5940" type="stmt"/>
+        <line num="40" count="110" type="stmt"/>
         <line num="43" count="1" type="stmt"/>
-        <line num="44" count="13029" type="stmt"/>
-        <line num="46" count="13029" type="stmt"/>
-        <line num="47" count="39087" type="cond" truecount="3" falsecount="0"/>
-        <line num="48" count="35755" type="stmt"/>
-        <line num="49" count="107265" type="cond" truecount="3" falsecount="0"/>
-        <line num="50" count="98229" type="cond" truecount="1" falsecount="0"/>
-        <line num="51" count="13680" type="stmt"/>
-        <line num="58" count="13029" type="stmt"/>
-        <line num="61" count="35" type="stmt"/>
-        <line num="62" count="274" type="stmt"/>
-        <line num="64" count="274" type="stmt"/>
-        <line num="65" count="1975" type="stmt"/>
-        <line num="66" count="15498" type="cond" truecount="1" falsecount="0"/>
-        <line num="67" count="13029" type="stmt"/>
-        <line num="69" count="13029" type="stmt"/>
-        <line num="74" count="274" type="stmt"/>
-        <line num="77" count="239" type="stmt"/>
-        <line num="78" count="239" type="stmt"/>
-        <line num="80" count="239" type="stmt"/>
-        <line num="82" count="239" type="stmt"/>
-        <line num="85" count="25" type="stmt"/>
-        <line num="86" count="25" type="stmt"/>
-        <line num="87" count="25" type="stmt"/>
-        <line num="89" count="25" type="stmt"/>
-        <line num="91" count="25" type="stmt"/>
-        <line num="92" count="61" type="stmt"/>
-        <line num="93" count="202" type="cond" truecount="3" falsecount="0"/>
-        <line num="94" count="49" type="stmt"/>
-        <line num="99" count="25" type="cond" truecount="1" falsecount="0"/>
-        <line num="100" count="8" type="stmt"/>
-        <line num="104" count="25" type="stmt"/>
+        <line num="44" count="5940" type="stmt"/>
+        <line num="46" count="5940" type="stmt"/>
+        <line num="47" count="17820" type="cond" truecount="3" falsecount="0"/>
+        <line num="48" count="16353" type="stmt"/>
+        <line num="49" count="49059" type="cond" truecount="3" falsecount="0"/>
+        <line num="50" count="44937" type="cond" truecount="1" falsecount="0"/>
+        <line num="51" count="6261" type="stmt"/>
+        <line num="58" count="5940" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="62" count="110" type="stmt"/>
+        <line num="64" count="110" type="stmt"/>
+        <line num="65" count="880" type="stmt"/>
+        <line num="66" count="7040" type="cond" truecount="1" falsecount="0"/>
+        <line num="67" count="5940" type="stmt"/>
+        <line num="69" count="5940" type="stmt"/>
+        <line num="74" count="110" type="stmt"/>
+        <line num="77" count="110" type="stmt"/>
+        <line num="78" count="110" type="stmt"/>
+        <line num="80" count="110" type="stmt"/>
+        <line num="82" count="110" type="stmt"/>
+        <line num="85" count="1" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="93" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="99" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
         <line num="107" count="1" type="stmt"/>
-        <line num="108" count="156" type="cond" truecount="4" falsecount="0"/>
-        <line num="111" count="8" type="stmt"/>
-        <line num="112" count="8" type="stmt"/>
-        <line num="114" count="8" type="stmt"/>
-        <line num="115" count="8" type="stmt"/>
-        <line num="116" count="18" type="cond" truecount="1" falsecount="0"/>
-        <line num="117" count="9" type="stmt"/>
-        <line num="122" count="8" type="stmt"/>
-        <line num="125" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="126" count="156" type="cond" truecount="4" falsecount="0"/>
-        <line num="127" count="102" type="cond" truecount="0" falsecount="1"/>
+        <line num="108" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="111" count="1" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="116" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="122" count="0" type="stmt"/>
+        <line num="125" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="126" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="127" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="128" count="0" type="stmt"/>
-        <line num="131" count="102" type="cond" truecount="4" falsecount="0"/>
-        <line num="132" count="19" type="stmt"/>
-        <line num="133" count="19" type="stmt"/>
-        <line num="134" count="19" type="stmt"/>
-        <line num="135" count="19" type="stmt"/>
-        <line num="136" count="19" type="stmt"/>
-        <line num="137" count="19" type="stmt"/>
-        <line num="138" count="19" type="stmt"/>
-        <line num="139" count="19" type="stmt"/>
-        <line num="140" count="19" type="stmt"/>
-        <line num="141" count="83" type="cond" truecount="1" falsecount="0"/>
-        <line num="142" count="24" type="stmt"/>
-        <line num="147" count="167" type="stmt"/>
-        <line num="148" count="32" type="stmt"/>
-        <line num="151" count="167" type="stmt"/>
-        <line num="152" count="167" type="cond" truecount="3" falsecount="0"/>
-        <line num="153" count="8" type="stmt"/>
-        <line num="154" count="8" type="stmt"/>
-        <line num="155" count="151" type="stmt"/>
+        <line num="131" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="133" count="0" type="stmt"/>
+        <line num="134" count="0" type="stmt"/>
+        <line num="135" count="0" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="137" count="0" type="stmt"/>
+        <line num="138" count="0" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="140" count="0" type="stmt"/>
+        <line num="141" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="147" count="73" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
       </file>
       <file name="board.js" path="C:\Users\User\Documents\GitHub\minesweeper\src\logic\board.js">
-        <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="1" count="274" type="stmt"/>
-        <line num="2" count="1314" type="stmt"/>
-        <line num="4" count="1314" type="stmt"/>
-        <line num="5" count="9675" type="stmt"/>
-        <line num="8" count="1314" type="stmt"/>
-        <line num="11" count="680" type="stmt"/>
-        <line num="12" count="680" type="stmt"/>
-        <line num="14" count="680" type="stmt"/>
-        <line num="15" count="5223" type="stmt"/>
-        <line num="16" count="41482" type="stmt"/>
-        <line num="20" count="680" type="stmt"/>
-        <line num="22" count="360" type="stmt"/>
-        <line num="23" count="360" type="stmt"/>
-        <line num="25" count="360" type="stmt"/>
-        <line num="26" count="2477" type="stmt"/>
-        <line num="27" count="19348" type="stmt"/>
-        <line num="31" count="360" type="stmt"/>
+        <metrics statements="22" coveredstatements="20" conditionals="3" coveredconditionals="1" methods="4" coveredmethods="4"/>
+        <line num="1" count="110" type="stmt"/>
+        <line num="2" count="513" type="stmt"/>
+        <line num="4" count="513" type="stmt"/>
+        <line num="5" count="4104" type="stmt"/>
+        <line num="8" count="513" type="stmt"/>
+        <line num="11" count="293" type="stmt"/>
+        <line num="12" count="293" type="stmt"/>
+        <line num="14" count="293" type="stmt"/>
+        <line num="15" count="2344" type="stmt"/>
+        <line num="16" count="18752" type="stmt"/>
+        <line num="20" count="293" type="stmt"/>
+        <line num="22" count="110" type="stmt"/>
+        <line num="23" count="110" type="stmt"/>
+        <line num="25" count="110" type="stmt"/>
+        <line num="26" count="880" type="stmt"/>
+        <line num="27" count="7040" type="stmt"/>
+        <line num="31" count="110" type="stmt"/>
+        <line num="34" count="110" type="stmt"/>
+        <line num="35" count="110" type="cond" truecount="1" falsecount="2"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="110" type="stmt"/>
       </file>
       <file name="cell.js" path="C:\Users\User\Documents\GitHub\minesweeper\src\logic\cell.js">
-        <metrics statements="14" coveredstatements="14" conditionals="11" coveredconditionals="11" methods="1" coveredmethods="1"/>
-        <line num="1" count="8137" type="stmt"/>
-        <line num="4" count="8137" type="cond" truecount="2" falsecount="0"/>
-        <line num="5" count="121" type="cond" truecount="9" falsecount="0"/>
-        <line num="6" count="46" type="stmt"/>
-        <line num="7" count="18" type="stmt"/>
-        <line num="8" count="7" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="12" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="14" count="40" type="stmt"/>
-        <line num="17" count="8016" type="stmt"/>
-        <line num="20" count="8137" type="stmt"/>
+        <metrics statements="14" coveredstatements="4" conditionals="11" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="7104" type="stmt"/>
+        <line num="4" count="7104" type="cond" truecount="1" falsecount="1"/>
+        <line num="5" count="0" type="cond" truecount="0" falsecount="9"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="7104" type="stmt"/>
+        <line num="20" count="7104" type="stmt"/>
       </file>
       <file name="cellContent.jsx" path="C:\Users\User\Documents\GitHub\minesweeper\src\logic\cellContent.jsx">
-        <metrics statements="23" coveredstatements="22" conditionals="28" coveredconditionals="26" methods="1" coveredmethods="1"/>
+        <metrics statements="23" coveredstatements="13" conditionals="28" coveredconditionals="9" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="6" count="8137" type="stmt"/>
-        <line num="10" count="8137" type="cond" truecount="5" falsecount="0"/>
-        <line num="11" count="19" type="stmt"/>
-        <line num="13" count="8118" type="stmt"/>
-        <line num="16" count="8137" type="cond" truecount="3" falsecount="1"/>
-        <line num="18" count="8079" type="stmt"/>
-        <line num="19" count="8079" type="stmt"/>
-        <line num="21" count="44" type="stmt"/>
-        <line num="22" count="44" type="stmt"/>
-        <line num="24" count="14" type="stmt"/>
-        <line num="25" count="14" type="stmt"/>
+        <line num="6" count="7104" type="stmt"/>
+        <line num="10" count="7104" type="cond" truecount="2" falsecount="3"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="7104" type="stmt"/>
+        <line num="16" count="7104" type="cond" truecount="1" falsecount="3"/>
+        <line num="18" count="7104" type="stmt"/>
+        <line num="19" count="7104" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
-        <line num="29" count="8137" type="cond" truecount="0" falsecount="1"/>
-        <line num="31" count="8137" type="cond" truecount="2" falsecount="0"/>
-        <line num="32" count="121" type="cond" truecount="4" falsecount="0"/>
-        <line num="34" count="105" type="cond" truecount="2" falsecount="0"/>
-        <line num="36" count="104" type="cond" truecount="1" falsecount="0"/>
-        <line num="37" count="81" type="stmt"/>
-        <line num="40" count="8016" type="cond" truecount="5" falsecount="0"/>
-        <line num="42" count="8014" type="cond" truecount="4" falsecount="0"/>
+        <line num="29" count="7104" type="cond" truecount="0" falsecount="1"/>
+        <line num="31" count="7104" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="36" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="40" count="7104" type="cond" truecount="2" falsecount="3"/>
+        <line num="42" count="7104" type="cond" truecount="3" falsecount="1"/>
       </file>
       <file name="constants.js" path="C:\Users\User\Documents\GitHub\minesweeper\src\logic\constants.js">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="204" type="stmt"/>
-        <line num="7" count="204" type="stmt"/>
-        <line num="13" count="255" type="stmt"/>
+        <line num="1" count="183" type="stmt"/>
+        <line num="7" count="110" type="stmt"/>
+        <line num="13" count="110" type="stmt"/>
       </file>
       <file name="info.js" path="C:\Users\User\Documents\GitHub\minesweeper\src\logic\info.js">
-        <metrics statements="8" coveredstatements="8" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <metrics statements="8" coveredstatements="6" conditionals="3" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="5" count="167" type="stmt"/>
-        <line num="6" count="167" type="cond" truecount="3" falsecount="0"/>
-        <line num="7" count="8" type="stmt"/>
-        <line num="8" count="8" type="stmt"/>
-        <line num="9" count="151" type="stmt"/>
+        <line num="5" count="73" type="stmt"/>
+        <line num="6" count="73" type="cond" truecount="1" falsecount="2"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="73" type="stmt"/>
       </file>
     </package>
   </project>

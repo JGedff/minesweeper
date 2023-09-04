@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 import { BoardModule } from './components/BoardModule'
 import { InfoModule } from './components/InfoModule'
-import { DifficultyModule } from './components/DifficultyModule'
+import { ModesModule } from './components/ModesModule'
 import { recursiveCascadeCheck, checkOtherCellsToWin, generateBoard, showAllMines, stopContextMenu, setupDangerCells } from './logic/app'
 import { cloneBoard, generateEmptyBoardWith2Dimensions, generate2DMatrixWithContent } from './logic/board'
 
@@ -140,10 +140,8 @@ function App () {
     checkOtherCellsToWin(newVisibleBoard, board, row, col, winGame)
   }
 
-  const debugMode = e => {
-    if (e.code === 'KeyS') {
-      setDEBUGshowGuide(!DEBUGshowGuide)
-    }
+  const debugMode = () => {
+    setDEBUGshowGuide(!DEBUGshowGuide)
   }
 
   const DEBUGloadMockData = (mockdata) => {
@@ -182,41 +180,30 @@ function App () {
   const getGamemodeClass = (dimensions) => {
     switch (dimensions) {
       case DIMENSIONS.easy:
-        return 'easyGamemode'
+        return 'easy:justify-center'
       case DIMENSIONS.normal:
-        return 'normalGamemode'
+        return 'normal:justify-center'
       case DIMENSIONS.hard:
-        return 'hardGamemode'
-    }
-  }
-
-  const getMarginClass = (dimensions) => {
-    switch (dimensions) {
-      case DIMENSIONS.easy:
-        return ''
-      case DIMENSIONS.normal:
-        return ''
-      case DIMENSIONS.hard:
-        return ''
+        return 'hard:justify-center'
     }
   }
 
   return (
-        <div id='main' className={getMarginClass(dimensions) + ' h-full m-0 items-center text-center ' + getGamemodeClass(dimensions)} >
-          <DebugModule debugFunction={debugMode} getMockData={DEBUGloadMockData}> </DebugModule>
+        <div id='main' className='m-0' >
+          <DebugModule getMockData={DEBUGloadMockData} showModule={DEBUGshowGuide}> </DebugModule>
 
           <div data-testid='container' onContextMenu={stopContextMenu}>
 
               <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
                   gameInProgress={gameInProgress} ></InfoModule>
 
-              <div className='flex justify-center'>
+              <div className={'flex justify-start w-full mt-8 ' + getGamemodeClass(dimensions)}>
                 <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
                     looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
                     finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} winnerStatus={winner} ></BoardModule>
               </div>
 
-              <DifficultyModule easyFunction={changeDifficultyToEasy} normalFunction={changeDifficultyToNormal} hardFunction={changeDifficultyToHard}></DifficultyModule>
+              <ModesModule easyFunction={changeDifficultyToEasy} normalFunction={changeDifficultyToNormal} hardFunction={changeDifficultyToHard} debugFunction={debugMode}></ModesModule>
 
           </div>
         </div>

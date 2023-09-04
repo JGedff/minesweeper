@@ -22,7 +22,7 @@ export const InfoModule = ({ flags, faceSource, restartGame, seconds, counter, g
                     {getFaceSource(faceSource)}
                 </div>
                 <div className="border-2 border-yellow-400 text-yellow-400 font- rounded-2xl bg-black w-full flex flex-wrap justify-center items-center">
-                    <span className="font-anton text-3xl pt-1 w-full" data-testid='secondsPassed'>{seconds}</span>
+                    <span className="font-anton text-3xl pt-1 w-full text-center" data-testid='secondsPassed'>{seconds}</span>
                     <span className="font-raleway text-xs"> Seconds </span>
                 </div>
             </div>
