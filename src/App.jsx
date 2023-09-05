@@ -30,22 +30,25 @@ function App () {
   }
 
   /* Juntar funciones easey / normal / hard */
-  const changeDifficultyToEasy = () => {
-    setDimensions(DIMENSIONS.easy)
+  const changeGamemode = (difficulty) => {
+    switch (difficulty) {
+      case 'easy':
+        setDimensions(DIMENSIONS.easy)
+        resetBoardAndFlags()
+        break
+      case 'normal':
+        setDimensions(DIMENSIONS.normal)
+        resetBoardAndFlags()
+        break
+      case 'hard':
+        setDimensions(DIMENSIONS.hard)
+        resetBoardAndFlags()
+        break
+      default:
+        debugMode()
+        break
+    }
     setRectangleWidth(undefined)
-    resetBoardAndFlags()
-  }
-
-  const changeDifficultyToNormal = () => {
-    setDimensions(DIMENSIONS.normal)
-    setRectangleWidth(undefined)
-    resetBoardAndFlags()
-  }
-
-  const changeDifficultyToHard = () => {
-    setDimensions(DIMENSIONS.hard)
-    setRectangleWidth(undefined)
-    resetBoardAndFlags()
   }
 
   const resetBoard = () => {
@@ -207,7 +210,7 @@ function App () {
                     finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} winnerStatus={winner} ></BoardModule>
               </div>
 
-              <ModesModule easyFunction={changeDifficultyToEasy} normalFunction={changeDifficultyToNormal} hardFunction={changeDifficultyToHard} debugFunction={debugMode}></ModesModule>
+              <ModesModule changeGamemode={changeGamemode}></ModesModule>
 
           </div>
         </div>
