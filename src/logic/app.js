@@ -82,9 +82,9 @@ export const generateBoard = (height, width) => {
   return newBoard
 }
 
-export const checkOtherCellsToWin = (visibleBoard, board, row, col, winGame) => {
+export const checkOtherCellsToWin = (coverStatusBoard, board, row, col, winGame) => {
   let winner = true
-  const newBoard = cloneBoard(visibleBoard)
+  const newBoard = cloneBoard(coverStatusBoard)
 
   newBoard[row][col] = true
 
@@ -108,8 +108,8 @@ export const validPosition = (width, height, number1, number2) => {
   return (number1 >= 0) && (number1 < width) && (number2 >= 0) && (number2 < height)
 }
 
-export const showAllMines = (visibleBoard, board) => {
-  const newBoard = cloneBoard(visibleBoard)
+export const showAllMines = (coverStatusBoard, board) => {
+  const newBoard = cloneBoard(coverStatusBoard)
 
   for (let x = 0; x < board.length; x++) {
     for (let y = 0; y < board[x].length; y++) {

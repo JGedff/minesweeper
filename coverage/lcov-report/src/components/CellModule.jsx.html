@@ -227,12 +227,12 @@ import { cellContent } from '../logic/cellContent'
 import { numberToText } from '../logic/cell'
 &nbsp;
 export const CellModule = ({
-  children, row, column, restartGame, looseGame, uncoverNumber, cascade, initialVisible,
+  children, row, column, restartGame, looseGame, uncoverNumber, cascade, initialUncover,
   removeFlagFromBoard, placeFlagOnBoard, flagsRemaining, disable, finishedGame, DEBUGshowGuide, startGame
 }) =&gt; {
   const [clicked, setClicked] = useState(false)
   const [flag, setFlag] = useState('no_flag')
-  const [uncover, setUncover] = useState(initialVisible)
+  const [uncover, setUncover] = useState(initialUncover)
   const [disableStatus, setDisableStatus] = useState(disable)
 &nbsp;
   useEffect(() =&gt; {
@@ -240,15 +240,15 @@ export const CellModule = ({
   }, [restartGame])
 &nbsp;
   const restartCellStatus = () =&gt; {
-    setUncover(initialVisible)
+    setUncover(initialUncover)
     setFlag('no_flag')
     setClicked(false)
     setDisableStatus(disable)
   }
 &nbsp;
   useEffect(() =&gt; {
-    setUncover(initialVisible)
-  }, [initialVisible])
+    setUncover(initialUncover)
+  }, [initialUncover])
 &nbsp;
   useEffect(() =&gt; {
     setDisableStatus(disable)

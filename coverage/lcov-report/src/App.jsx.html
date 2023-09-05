@@ -512,7 +512,7 @@ function App () {
   const [rectangleWidth, setRectangleWidth] = useState(undefined)
   const [board, setBoard] = useState(generateBoard(dimensions, dimensions))
   const [flagsBoard, setFlagsBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, '.'))
-  const [visibleBoard, setVisibleBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
+  const [coverStatusBoard, setCoverStatusBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
   const [disableBoard, setDisableBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
 &nbsp;
   const secondsCounter = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
@@ -545,7 +545,7 @@ function App () {
     setRectangleWidth(undefined)
 &nbsp;
     const resetedBoard = generate2DMatrixWithContent(dimensions, dimensions, false)
-    setVisibleBoard(resetedBoard)
+    setCoverStatusBoard(resetedBoard)
     setDisableBoard(resetedBoard)
   }
 &nbsp;
@@ -602,33 +602,33 @@ function App () {
 <span class="cstat-no" title="statement not covered" >    setFinishedGame(true)</span>
 <span class="cstat-no" title="statement not covered" >    setGameInProgress(false)</span>
 &nbsp;
-    const losedBoard = <span class="cstat-no" title="statement not covered" >showAllMines(visibleBoard, board)</span>
+    const losedBoard = <span class="cstat-no" title="statement not covered" >showAllMines(coverStatusBoard, board)</span>
 <span class="cstat-no" title="statement not covered" >    setVisibleAndDisableBoardTo(losedBoard)</span>
   }
 &nbsp;
   const setVisibleAndDisableBoardTo = <span class="fstat-no" title="function not covered" >(b</span>oardToCopy) =&gt; {
-<span class="cstat-no" title="statement not covered" >    setVisibleBoard(boardToCopy)</span>
+<span class="cstat-no" title="statement not covered" >    setCoverStatusBoard(boardToCopy)</span>
 <span class="cstat-no" title="statement not covered" >    setDisableBoard(boardToCopy)</span>
   }
 &nbsp;
   const cascadeStart = <span class="fstat-no" title="function not covered" >(r</span>ow, col) =&gt; {
-    const newVisibleBoard = <span class="cstat-no" title="statement not covered" >cloneBoard(visibleBoard)</span>
+    const newCoverStatusBoard = <span class="cstat-no" title="statement not covered" >cloneBoard(coverStatusBoard)</span>
     const isClickedFlagged = (<span class="cstat-no" title="statement not covered" >flagsBoard[row][col] === '!')</span>
 &nbsp;
     const heightBoard = <span class="cstat-no" title="statement not covered" >flagsBoard.length</span>
     const widthBoard = <span class="cstat-no" title="statement not covered" >flagsBoard[0].length</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    recursiveCascadeCheck(newVisibleBoard, board, flagsBoard, heightBoard, widthBoard, row, col, isClickedFlagged)</span>
-<span class="cstat-no" title="statement not covered" >    setVisibleAndDisableBoardTo(newVisibleBoard)</span>
-<span class="cstat-no" title="statement not covered" >    checkOtherCellsToWin(newVisibleBoard, board, row, col, winGame)</span>
+<span class="cstat-no" title="statement not covered" >    recursiveCascadeCheck(newCoverStatusBoard, board, flagsBoard, heightBoard, widthBoard, row, col, isClickedFlagged)</span>
+<span class="cstat-no" title="statement not covered" >    setVisibleAndDisableBoardTo(newCoverStatusBoard)</span>
+<span class="cstat-no" title="statement not covered" >    checkOtherCellsToWin(newCoverStatusBoard, board, row, col, winGame)</span>
   }
 &nbsp;
-  const updateVisibleBoard = <span class="fstat-no" title="function not covered" >(r</span>ow, col) =&gt; {
-    const newVisibleBoard = <span class="cstat-no" title="statement not covered" >cloneBoard(visibleBoard)</span>
+  const updateCoverStatusBoard = <span class="fstat-no" title="function not covered" >(r</span>ow, col) =&gt; {
+    const newCoverStatusBoard = <span class="cstat-no" title="statement not covered" >cloneBoard(coverStatusBoard)</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    newVisibleBoard[row][col] = true</span>
-<span class="cstat-no" title="statement not covered" >    setVisibleAndDisableBoardTo(newVisibleBoard)</span>
-<span class="cstat-no" title="statement not covered" >    checkOtherCellsToWin(newVisibleBoard, board, row, col, winGame)</span>
+<span class="cstat-no" title="statement not covered" >    newCoverStatusBoard[row][col] = true</span>
+<span class="cstat-no" title="statement not covered" >    setVisibleAndDisableBoardTo(newCoverStatusBoard)</span>
+<span class="cstat-no" title="statement not covered" >    checkOtherCellsToWin(newCoverStatusBoard, board, row, col, winGame)</span>
   }
 &nbsp;
   const debugMode = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
@@ -689,7 +689,7 @@ function App () {
                   gameInProgress={gameInProgress} &gt;&lt;/InfoModule&gt;
 &nbsp;
               &lt;div className={'flex justify-start w-full mt-8 ' + getGamemodeClass(dimensions)}&gt;
-                &lt;BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
+                &lt;BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} coverStatusBoard={coverStatusBoard} updateCoverStatusBoard={updateCoverStatusBoard} cascade={cascadeStart}
                     looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
                     finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} winnerStatus={winner} &gt;&lt;/BoardModule&gt;
               &lt;/div&gt;

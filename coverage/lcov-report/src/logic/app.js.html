@@ -447,7 +447,7 @@ export const generateBoard = (height, width) =&gt; {
 &nbsp;
 export const <span class="cstat-no" title="statement not covered" >checkOtherCellsToWin </span>= <span class="fstat-no" title="function not covered" >(v</span>isibleBoard, board, row, col, winGame) =&gt; {
   let winner = <span class="cstat-no" title="statement not covered" >true</span>
-  const newBoard = <span class="cstat-no" title="statement not covered" >cloneBoard(visibleBoard)</span>
+  const newBoard = <span class="cstat-no" title="statement not covered" >cloneBoard(coverStatusBoard)</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  newBoard[row][col] = true</span>
 &nbsp;
@@ -472,7 +472,7 @@ export const <span class="cstat-no" title="statement not covered" >validPosition
 }
 &nbsp;
 export const <span class="cstat-no" title="statement not covered" >showAllMines </span>= <span class="fstat-no" title="function not covered" >(v</span>isibleBoard, board) =&gt; {
-  const newBoard = <span class="cstat-no" title="statement not covered" >cloneBoard(visibleBoard)</span>
+  const newBoard = <span class="cstat-no" title="statement not covered" >cloneBoard(coverStatusBoard)</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  for (let x = <span class="cstat-no" title="statement not covered" >0; x</span> &lt; board.length; x++) {</span>
 <span class="cstat-no" title="statement not covered" >    for (let y = <span class="cstat-no" title="statement not covered" >0; y</span> &lt; board[x].length; y++) {</span>

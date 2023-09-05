@@ -10,7 +10,7 @@ import { cloneBoard, generateEmptyBoardWith2Dimensions, generate2DMatrixWithCont
 import { DebugModule } from './components/DebugModule'
 import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.js'
 
-function App () {
+function App() {
   const [seconds, setSeconds] = useState(0)
   const [finishedGame, setFinishedGame] = useState(false)
   const [flags, setFlags] = useState(DIFFICULTY_FLAGS.easy)
@@ -21,8 +21,8 @@ function App () {
   const [rectangleWidth, setRectangleWidth] = useState(undefined)
   const [board, setBoard] = useState(generateBoard(dimensions, dimensions))
   const [flagsBoard, setFlagsBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, '.'))
-  const [visibleBoard, setVisibleBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
-  const [disableBoard, setDisableBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
+  const [coverStatusBoard, setCoverStatusBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
+  // const [disableBoard, setDisableBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
 
   const secondsCounter = () => {
     const currentSec = seconds + 1
@@ -61,8 +61,7 @@ function App () {
     setRectangleWidth(undefined)
 
     const resetedBoard = generate2DMatrixWithContent(dimensions, dimensions, false)
-    setVisibleBoard(resetedBoard)
-    setDisableBoard(resetedBoard)
+    setCoverStatusBoard(resetedBoard)
   }
 
   useEffect(() => {
@@ -118,33 +117,32 @@ function App () {
     setFinishedGame(true)
     setGameInProgress(false)
 
-    const losedBoard = showAllMines(visibleBoard, board)
+    const losedBoard = showAllMines(coverStatusBoard, board)
     setVisibleAndDisableBoardTo(losedBoard)
   }
 
   const setVisibleAndDisableBoardTo = (boardToCopy) => {
-    setVisibleBoard(boardToCopy)
-    setDisableBoard(boardToCopy)
+    setCoverStatusBoard(boardToCopy)
   }
 
   const cascadeStart = (row, col) => {
-    const newVisibleBoard = cloneBoard(visibleBoard)
+    const newCoverStatusBoard = cloneBoard(coverStatusBoard)
     const isClickedFlagged = (flagsBoard[row][col] === '!')
 
     const heightBoard = flagsBoard.length
     const widthBoard = flagsBoard[0].length
 
-    recursiveCascadeCheck(newVisibleBoard, board, flagsBoard, heightBoard, widthBoard, row, col, isClickedFlagged)
-    setVisibleAndDisableBoardTo(newVisibleBoard)
-    checkOtherCellsToWin(newVisibleBoard, board, row, col, winGame)
+    recursiveCascadeCheck(newCoverStatusBoard, board, flagsBoard, heightBoard, widthBoard, row, col, isClickedFlagged)
+    setVisibleAndDisableBoardTo(newCoverStatusBoard)
+    checkOtherCellsToWin(newCoverStatusBoard, board, row, col, winGame)
   }
 
-  const updateVisibleBoard = (row, col) => {
-    const newVisibleBoard = cloneBoard(visibleBoard)
+  const updateCoverStatusBoard = (row, col) => {
+    const newCoverStatusBoard = cloneBoard(coverStatusBoard)
 
-    newVisibleBoard[row][col] = true
-    setVisibleAndDisableBoardTo(newVisibleBoard)
-    checkOtherCellsToWin(newVisibleBoard, board, row, col, winGame)
+    newCoverStatusBoard[row][col] = true
+    setVisibleAndDisableBoardTo(newCoverStatusBoard)
+    checkOtherCellsToWin(newCoverStatusBoard, board, row, col, winGame)
   }
 
   const debugMode = () => {
@@ -195,25 +193,27 @@ function App () {
     }
   }
 
+  console.log('Welcome to MinesweepeReact!')
+
   return (
-        <div id='main' className='m-0' >
-          <DebugModule getMockData={DEBUGloadMockData} showModule={DEBUGshowGuide}> </DebugModule>
+    <div id='main' className='m-0' >
+      {DEBUGshowGuide && <DebugModule getMockData={DEBUGloadMockData} />}
 
-          <div data-testid='container' onContextMenu={stopContextMenu}>
+      <div data-testid='container' onContextMenu={stopContextMenu}>
 
-              <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
-                  gameInProgress={gameInProgress} ></InfoModule>
+        <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
+          gameInProgress={gameInProgress} ></InfoModule>
 
-              <div className={'flex justify-start w-full mt-8 ' + getGamemodeClass(dimensions)}>
-                <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} visibleBoard={visibleBoard} updateVisibleBoard={updateVisibleBoard} cascade={cascadeStart}
-                    looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags} disableStatus={disableBoard}
-                    finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} winnerStatus={winner} ></BoardModule>
-              </div>
-
-              <ModesModule changeGamemode={changeGamemode}></ModesModule>
-
-          </div>
+        <div className={'flex justify-start w-full mt-8 ' + getGamemodeClass(dimensions)}>
+          <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} coverStatusBoard={coverStatusBoard} updateCoverStatusBoard={updateCoverStatusBoard} cascade={cascadeStart}
+            looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags}
+            finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} winnerStatus={winner} ></BoardModule>
         </div>
+
+        <ModesModule changeGamemode={changeGamemode}></ModesModule>
+
+      </div>
+    </div>
   )
 }
 

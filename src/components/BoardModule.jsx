@@ -4,8 +4,8 @@ import { CellModule } from './CellModule'
 import { winnerToClassHelper } from '../logic/board'
 
 export const BoardModule = ({
-  dimensions, rectangleWidth, oldBoard, visibleBoard, updateVisibleBoard, cascade, looseGame, placeFlagOnBoard,
-  removeFlagFromBoard, flagsRemaining, disableStatus, finishedGame, DEBUGshowGuide, startGame, winnerStatus
+  dimensions, rectangleWidth, oldBoard, coverStatusBoard, updateCoverStatusBoard, cascade, looseGame, placeFlagOnBoard,
+  removeFlagFromBoard, flagsRemaining, finishedGame, DEBUGshowGuide, startGame, winnerStatus
 }) => {
   const [restartGame, setRestartGame] = useState(false)
 
@@ -38,13 +38,12 @@ export const BoardModule = ({
                                 column={indexColumn}
                                 restartGame={restartGame}
                                 looseGame={looseGame}
-                                uncoverNumber={updateVisibleBoard}
+                                uncoverNumber={updateCoverStatusBoard}
                                 cascade={cascade}
-                                initialVisible={visibleBoard[indexRow][indexColumn]}
+                                initialUncover={coverStatusBoard[indexRow][indexColumn]}
                                 removeFlagFromBoard={removeFlagFromBoard}
                                 placeFlagOnBoard={placeFlagOnBoard}
                                 flagsRemaining={flagsRemaining}
-                                disable={disableStatus[indexRow][indexColumn]}
                                 finishedGame={finishedGame}
                                 DEBUGshowGuide={DEBUGshowGuide}
                                 startGame={startGame} >

@@ -4,32 +4,26 @@ import { cellContent } from '../logic/cellContent'
 import { numberToText } from '../logic/cell'
 
 export const CellModule = ({
-  children, row, column, restartGame, looseGame, uncoverNumber, cascade, initialVisible,
-  removeFlagFromBoard, placeFlagOnBoard, flagsRemaining, disable, finishedGame, DEBUGshowGuide, startGame
+  children, row, column, restartGame, looseGame, uncoverNumber, cascade, initialUncover,
+  removeFlagFromBoard, placeFlagOnBoard, flagsRemaining, finishedGame, DEBUGshowGuide, startGame
 }) => {
   const [clicked, setClicked] = useState(false)
   const [flag, setFlag] = useState('no_flag')
-  const [uncover, setUncover] = useState(initialVisible)
-  const [disableStatus, setDisableStatus] = useState(disable)
+  const [uncover, setUncover] = useState(initialUncover)
 
   useEffect(() => {
     restartCellStatus()
   }, [restartGame])
 
   const restartCellStatus = () => {
-    setUncover(initialVisible)
+    setUncover(initialUncover)
     setFlag('no_flag')
     setClicked(false)
-    setDisableStatus(disable)
   }
 
   useEffect(() => {
-    setUncover(initialVisible)
-  }, [initialVisible])
-
-  useEffect(() => {
-    setDisableStatus(disable)
-  }, [disable])
+    setUncover(initialUncover)
+  }, [initialUncover])
 
   const handleClick = () => {
     if (!finishedGame) {
@@ -72,7 +66,7 @@ export const CellModule = ({
   }
 
   return (
-        <button className={'cell text-xl font-bold w-10 h-10 p-0 m-0' + numberToText(children, uncover)} data-testid={'r' + (row + 1) + 'c' + (column + 1)} onClick={handleClick} onContextMenu={handleRightClick} disabled={disableStatus} >
+        <button className={'cell text-xl font-bold w-10 h-10 p-0 m-0' + numberToText(children, uncover)} data-testid={'r' + (row + 1) + 'c' + (column + 1)} onClick={handleClick} onContextMenu={handleRightClick} disabled={initialUncover} >
             {cellContent(uncover, children, flag, DEBUGshowGuide, clicked, finishedGame)}
         </button>
   )
