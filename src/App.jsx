@@ -10,7 +10,44 @@ import { cloneBoard, generateEmptyBoardWith2Dimensions, generate2DMatrixWithCont
 import { DebugModule } from './components/DebugModule'
 import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.js'
 
+// GET COUNTRY NUMBER CODES: https://restcountries.com/v3.1/all?fields=ccn3
+// GET RANDOM COUNTRYCODE
+// GET COUNTRY CAPITAL: https://restcountries.com/v3.1/alpha/${COUNTRYCODE}?fields=capital
+
 function App () {
+  /* API CONNECTION */
+
+  const [capital, setCapital] = useState()
+
+  useEffect(() => {
+    fetch('https://restcountries.com/v3.1/all?fields=ccn3')
+      .then(res => res.json())
+      .then((res) => {
+        const numberOfObjects = res.length
+        const indexRandomObject = Math.trunc(Math.random() * numberOfObjects)
+        const countryObject = res[indexRandomObject]
+        const codeNumber = Number(countryObject.ccn3)
+
+        fetch(`https://restcountries.com/v3.1/alpha/${codeNumber}?fields=capital`)
+          .then(res => res.json())
+          .then((res) => {
+            const capitalName = res.capital.toString()
+            console.log(capitalName)
+            setCapital(capitalName)
+          })
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${capital}&prop=pageimages&format=json&mode=no-cors`)
+      .then(res => res.json())
+      .then((res) => {
+        const File = res.source
+        console.log(File)
+      })
+  }, [capital])
+
+  /* MINESWEEPER */
   const [seconds, setSeconds] = useState(0)
   const [finishedGame, setFinishedGame] = useState(false)
   const [flags, setFlags] = useState(DIFFICULTY_FLAGS.easy)
@@ -22,14 +59,12 @@ function App () {
   const [board, setBoard] = useState(generateBoard(dimensions, dimensions))
   const [flagsBoard, setFlagsBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, '.'))
   const [coverStatusBoard, setCoverStatusBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
-  // const [disableBoard, setDisableBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
 
   const secondsCounter = () => {
     const currentSec = seconds + 1
     setSeconds(currentSec)
   }
 
-  /* Juntar funciones easey / normal / hard */
   const changeGamemode = (difficulty) => {
     switch (difficulty) {
       case 'easy':
@@ -118,11 +153,7 @@ function App () {
     setGameInProgress(false)
 
     const losedBoard = showAllMines(coverStatusBoard, board)
-    setVisibleAndDisableBoardTo(losedBoard)
-  }
-
-  const setVisibleAndDisableBoardTo = (boardToCopy) => {
-    setCoverStatusBoard(boardToCopy)
+    setCoverStatusBoard(losedBoard)
   }
 
   const cascadeStart = (row, col) => {
@@ -133,7 +164,7 @@ function App () {
     const widthBoard = flagsBoard[0].length
 
     recursiveCascadeCheck(newCoverStatusBoard, board, flagsBoard, heightBoard, widthBoard, row, col, isClickedFlagged)
-    setVisibleAndDisableBoardTo(newCoverStatusBoard)
+    setCoverStatusBoard(newCoverStatusBoard)
     checkOtherCellsToWin(newCoverStatusBoard, board, row, col, winGame)
   }
 
@@ -141,7 +172,7 @@ function App () {
     const newCoverStatusBoard = cloneBoard(coverStatusBoard)
 
     newCoverStatusBoard[row][col] = true
-    setVisibleAndDisableBoardTo(newCoverStatusBoard)
+    setCoverStatusBoard(newCoverStatusBoard)
     checkOtherCellsToWin(newCoverStatusBoard, board, row, col, winGame)
   }
 
