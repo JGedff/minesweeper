@@ -4,9 +4,11 @@ import { screen } from '@testing-library/react'
 export const loadMockData = async (mockData) => {
   const text = screen.getByTestId('mockDataLoader-textarea')
   const button = screen.getByTestId('mockDataLoader-loadButton')
+  const debugButton = screen.getByTestId('enableDebugModule')
   userEvent.clear(text)
   await userEvent.type(text, mockData)
   await userEvent.click(button)
+  await userEvent.click(debugButton)
   await new Promise(resolve => setTimeout(resolve, 500))
 }
 
@@ -40,7 +42,7 @@ export const checkStatusOfCell = (row, column, value) => {
   }
 
   const flag = screen.getByTestId(`r${row}c${column}`)
-  const flag2 = flag.firstElementChild
+  const flag2 = flag.firstChild
   const flag3 = flag2.getAttribute('data-testid')
   const isInClassList = flag3 === flagValueToClass
   return isInClassList
@@ -58,6 +60,8 @@ export const checkGameStatus = (status) => {
   const isExpectedStatus = container.classList.contains(status)
   const isExpectedFace = (status === 'win' && faceStatus === '😊') || (status === 'lost' && faceStatus === '☹️')
 
+  console.log(isExpectedStatus)
+  console.log(isExpectedFace)
   return isExpectedStatus && isExpectedFace
 }
 

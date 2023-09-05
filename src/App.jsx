@@ -10,7 +10,7 @@ import { cloneBoard, generateEmptyBoardWith2Dimensions, generate2DMatrixWithCont
 import { DebugModule } from './components/DebugModule'
 import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.js'
 
-function App() {
+function App () {
   const [seconds, setSeconds] = useState(0)
   const [finishedGame, setFinishedGame] = useState(false)
   const [flags, setFlags] = useState(DIFFICULTY_FLAGS.easy)
@@ -150,8 +150,6 @@ function App() {
   }
 
   const DEBUGloadMockData = (mockdata) => {
-    resetBoard()
-
     const mockDataSanitized = mockdata.replaceAll('"', '').replaceAll('\\n', '\n').trim()
     const rows = mockDataSanitized.split('\n')
     const width = rows[0].replaceAll(' ', '').split('|').length - 2

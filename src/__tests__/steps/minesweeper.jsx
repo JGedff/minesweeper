@@ -17,6 +17,8 @@ export const minesweeper = ({
   })
 
   Given('the player loads the following mock data:', async (mockData) => {
+    const debugButton = screen.getByTestId('enableDebugModule')
+    await userEvent.click(debugButton)
     await loadMockData(mockData)
   })
 
