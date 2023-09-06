@@ -228,7 +228,7 @@ function App() {
 
   return (
     <>
-      <div id='APIbg' className='w-full h-[inherit] absolute -z-10 bg-cover flex justify-end items-end text-xl font-raleway font-bold drop-shadow-md' style={{ backgroundImage: 'url(https://commons.wikimedia.org/wiki/Special:FilePath/' + background + ')' }}>
+      <div id='APIbg' className='w-full h-[inherit] absolute -z-10 bg-cover flex justify-end items-end text-xl font-raleway font-bold drop-shadow-md pr-8' style={{ backgroundImage: 'url(https://commons.wikimedia.org/wiki/Special:FilePath/' + background + ')' }}>
         {capital}
       </div>
       <div id='main' className='m-0'>
