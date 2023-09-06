@@ -35,21 +35,23 @@ function App() {
             const capitalName = res.capital.toString()
             console.log(capitalName)
             setCapital(capitalName)
+
+            fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&titles=${capitalName}&format=json&prop=images`)
+              .then(res => res.json())
+              .then((data) => {
+                const File = data.continue.imcontinue
+                const dist = File.split('|')
+                const aux = dist[1]
+                console.log(aux)
+                setBackground(aux)
+              })
           })
       })
   }, [])
 
-  useEffect(() => {
-    fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&titles=${capital}&format=json&prop=images`)
-      .then(res => res.json())
-      .then((data) => {
-        const File = data.continue.imcontinue
-        const dist = File.split('|')
-        const aux = dist[1]
-        console.log(aux)
-        setBackground(aux)
-      })
-  }, [capital])
+  // useEffect(() => {
+
+  // }, [capital])
 
   /* MINESWEEPER */
   const [seconds, setSeconds] = useState(0)
@@ -229,24 +231,29 @@ function App() {
   console.log('Welcome to MinesweepeReact!')
 
   return (
-    <div id='main' className='m-0' style={{ backgroundImage: 'url(https://commons.wikimedia.org/wiki/Special:FilePath/' + background + ')' }}>
-      {DEBUGshowGuide && <DebugModule getMockData={DEBUGloadMockData} />}
+    <>
+      <div id='APIbg' className='w-full h-[inherit] absolute -z-10 blur-sm bg-cover' style={{ backgroundImage: 'url(https://commons.wikimedia.org/wiki/Special:FilePath/' + background + ')' }}></div>
+      <div id='main' className='m-0'>
 
-      <div data-testid='container' onContextMenu={stopContextMenu}>
+        {DEBUGshowGuide && <DebugModule getMockData={DEBUGloadMockData} />}
 
-        <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
-          gameInProgress={gameInProgress} ></InfoModule>
+        <div data-testid='container' onContextMenu={stopContextMenu}>
 
-        <div className={'flex justify-start w-full mt-8 ' + getGamemodeClass(dimensions)}>
-          <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} coverStatusBoard={coverStatusBoard} updateCoverStatusBoard={updateCoverStatusBoard} cascade={cascadeStart}
-            looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags}
-            finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} winnerStatus={winner} ></BoardModule>
+          <InfoModule flags={flags} faceSource={winner} restartGame={resetBoardAndFlags} seconds={seconds} counter={secondsCounter}
+            gameInProgress={gameInProgress} ></InfoModule>
+
+          <div className={'flex justify-start w-full mt-8 ' + getGamemodeClass(dimensions)}>
+            <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} coverStatusBoard={coverStatusBoard} updateCoverStatusBoard={updateCoverStatusBoard} cascade={cascadeStart}
+              looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags}
+              finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} winnerStatus={winner} ></BoardModule>
+          </div>
+
+          <ModesModule changeGamemode={changeGamemode}></ModesModule>
+
         </div>
-
-        <ModesModule changeGamemode={changeGamemode}></ModesModule>
-
       </div>
-    </div>
+    </>
+
   )
 }
 
