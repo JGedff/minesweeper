@@ -49,10 +49,6 @@ function App() {
       })
   }, [])
 
-  // useEffect(() => {
-
-  // }, [capital])
-
   /* MINESWEEPER */
   const [seconds, setSeconds] = useState(0)
   const [finishedGame, setFinishedGame] = useState(false)
@@ -232,7 +228,9 @@ function App() {
 
   return (
     <>
-      <div id='APIbg' className='w-full h-[inherit] absolute -z-10 blur-sm bg-cover' style={{ backgroundImage: 'url(https://commons.wikimedia.org/wiki/Special:FilePath/' + background + ')' }}></div>
+      <div id='APIbg' className='w-full h-[inherit] absolute -z-10 bg-cover flex justify-end items-end text-xl font-raleway font-bold drop-shadow-md' style={{ backgroundImage: 'url(https://commons.wikimedia.org/wiki/Special:FilePath/' + background + ')' }}>
+        {capital}
+      </div>
       <div id='main' className='m-0'>
 
         {DEBUGshowGuide && <DebugModule getMockData={DEBUGloadMockData} />}
