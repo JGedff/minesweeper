@@ -14,7 +14,7 @@ import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.j
 // GET RANDOM COUNTRYCODE
 // GET COUNTRY CAPITAL: https://restcountries.com/v3.1/alpha/${COUNTRYCODE}?fields=capital
 
-function App() {
+function App () {
   /* API CONNECTION */
 
   const [capital, setCapital] = useState()
@@ -32,22 +32,31 @@ function App() {
         fetch(`https://restcountries.com/v3.1/alpha/${codeNumber}?fields=capital`)
           .then(res => res.json())
           .then((res) => {
-            const capitalName = res.capital.toString()
-            console.log(capitalName)
-            setCapital(capitalName)
+            const capitalName = res.capital
 
             fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&titles=${capitalName}&format=json&prop=images`)
               .then(res => res.json())
               .then((data) => {
-                const File = data.continue.imcontinue
-                const dist = File.split('|')
-                const aux = dist[1]
-                console.log(aux)
-                setBackground(aux)
+                const Files = (Object.values(data.query.pages)[0]).images
+
+                for (let counter = 0; counter < Files.length; counter++) {
+                  if (objectIsImage(Files[counter].title)) {
+                    const dist = Files[counter].title.split(':')
+                    const aux = dist[1]
+                    console.log(aux)
+                    setBackground(aux)
+                    setCapital(capitalName)
+                    break
+                  }
+                }
               })
           })
       })
   }, [])
+
+  const objectIsImage = (title) => {
+    return (title.endsWith('.png') || title.endsWith('.jpg'))
+  }
 
   /* MINESWEEPER */
   const [seconds, setSeconds] = useState(0)
@@ -228,7 +237,7 @@ function App() {
 
   return (
     <>
-      <div id='APIbg' className='w-full h-[inherit] absolute -z-10 bg-cover flex justify-end items-end text-xl font-raleway font-bold drop-shadow-md pr-8' style={{ backgroundImage: 'url(https://commons.wikimedia.org/wiki/Special:FilePath/' + background + ')' }}>
+      <div id='APIbg' className='w-full h-[inherit] absolute -z-10 bg-cover flex justify-end items-end text-xl text-shadow font-raleway font-bold pr-8' style={{ backgroundImage: background ? 'url(https://commons.wikimedia.org/wiki/Special:FilePath/' + background + ')' : '' }}>
         {capital}
       </div>
       <div id='main' className='m-0'>

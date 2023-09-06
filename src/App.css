@@ -125,3 +125,7 @@
 .pt-750 {
   padding-top: 750px;
 }
+
+.text-shadow {
+  text-shadow: -2px -2px BLACK;
+}
