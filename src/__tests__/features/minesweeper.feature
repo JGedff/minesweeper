@@ -510,4 +510,4 @@ Feature: Minesweeper
 
       """
     When the player clicks the "enableDebugModule" button
-    Then the cell (1,4) should not exist
+    Then the board should have 3 columns

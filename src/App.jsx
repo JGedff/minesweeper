@@ -64,12 +64,13 @@ function App () {
   /* MINESWEEPER */
   const [seconds, setSeconds] = useState(0)
   const [finishedGame, setFinishedGame] = useState(false)
+  const [updateBoard, setUpdateBoard] = useState(false)
   const [flags, setFlags] = useState(DIFFICULTY_FLAGS.easy)
   const [gameInProgress, setGameInProgress] = useState(false)
   const [DEBUGshowGuide, setDEBUGshowGuide] = useState(false)
   const [winner, setWinner] = useState(WINNER_STATUS.no_winner)
   const [dimensions, setDimensions] = useState(DIMENSIONS.easy)
-  const [rectangleWidth, setRectangleWidth] = useState(undefined)
+  const [rectangleWidth, setRectangleWidth] = useState(dimensions)
   const [board, setBoard] = useState(generateBoard(dimensions, dimensions))
   const [flagsBoard, setFlagsBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, '.'))
   const [coverStatusBoard, setCoverStatusBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
@@ -82,22 +83,27 @@ function App () {
   const changeGamemode = (difficulty) => {
     switch (difficulty) {
       case 'easy':
+        setUpdateBoard(!updateBoard)
         setDimensions(DIMENSIONS.easy)
+        setRectangleWidth(DIMENSIONS.easy)
         resetBoardAndFlags()
         break
       case 'normal':
+        setUpdateBoard(!updateBoard)
         setDimensions(DIMENSIONS.normal)
+        setRectangleWidth(DIMENSIONS.normal)
         resetBoardAndFlags()
         break
       case 'hard':
+        setUpdateBoard(!updateBoard)
         setDimensions(DIMENSIONS.hard)
+        setRectangleWidth(DIMENSIONS.hard)
         resetBoardAndFlags()
         break
       default:
         debugMode()
         break
     }
-    setRectangleWidth(undefined)
   }
 
   const resetBoard = () => {
@@ -115,6 +121,7 @@ function App () {
 
   useEffect(() => {
     resetBoardAndFlags()
+    console.log(dimensions)
   }, [dimensions])
 
   const resetBoardAndFlags = () => {
@@ -253,7 +260,7 @@ function App () {
             gameInProgress={gameInProgress} ></InfoModule>
 
           <div className={'flex justify-start w-full mt-8 ' + getGamemodeClass(dimensions)}>
-            <BoardModule dimensions={dimensions} rectangleWidth={rectangleWidth} oldBoard={board} coverStatusBoard={coverStatusBoard} updateCoverStatusBoard={updateCoverStatusBoard} cascade={cascadeStart}
+            <BoardModule updateBoard={updateBoard} rectangleWidth={rectangleWidth} oldBoard={board} coverStatusBoard={coverStatusBoard} updateCoverStatusBoard={updateCoverStatusBoard} cascade={cascadeStart}
               looseGame={lostGame} removeFlagFromBoard={removeFlagFromBoard} placeFlagOnBoard={placeFlagOnBoard} flagsRemaining={flags}
               finishedGame={finishedGame} DEBUGshowGuide={DEBUGshowGuide} startGame={startGame} winnerStatus={winner} ></BoardModule>
           </div>

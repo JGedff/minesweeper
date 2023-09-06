@@ -89,10 +89,6 @@ export const checkGameRestarted = () => {
   return gameRestarted
 }
 
-export const checkCellExist = (row, column) => {
-  try {
-    return screen.getByTestId(`r${row}c${column}`)
-  } catch {
-    return false
-  }
+export const getLenghtElement = (element) => {
+  return screen.getByTestId(element)
 }

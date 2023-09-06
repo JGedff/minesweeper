@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { expect } from '@jest/globals'
 import userEvent from '@testing-library/user-event'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { checkCellExist, checkCoveredCell, checkGameRestarted, checkGameStatus, checkPlayerFlags, checkStatusOfCell, loadMockData } from './stepFunctions.js'
+import { checkCoveredCell, checkGameRestarted, checkGameStatus, checkPlayerFlags, checkStatusOfCell, getLenghtElement, loadMockData } from './stepFunctions.js'
 
 export const minesweeper = ({
   given: Given,
@@ -101,9 +101,12 @@ export const minesweeper = ({
     expect(checkGameRestarted()).toBe(true)
   })
 
-  Then(/^the cell \((\d+),(\d+)\) should not exist$/, (row, column) => {
-    const result = checkCellExist(row, column)
-    expect(result).toBe(false)
+  Then(/^the board should have (\d+) columns$/, (elementLength) => {
+    const element = getLenghtElement('gameBoard')
+    const template = element.style.gridTemplateColumns.split('(')
+    const columns = template[1].split(',')
+    const result = columns[0]
+    expect(result).toBe(elementLength)
   })
 }
 

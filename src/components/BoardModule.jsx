@@ -4,28 +4,35 @@ import { CellModule } from './CellModule'
 import { winnerToClassHelper } from '../logic/board'
 
 export const BoardModule = ({
-  dimensions, rectangleWidth, oldBoard, coverStatusBoard, updateCoverStatusBoard, cascade, looseGame, placeFlagOnBoard,
+  updateBoard, rectangleWidth, oldBoard, coverStatusBoard, updateCoverStatusBoard, cascade, looseGame, placeFlagOnBoard,
   removeFlagFromBoard, flagsRemaining, finishedGame, DEBUGshowGuide, startGame, winnerStatus
 }) => {
   const [restartGame, setRestartGame] = useState(false)
+  const [boardDimensions, setBoardDimensions] = useState(rectangleWidth)
+  const [initialBoardDimensions, setInitialBoardDimensions] = useState(rectangleWidth)
 
   useEffect(() => {
     setRestartGame(!restartGame)
   }, [oldBoard])
 
-  const handleDimensions = () => {
+  useEffect(() => {
     if (rectangleWidth !== undefined) {
-      return rectangleWidth
-    } else {
-      return dimensions
+      setBoardDimensions(rectangleWidth)
     }
-  }
+  }, [rectangleWidth])
+
+  useEffect(() => {
+    if (initialBoardDimensions !== undefined) {
+      setBoardDimensions(initialBoardDimensions)
+    }
+    setInitialBoardDimensions(rectangleWidth)
+  }, [updateBoard])
 
   return (
         <main className={'justify-center' + winnerToClassHelper(winnerStatus)} data-testid='main' >
 
             <section className="game" data-testid="gameBoard" style={{
-              gridTemplateColumns: `repeat(${handleDimensions()}, 1fr)`
+              gridTemplateColumns: `repeat(${boardDimensions}, 1fr)`
             }}>
                 {
                 oldBoard.map((row, indexRow) => {
