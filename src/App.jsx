@@ -14,10 +14,11 @@ import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.j
 // GET RANDOM COUNTRYCODE
 // GET COUNTRY CAPITAL: https://restcountries.com/v3.1/alpha/${COUNTRYCODE}?fields=capital
 
-function App () {
+function App() {
   /* API CONNECTION */
 
   const [capital, setCapital] = useState()
+  const [background, setBackground] = useState()
 
   useEffect(() => {
     fetch('https://restcountries.com/v3.1/all?fields=ccn3')
@@ -39,11 +40,14 @@ function App () {
   }, [])
 
   useEffect(() => {
-    fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${capital}&prop=pageimages&format=json&mode=no-cors`)
+    fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&titles=${capital}&format=json&prop=images`)
       .then(res => res.json())
-      .then((res) => {
-        const File = res.source
-        console.log(File)
+      .then((data) => {
+        const File = data.continue.imcontinue
+        const dist = File.split('|')
+        const aux = dist[1]
+        console.log(aux)
+        setBackground(aux)
       })
   }, [capital])
 
@@ -225,7 +229,7 @@ function App () {
   console.log('Welcome to MinesweepeReact!')
 
   return (
-    <div id='main' className='m-0' >
+    <div id='main' className='m-0' style={{ backgroundImage: 'https://commons.wikimedia.org/wiki/File:' + background }}>
       {DEBUGshowGuide && <DebugModule getMockData={DEBUGloadMockData} />}
 
       <div data-testid='container' onContextMenu={stopContextMenu}>
