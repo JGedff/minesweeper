@@ -501,3 +501,13 @@ Feature: Minesweeper
   Scenario: Reset the game
     When the player clicks the "faceStatus" button
     Then the game should restart
+
+  Scenario: Load mock data and select easy dificulty
+    Given the player loads the following mock data:
+      """
+
+      | * | * | o |
+
+      """
+    When the player clicks the "enableDebugModule" button
+    Then the cell (1,4) should not exist

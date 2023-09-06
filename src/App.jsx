@@ -34,25 +34,28 @@ function App () {
           .then((res) => {
             const capitalName = res.capital
 
-            fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&titles=${capitalName}&format=json&prop=images`)
-              .then(res => res.json())
-              .then((data) => {
-                const Files = (Object.values(data.query.pages)[0]).images
-
-                for (let counter = 0; counter < Files.length; counter++) {
-                  if (objectIsImage(Files[counter].title)) {
-                    const dist = Files[counter].title.split(':')
-                    const aux = dist[1]
-                    console.log(aux)
-                    setBackground(aux)
-                    setCapital(capitalName)
-                    break
-                  }
-                }
-              })
+            setCapital(capitalName)
           })
       })
   }, [])
+
+  useEffect(() => {
+    fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&titles=${capital}&format=json&prop=images`)
+      .then(res => res.json())
+      .then((data) => {
+        const Files = (Object.values(data.query.pages)[0]).images
+
+        for (let counter = 0; counter < Files.length; counter++) {
+          if (objectIsImage(Files[counter].title)) {
+            const dist = Files[counter].title.split(':')
+            const aux = dist[1]
+            console.log(aux)
+            setBackground(aux)
+            break
+          }
+        }
+      })
+  }, [capital])
 
   const objectIsImage = (title) => {
     return (title.endsWith('.png') || title.endsWith('.jpg'))

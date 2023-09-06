@@ -54,7 +54,7 @@ export const checkPlayerFlags = () => {
 }
 
 export const checkGameStatus = (status) => {
-  const container = screen.getByTestId('container')
+  const container = screen.getByTestId('main')
   const faceStatus = screen.getByTestId('faceStatus').innerHTML
 
   const isExpectedStatus = container.classList.contains(status)
@@ -87,4 +87,12 @@ export const checkGameRestarted = () => {
   }
 
   return gameRestarted
+}
+
+export const checkCellExist = (row, column) => {
+  try {
+    return screen.getByTestId(`r${row}c${column}`)
+  } catch {
+    return false
+  }
 }
