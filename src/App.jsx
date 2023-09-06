@@ -229,7 +229,7 @@ function App() {
   console.log('Welcome to MinesweepeReact!')
 
   return (
-    <div id='main' className='m-0' style={{ backgroundImage: 'https://commons.wikimedia.org/wiki/File:' + background }}>
+    <div id='main' className='m-0' style={{ backgroundImage: 'url(https://commons.wikimedia.org/wiki/Special:FilePath/' + background + ')' }}>
       {DEBUGshowGuide && <DebugModule getMockData={DEBUGloadMockData} />}
 
       <div data-testid='container' onContextMenu={stopContextMenu}>
