@@ -532,3 +532,6 @@ Feature: Minesweeper
     When the player clicks the "enableDebugModule" button
     When the player clicks the "difficultyEasyButton" button
     Then the board should have 8 columns
+  
+  Scenario: Check background
+    Then the app should have a background

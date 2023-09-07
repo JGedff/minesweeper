@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-// import mockData from '../mocks/return.json'
 
 export function useRandomBg () {
   const [bgCountryName, setBgCountryName] = useState()
@@ -37,7 +36,6 @@ export function useRandomBg () {
                   const selectedURL = (Object.values(data.query.pages)[0]).imageinfo[0].url
                   setBackground(selectedURL)
                 })
-              setBackground(selectedImage)
               break
             }
           }

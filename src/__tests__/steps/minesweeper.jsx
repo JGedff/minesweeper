@@ -108,6 +108,11 @@ export const minesweeper = ({
     const result = columns[0]
     expect(result).toBe(elementLength)
   })
+
+  Then('the app should have a background', () => {
+    const element = screen.getByTestId('APIbg').style
+    expect(element.backgroundImage).toBeDefined()
+  })
 }
 
 export default minesweeper

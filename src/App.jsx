@@ -9,9 +9,9 @@ import { cloneBoard, generateEmptyBoardWith2Dimensions, generate2DMatrixWithCont
 
 import { DebugModule } from './components/DebugModule'
 import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.js'
-import { useRandomBg } from './__tests__/hooks/useRandomBg'
+import { useRandomBg } from './hooks/useRandomBg'
 
-function App() {
+function App () {
   /* MINESWEEPER */
   const [seconds, setSeconds] = useState(0)
   const [finishedGame, setFinishedGame] = useState(false)
@@ -196,10 +196,9 @@ function App() {
   }
 
   console.log('Welcome to MinesweepeReact!')
-  console.log(background)
   return (
     <>
-      <div id='APIbg' className='w-full h-[inherit] absolute -z-10 bg-cover flex justify-end items-end text-xl text-shadow font-raleway font-bold pr-8' style={{ backgroundImage: `url(${background})` }}>
+      <div id='APIbg' data-testid='APIbg' className='w-full h-[inherit] absolute -z-10 bg-cover flex justify-end items-end text-xl text-shadow font-raleway font-bold pr-8' style={{ backgroundImage: `url(${background})` }}>
         {bgCountryName}
       </div>
       <div id='main' className='m-0'>
