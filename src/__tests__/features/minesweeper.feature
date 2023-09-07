@@ -502,7 +502,7 @@ Feature: Minesweeper
     When the player clicks the "faceStatus" button
     Then the game should restart
 
-  Scenario: Load mock data and select easy dificulty
+  Scenario: Load mock data and stop debug mode
     Given the player loads the following mock data:
       """
 
@@ -511,3 +511,24 @@ Feature: Minesweeper
       """
     When the player clicks the "enableDebugModule" button
     Then the board should have 3 columns
+  
+  Scenario: Load mock data and select easy dificulty
+    Given the player loads the following mock data:
+      """
+
+      | * | * | o |
+
+      """
+    When the player clicks the "difficultyEasyButton" button
+    Then the board should have 8 columns
+
+  Scenario: Load mock data, disable debug mode and select easy dificulty
+    Given the player loads the following mock data:
+      """
+
+      | * | * | o |
+
+      """
+    When the player clicks the "enableDebugModule" button
+    When the player clicks the "difficultyEasyButton" button
+    Then the board should have 8 columns

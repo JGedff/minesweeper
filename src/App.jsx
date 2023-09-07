@@ -49,7 +49,6 @@ function App () {
           if (objectIsImage(Files[counter].title)) {
             const dist = Files[counter].title.split(':')
             const aux = dist[1]
-            console.log(aux)
             setBackground(aux)
             break
           }
@@ -121,7 +120,6 @@ function App () {
 
   useEffect(() => {
     resetBoardAndFlags()
-    console.log(dimensions)
   }, [dimensions])
 
   const resetBoardAndFlags = () => {

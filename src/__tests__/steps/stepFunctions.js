@@ -60,8 +60,6 @@ export const checkGameStatus = (status) => {
   const isExpectedStatus = container.classList.contains(status)
   const isExpectedFace = (status === 'win' && faceStatus === '😊') || (status === 'lost' && faceStatus === '☹️')
 
-  console.log(isExpectedStatus)
-  console.log(isExpectedFace)
   return isExpectedStatus && isExpectedFace
 }
 
