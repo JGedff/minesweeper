@@ -9,57 +9,9 @@ import { cloneBoard, generateEmptyBoardWith2Dimensions, generate2DMatrixWithCont
 
 import { DebugModule } from './components/DebugModule'
 import { DIMENSIONS, WINNER_STATUS, DIFFICULTY_FLAGS } from './logic/constants.js'
+import { useRandomBg } from './__tests__/hooks/useRandomBg'
 
-// GET COUNTRY NUMBER CODES: https://restcountries.com/v3.1/all?fields=ccn3
-// GET RANDOM COUNTRYCODE
-// GET COUNTRY CAPITAL: https://restcountries.com/v3.1/alpha/${COUNTRYCODE}?fields=capital
-
-function App () {
-  /* API CONNECTION */
-
-  const [capital, setCapital] = useState()
-  const [background, setBackground] = useState()
-
-  useEffect(() => {
-    fetch('https://restcountries.com/v3.1/all?fields=ccn3')
-      .then(res => res.json())
-      .then((res) => {
-        const numberOfObjects = res.length
-        const indexRandomObject = Math.trunc(Math.random() * numberOfObjects)
-        const countryObject = res[indexRandomObject]
-        const codeNumber = Number(countryObject.ccn3)
-
-        fetch(`https://restcountries.com/v3.1/alpha/${codeNumber}?fields=capital`)
-          .then(res => res.json())
-          .then((res) => {
-            const capitalName = res.capital
-
-            setCapital(capitalName)
-          })
-      })
-  }, [])
-
-  useEffect(() => {
-    fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&titles=${capital}&format=json&prop=images`)
-      .then(res => res.json())
-      .then((data) => {
-        const Files = (Object.values(data.query.pages)[0]).images
-
-        for (let counter = 0; counter < Files.length; counter++) {
-          if (objectIsImage(Files[counter].title)) {
-            const dist = Files[counter].title.split(':')
-            const aux = dist[1]
-            setBackground(aux)
-            break
-          }
-        }
-      })
-  }, [capital])
-
-  const objectIsImage = (title) => {
-    return (title.endsWith('.png') || title.endsWith('.jpg'))
-  }
-
+function App() {
   /* MINESWEEPER */
   const [seconds, setSeconds] = useState(0)
   const [finishedGame, setFinishedGame] = useState(false)
@@ -73,6 +25,8 @@ function App () {
   const [board, setBoard] = useState(generateBoard(dimensions, dimensions))
   const [flagsBoard, setFlagsBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, '.'))
   const [coverStatusBoard, setCoverStatusBoard] = useState(generate2DMatrixWithContent(dimensions, dimensions, false))
+
+  const { bgCountryName, background } = useRandomBg()
 
   const secondsCounter = () => {
     const currentSec = seconds + 1
@@ -242,11 +196,11 @@ function App () {
   }
 
   console.log('Welcome to MinesweepeReact!')
-
+  console.log(background)
   return (
     <>
-      <div id='APIbg' className='w-full h-[inherit] absolute -z-10 bg-cover flex justify-end items-end text-xl text-shadow font-raleway font-bold pr-8' style={{ backgroundImage: background ? 'url(https://commons.wikimedia.org/wiki/Special:FilePath/' + background + ')' : '' }}>
-        {capital}
+      <div id='APIbg' className='w-full h-[inherit] absolute -z-10 bg-cover flex justify-end items-end text-xl text-shadow font-raleway font-bold pr-8' style={{ backgroundImage: `url(${background})` }}>
+        {bgCountryName}
       </div>
       <div id='main' className='m-0'>
 

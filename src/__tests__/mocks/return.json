@@ -1,0 +1,36 @@
+{
+    "batchcomplete": "",
+    "query": {
+        "pages": {
+            "36077421": {
+                "pageid": 36077421,
+                "ns": 6,
+                "title": "File:2010 G-20 Seoul summit.jpg",
+                "imagerepository": "shared",
+                "imageinfo": [
+                    {
+                        "timestamp": "2012-05-09T11:11:07Z",
+                        "user": "Yann",
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/2010_G-20_Seoul_summit.jpg",
+                        "descriptionurl": "https://commons.wikimedia.org/wiki/File:2010_G-20_Seoul_summit.jpg",
+                        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=16169126"
+                    },
+                    {
+                        "timestamp": "2012-05-06T22:13:11Z",
+                        "user": "Ezarate",
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/archive/c/c5/20120509111107%212010_G-20_Seoul_summit.jpg",
+                        "descriptionurl": "https://en.wikipedia.org/wiki/File:2010_G-20_Seoul_summit.jpg",
+                        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=36077421"
+                    },
+                    {
+                        "timestamp": "2010-11-12T09:42:31Z",
+                        "user": "Jor70",
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/archive/c/c5/20120506221311%212010_G-20_Seoul_summit.jpg",
+                        "descriptionurl": "https://en.wikipedia.org/wiki/File:2010_G-20_Seoul_summit.jpg",
+                        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=36077421"
+                    }
+                ]
+            }
+        }
+    }
+}
