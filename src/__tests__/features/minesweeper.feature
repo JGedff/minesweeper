@@ -533,5 +533,6 @@ Feature: Minesweeper
     When the player clicks the "difficultyEasyButton" button
     Then the board should have 8 columns
   
+  @single
   Scenario: Check background
     Then the app should have a background

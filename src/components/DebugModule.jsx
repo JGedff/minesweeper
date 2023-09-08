@@ -10,7 +10,7 @@ export const DebugModule = ({ getMockData }) => {
     getMockData(inputText)
   }
 
-  console.log('Debug module started')
+  // console.log('Debug module started')
   return (
     <>
       <div className='flex place-content-center mockData-container'>

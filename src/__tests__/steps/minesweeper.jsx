@@ -111,7 +111,7 @@ export const minesweeper = ({
 
   Then('the app should have a background', () => {
     const element = screen.getByTestId('APIbg').style
-    expect(element.backgroundImage).toBeDefined()
+    expect(element.backgroundImage).not.toBe(undefined)
   })
 }
 
