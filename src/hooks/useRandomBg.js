@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { fetch } from 'whatwg-fetch'
 
 export function useRandomBg () {
   const [bgCountryName, setBgCountryName] = useState()
