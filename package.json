@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "whatwg-fetch": "^3.6.19",
     "@swc/core": "^1.3.82",
     "@swc/jest": "^0.2.29",
     "@testing-library/jest-dom": "^5.17.0",

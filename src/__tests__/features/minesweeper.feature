@@ -53,6 +53,7 @@ Feature: Minesweeper
   Background:
     Given the player opens the game
 
+  @single
   Scenario: load custom board - Flags equals mines
     Given the player loads the following mock data:
       """
@@ -399,7 +400,7 @@ Feature: Minesweeper
     When the player uncovers the cell (1,2)
     And the player does a right click in the cell (1,1)
     Then the cell (1,1) should show: "!"
-  
+
   Scenario: Win the game - Unable to uncover the cell
     Given the player loads the following mock data:
       """
@@ -511,7 +512,7 @@ Feature: Minesweeper
       """
     When the player clicks the "enableDebugModule" button
     Then the board should have 3 columns
-  
+
   Scenario: Load mock data and select easy dificulty
     Given the player loads the following mock data:
       """
@@ -532,7 +533,6 @@ Feature: Minesweeper
     When the player clicks the "enableDebugModule" button
     When the player clicks the "difficultyEasyButton" button
     Then the board should have 8 columns
-  
-  @single
+
   Scenario: Check background
     Then the app should have a background
