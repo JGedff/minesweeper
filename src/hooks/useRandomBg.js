@@ -39,7 +39,10 @@ export function useRandomBg () {
                   .then(res => res.json())
                   .then((data) => {
                     const selectedURL = (Object.values(data.query.pages)[0]).imageinfo[0].url
-                    setBackground(selectedURL)
+
+                    waitFor(() => {
+                      setBackground(selectedURL)
+                    })
                   })
                 break
               }
