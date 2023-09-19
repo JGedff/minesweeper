@@ -1,3 +1,4 @@
+import { waitFor } from '@testing-library/react'
 import React, { useState, useEffect } from 'react'
 
 export function useRandomBg () {
@@ -15,7 +16,10 @@ export function useRandomBg () {
         const numberOfObjects = data.length
         const indexRandomObject = Math.trunc(Math.random() * numberOfObjects)
         const commonCountryName = data[indexRandomObject].name.common
-        setBgCountryName(commonCountryName)
+
+        waitFor(() => {
+          setBgCountryName(commonCountryName)
+        })
       })
   }, [])
 
@@ -26,17 +30,19 @@ export function useRandomBg () {
         if (bgCountryName !== undefined) {
           const Files = (Object.values(data.query.pages)[0]).images
 
-          for (let counter = 0; counter < Files.length; counter++) {
-            if (objectIsImage(Files[counter].title)) {
-              const selectedImage = Files[counter].title
+          if (Files !== undefined) {
+            for (let counter = 0; counter < Files.length; counter++) {
+              if (objectIsImage(Files[counter].title)) {
+                const selectedImage = Files[counter].title
 
-              fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&iiprop=url&prop=imageinfo&titles=${selectedImage}&format=json`)
-                .then(res => res.json())
-                .then((data) => {
-                  const selectedURL = (Object.values(data.query.pages)[0]).imageinfo[0].url
-                  setBackground(selectedURL)
-                })
-              break
+                fetch(`https://en.wikipedia.org/w/api.php?origin=*&action=query&iiprop=url&prop=imageinfo&titles=${selectedImage}&format=json`)
+                  .then(res => res.json())
+                  .then((data) => {
+                    const selectedURL = (Object.values(data.query.pages)[0]).imageinfo[0].url
+                    setBackground(selectedURL)
+                  })
+                break
+              }
             }
           }
         }

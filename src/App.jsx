@@ -196,6 +196,7 @@ function App () {
   }
 
   console.log('Welcome to MinesweepeReact!')
+
   return (
     <>
       <div id='APIbg' data-testid='APIbg' className='w-full h-[inherit] absolute -z-10 bg-cover flex justify-end items-end text-xl text-shadow font-raleway font-bold pr-8' style={{ backgroundImage: `url(${background})` }}>
